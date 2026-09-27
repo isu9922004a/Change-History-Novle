@@ -1,1119 +1,234 @@
-<!doctype html>
-<html lang="zh-Hant">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>Happiness & Funny 推金幣</title>
+<!DOCTYPE html>
 
+<html lang="zh-Hant"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/><meta content="#1b1715" name="theme-color"/>
+<title>甲申：北門之約｜煤山救駕，大明中興｜核心大場景補齊完整版</title>
 <style>
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
-
-:root{
-  --bg1:#090f1c;
-  --bg2:#101c33;
-  --panel:#13233f;
-  --line:#35547d;
-  --gold1:#fff2a6;
-  --gold2:#ffd447;
-  --gold3:#d99200;
-  --red1:#ff6a7f;
-  --red2:#b40f34;
-  --blue1:#62c6ff;
-  --blue2:#215ec7;
-  --green1:#97ff83;
-  --green2:#1d9b4e;
-  --text:#f6f8ff;
-  --muted:#b8c6dd;
-}
-
-html,body{
-  margin:0;
-  min-height:100%;
-  background:
-    radial-gradient(circle at top,#20345e 0%,#0f1730 30%,#090f1c 75%);
-  color:var(--text);
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    "Noto Sans TC",
-    sans-serif;
-  overflow-x:hidden;
-}
-
-body{
-  display:flex;
-  justify-content:center;
-}
-
-#app{
-  width:min(100vw,520px);
-  padding:
-    calc(10px + env(safe-area-inset-top))
-    10px
-    calc(14px + env(safe-area-inset-bottom));
-}
-
-/* ===== TOP HUD ===== */
-.topBar{
-  display:grid;
-  grid-template-columns:70px 1fr 110px;
-  gap:8px;
-  align-items:center;
-  margin-bottom:8px;
-}
-
-.roundBtn{
-  height:48px;
-  border-radius:16px;
-  border:1px solid #5a7db0;
-  background:linear-gradient(#20385b,#15253f);
-  color:white;
-  font-size:26px;
-  font-weight:900;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow:0 4px 0 rgba(0,0,0,.35);
-}
-
-.statusCenter{
-  background:linear-gradient(#1b3156,#132540);
-  border:1px solid #466895;
-  border-radius:18px;
-  padding:8px 10px;
-  text-align:center;
-  box-shadow:0 4px 0 rgba(0,0,0,.35);
-}
-
-.timer{
-  font-size:24px;
-  font-weight:900;
-  color:#ffe640;
-  line-height:1;
-}
-
-.machineName{
-  font-size:12px;
-  color:#d8e4f5;
-  margin-top:4px;
-}
-
-.coinPanel{
-  background:linear-gradient(#ffffff,#dfe9f8);
-  border-radius:18px;
-  color:#213253;
-  padding:8px 10px;
-  text-align:center;
-  box-shadow:0 4px 0 rgba(0,0,0,.22);
-  font-weight:900;
-}
-
-.coinPanel small{
-  display:block;
-  color:#556987;
-  font-size:11px;
-  margin-top:2px;
-}
-
-/* ===== MACHINE FRAME ===== */
-#machine{
-  position:relative;
-  border-radius:24px;
-  overflow:hidden;
-  border:3px solid #3a5c8f;
-  background:
-    radial-gradient(circle at top,#4f94ff 0%,#2b5ab4 30%,#153060 70%,#0b1730 100%);
-  box-shadow:0 16px 40px rgba(0,0,0,.42);
-}
-
-/* Decorative side curtains */
-#machine::before,
-#machine::after{
-  content:"";
-  position:absolute;
-  top:0;
-  bottom:0;
-  width:52px;
-  z-index:0;
-  background:
-    linear-gradient(180deg,#ffcc5e 0 3%,transparent 3% 100%),
-    radial-gradient(circle at center,#fff2a8 0 1px,transparent 1px 100%),
-    linear-gradient(180deg,#d7333f,#7e071d);
-  background-size:100% 100%,16px 16px,100% 100%;
-  opacity:.95;
-}
-#machine::before{left:0;}
-#machine::after{right:0;}
-
-.inner{
-  position:relative;
-  z-index:1;
-  padding:10px 16px 12px;
-}
-
-/* ===== HEADER MARQUEE ===== */
-.marqueeWrap{
-  display:flex;
-  align-items:flex-end;
-  justify-content:center;
-  gap:6px;
-  margin-bottom:6px;
-}
-
-.tent{
-  position:relative;
-  width:100%;
-  max-width:360px;
-  height:110px;
-}
-
-.tentTop{
-  position:absolute;
-  left:50%;
-  top:0;
-  transform:translateX(-50%);
-  width:0;
-  height:0;
-  border-left:130px solid transparent;
-  border-right:130px solid transparent;
-  border-bottom:84px solid #f7d258;
-  filter:drop-shadow(0 4px 0 rgba(0,0,0,.22));
-}
-
-.tentTop::before{
-  content:"";
-  position:absolute;
-  left:-130px;
-  top:0;
-  width:260px;
-  height:84px;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      rgba(255,86,86,.92) 0 22px,
-      rgba(255,239,168,.95) 22px 44px
-    );
-  clip-path:polygon(50% 0,100% 100%,0 100%);
-}
-
-.tentFlag{
-  position:absolute;
-  top:-8px;
-  left:50%;
-  transform:translateX(-50%);
-  width:18px;
-  height:18px;
-  background:#ff355d;
-  clip-path:polygon(0 0,100% 30%,0 60%);
-}
-
-.tentBoard{
-  position:absolute;
-  left:50%;
-  top:54px;
-  transform:translateX(-50%);
-  width:300px;
-  border-radius:18px;
-  padding:8px 12px;
-  border:3px solid #e6c15b;
-  background:
-    linear-gradient(180deg,#fff5c2,#ffd34f 45%,#ffb30a);
-  color:#6a2d00;
-  text-align:center;
-  box-shadow:0 8px 0 rgba(0,0,0,.25);
-}
-
-.tentBoard h1{
-  margin:0;
-  font-size:24px;
-  line-height:1;
-  letter-spacing:1px;
-  text-shadow:0 1px 0 rgba(255,255,255,.45);
-}
-
-.tentBoard p{
-  margin:4px 0 0;
-  font-size:11px;
-  color:#7d4300;
-  font-weight:800;
-}
-
-.bonusBadge{
-  position:absolute;
-  right:22px;
-  bottom:8px;
-  background:
-    radial-gradient(circle,#fffef5 0 18%,#c3b7ff 18% 50%,#6b56cf 50% 100%);
-  color:white;
-  font-weight:900;
-  font-size:13px;
-  width:88px;
-  height:88px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  line-height:1.1;
-  box-shadow:0 6px 0 rgba(0,0,0,.28);
-}
-
-/* ===== SLOT DECORATION ===== */
-.slotArea{
-  margin-top:6px;
-  display:grid;
-  grid-template-columns:1fr 88px;
-  gap:10px;
-  align-items:stretch;
-}
-
-.slotBox{
-  background:
-    linear-gradient(180deg,#ffe88b,#f9c13d 8%,#5b2e13 8%,#a75720 100%);
-  padding:10px;
-  border-radius:18px;
-  border:3px solid #efcd72;
-  box-shadow:0 8px 0 rgba(0,0,0,.25);
-}
-
-.slotScreen{
-  background:
-    linear-gradient(180deg,#f8fbff,#e6effa);
-  border-radius:10px;
-  border:3px solid #d7b663;
-  overflow:hidden;
-}
-
-.slotHead{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:4px;
-  padding:6px;
-  background:linear-gradient(180deg,#233f75,#152947);
-}
-
-.slotHead div{
-  background:#0b1d3e;
-  color:#f6f5ff;
-  text-align:center;
-  font-size:11px;
-  font-weight:900;
-  padding:4px 2px;
-  border-radius:6px;
-  border:1px solid #506fa3;
-}
-
-.slotGrid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  grid-template-rows:repeat(3,54px);
-  background:
-    linear-gradient(90deg,#dfe8f6 0,#ffffff 50%,#dfe8f6 100%);
-}
-
-.cell{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:28px;
-  border-right:1px solid #cbd6e7;
-  border-bottom:1px solid #cbd6e7;
-}
-
-.cell:nth-child(4n){
-  border-right:0;
-}
-
-.slotFooter{
-  display:grid;
-  grid-template-columns:repeat(8,1fr);
-  gap:4px;
-  padding:6px;
-  background:linear-gradient(180deg,#f8d25c,#b36915);
-}
-
-.slotFooter div{
-  background:#f5f0ff;
-  color:#5c3684;
-  border-radius:999px;
-  text-align:center;
-  font-size:11px;
-  font-weight:900;
-  padding:2px 0;
-}
-
-.sideMeter{
-  border-radius:18px;
-  border:3px solid #f2cf75;
-  background:linear-gradient(180deg,#7a3b23,#5a2715 40%,#2e1320);
-  box-shadow:0 8px 0 rgba(0,0,0,.25);
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-
-.meterTop{
-  padding:8px;
-  background:linear-gradient(180deg,#203f73,#122648);
-  color:#fff;
-  font-size:11px;
-  font-weight:900;
-  text-align:center;
-}
-
-.meterRows{
-  padding:8px;
-  display:grid;
-  gap:6px;
-}
-
-.meterRows div{
-  background:#f9f0ba;
-  color:#5d3810;
-  border-radius:6px;
-  padding:5px 4px;
-  font-size:11px;
-  font-weight:900;
-  text-align:center;
-}
-
-.meterBottom{
-  padding:8px;
-  text-align:center;
-  color:#fff;
-  font-size:10px;
-}
-
-.brandBar{
-  margin:10px auto 8px;
-  width:92%;
-  background:
-    linear-gradient(180deg,#c5f171,#7ab32f);
-  border:3px solid #efcd72;
-  border-radius:10px;
-  color:#26410e;
-  text-align:center;
-  font-weight:900;
-  font-size:26px;
-  letter-spacing:1px;
-  padding:6px 8px;
-  text-shadow:0 1px 0 rgba(255,255,255,.55);
-  box-shadow:0 6px 0 rgba(0,0,0,.22);
-}
-
-/* ===== CANVAS ZONE ===== */
-#canvasWrap{
-  position:relative;
-  margin-top:4px;
-  background:
-    linear-gradient(180deg,#2b2b35 0,#10131b 24%,#09111d 100%);
-  border-radius:16px;
-  border:2px solid #4d668a;
-  overflow:hidden;
-  box-shadow:inset 0 3px 10px rgba(255,255,255,.06);
-}
-
-canvas{
-  display:block;
-  width:100%;
-  height:auto;
-  background:
-    linear-gradient(180deg,#243246 0%,#111821 20%,#060a0f 100%);
-  touch-action:none;
-}
-
-/* ===== BUTTONS ===== */
-.playControls{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:12px;
-}
-
-.btn{
-  border:0;
-  border-radius:18px;
-  padding:14px 10px;
-  font-size:20px;
-  font-weight:900;
-  box-shadow:0 5px 0 rgba(0,0,0,.28);
-}
-
-.btn:active{
-  transform:translateY(3px);
-  box-shadow:0 1px 0 rgba(0,0,0,.28);
-}
-
-#startAuto{
-  background:linear-gradient(180deg,#9fe8ff,#4d89ff 45%,#2758bc);
-  color:white;
-  border:1px solid #87beff;
-}
-
-#stopAuto{
-  background:linear-gradient(180deg,#f0f1f5,#bebfc7 45%,#858896);
-  color:#26314d;
-  border:1px solid #dce4f4;
-}
-
-.aimWrap{
-  margin-top:10px;
-  background:linear-gradient(#192b49,#12233d);
-  border:1px solid #45678f;
-  border-radius:16px;
-  padding:10px;
-}
-
-.aimTitle{
-  display:flex;
-  justify-content:space-between;
-  font-size:12px;
-  color:#d8e4f7;
-  margin-bottom:6px;
-}
-
-.track{
-  position:relative;
-  height:14px;
-  border-radius:999px;
-  background:#0c1628;
-  border:1px solid #31507b;
-}
-
-.knob{
-  position:absolute;
-  top:50%;
-  width:22px;
-  height:22px;
-  border-radius:50%;
-  background:radial-gradient(circle,#fff2b3 0,#ffd44c 55%,#db8c00 100%);
-  transform:translate(-50%,-50%);
-  box-shadow:0 0 0 4px rgba(255,212,76,.15);
-}
-
-.footerTip{
-  text-align:center;
-  color:#a7b9d3;
-  font-size:12px;
-  line-height:1.5;
-  margin-top:8px;
-}
-
-#floatingText{
-  position:absolute;
-  left:50%;
-  top:56%;
-  transform:translate(-50%,-50%) scale(.9);
-  background:rgba(7,20,40,.82);
-  border:1px solid #75a3ff;
-  color:#fff;
-  padding:12px 18px;
-  border-radius:999px;
-  font-size:22px;
-  font-weight:900;
-  opacity:0;
-  pointer-events:none;
-  transition:.18s;
-  z-index:8;
-}
-
-#floatingText.show{
-  opacity:1;
-  transform:translate(-50%,-50%) scale(1);
-}
-</style>
-</head>
-<body>
-
-<div id="app">
-
-  <div class="topBar">
-    <div class="roundBtn">↩</div>
-
-    <div class="statusCenter">
-      <div class="timer" id="timer">99s</div>
-      <div class="machineName">2026.09.07　Happiness & Funny</div>
-    </div>
-
-    <div class="coinPanel">
-      <div id="coinTotal">100</div>
-      <small>剩餘金幣</small>
-    </div>
-  </div>
-
-  <div id="machine">
-    <div class="inner">
-
-      <div class="marqueeWrap">
-        <div class="tent">
-          <div class="tentFlag"></div>
-          <div class="tentTop"></div>
-          <div class="tentBoard">
-            <h1>HAPPINESS & FUNNY</h1>
-            <p>馬戲團推金幣機台</p>
-          </div>
-          <div class="bonusBadge">BONUS<br>SPIN</div>
-        </div>
-      </div>
-
-      <div class="slotArea">
-        <div class="slotBox">
-          <div class="slotScreen">
-            <div class="slotHead">
-              <div>JP1 0567</div>
-              <div>JP2 1074</div>
-              <div>JP3 2037</div>
-              <div>MINI 3386</div>
-            </div>
-
-            <div class="slotGrid">
-              <div class="cell">🎈</div>
-              <div class="cell">🎪</div>
-              <div class="cell">🎩</div>
-              <div class="cell">🤹</div>
-
-              <div class="cell">🫧</div>
-              <div class="cell">🎩</div>
-              <div class="cell">🏖️</div>
-              <div class="cell">🎈</div>
-
-              <div class="cell">🎩</div>
-              <div class="cell">🎪</div>
-              <div class="cell">🪀</div>
-              <div class="cell">🫧</div>
-            </div>
-
-            <div class="slotFooter">
-              <div>10</div>
-              <div>25</div>
-              <div>50</div>
-              <div>100</div>
-              <div>33</div>
-              <div>10</div>
-              <div>97</div>
-              <div>45</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="sideMeter">
-          <div class="meterTop">BONUS LIST</div>
-
-          <div class="meterRows">
-            <div>000001</div>
-            <div>000120</div>
-            <div>000860</div>
-            <div>SPIN</div>
-          </div>
-
-          <div class="meterBottom">Circus Bonus</div>
-        </div>
-      </div>
-
-      <div class="brandBar">HAPPINESS &amp; FUNNY</div>
-
-      <div id="canvasWrap">
-        <canvas id="game" width="432" height="500"></canvas>
-        <div id="floatingText">+1</div>
-      </div>
-
-      <div class="aimWrap">
-        <div class="aimTitle">
-          <span>投幣位置</span>
-          <span>可拖曳滑桿或點畫面上方</span>
-        </div>
-
-        <div class="track" id="track">
-          <div class="knob" id="knob"></div>
-        </div>
-      </div>
-
-      <div class="playControls">
-        <button class="btn" id="startAuto">開始投幣</button>
-        <button class="btn" id="stopAuto">取消投幣</button>
-      </div>
-
-      <div class="footerTip">
-        玩法：開始投幣後會持續落幣，推盤會前後推動。<br>
-        把金幣推落到前方黑色掉落區，就能得分。
-      </div>
-    </div>
-  </div>
-</div>
-
+:root{--bg:#efe7d5;--paper:#f8f1df;--ink:#201b18;--muted:#746b62;--accent:#7f211f;--line:#cdbfa7;--panel:#e7dcc5;--shadow:0 12px 35px rgba(38,25,17,.16);--font-size:20px;--measure:760px}
+[data-theme="dark"]{--bg:#151311;--paper:#1d1a17;--ink:#ece4d3;--muted:#aea496;--accent:#bf6159;--line:#3f3932;--panel:#26211d;--shadow:0 12px 35px rgba(0,0,0,.35)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Serif TC","PingFang TC","Microsoft JhengHei",serif;line-height:1.95}button{font:inherit}#progress{position:fixed;top:0;left:0;height:4px;background:var(--accent);width:0;z-index:100}.topbar{position:fixed;top:0;left:0;right:0;height:58px;background:color-mix(in srgb,var(--paper) 93%, transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);z-index:80;display:flex;align-items:center;justify-content:space-between;padding:0 16px}.brand{font-weight:800;letter-spacing:.08em}.controls{display:flex;gap:8px;align-items:center}.controls button,.drawer-btn{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:9px;padding:7px 11px;cursor:pointer}.layout{display:grid;grid-template-columns:300px 1fr;min-height:100vh;padding-top:58px}.sidebar{position:sticky;top:58px;height:calc(100vh - 58px);overflow:auto;border-right:1px solid var(--line);background:var(--panel);padding:22px 16px}.sidebar h2{font-size:16px;margin:0 0 14px;color:var(--accent)}.vol-title{margin:18px 8px 7px;font-size:12px;letter-spacing:.16em;color:var(--muted);font-weight:800}.sidebar a{display:block;color:var(--ink);text-decoration:none;padding:8px 10px;border-radius:8px;font-size:14px;line-height:1.35}.sidebar a:hover,.sidebar a.active{background:var(--paper);color:var(--accent)}main{min-width:0}.hero{min-height:88vh;display:flex;align-items:center;justify-content:center;padding:80px 24px;background:linear-gradient(rgba(20,16,14,.1),rgba(20,16,14,.16)),radial-gradient(circle at 50% 30%,color-mix(in srgb,var(--accent) 10%,transparent),transparent 44%)}.cover{max-width:900px;text-align:center}.cover .eyebrow{letter-spacing:.28em;color:var(--accent);font-weight:800;font-size:14px}.cover h1{font-size:clamp(42px,7vw,82px);line-height:1.08;margin:18px 0 8px;letter-spacing:.04em}.cover h2{font-weight:500;color:var(--muted);font-size:clamp(18px,2.4vw,28px);margin:0 0 28px}.cover p{max-width:760px;margin:0 auto 28px;font-size:18px;color:var(--muted)}.cover .start{display:inline-block;background:var(--accent);color:white;text-decoration:none;padding:12px 24px;border-radius:999px;font-weight:700}.frontmatter,.appendix{max-width:1000px;margin:0 auto;padding:70px 28px}.frontmatter h2,.appendix h2{font-size:34px;margin-bottom:10px}.note{background:var(--panel);border-left:4px solid var(--accent);padding:18px 20px;border-radius:8px}.chapter{max-width:var(--measure);margin:0 auto;padding:90px 30px 80px;scroll-margin-top:70px}.chapter-kicker{text-align:center;color:var(--accent);font-size:13px;letter-spacing:.18em;font-weight:800}.chapter h2{text-align:center;font-size:38px;line-height:1.25;margin:12px 0}.ornament{text-align:center;color:var(--accent);margin:15px 0 36px}.chapter-body{font-size:var(--font-size);letter-spacing:.035em}.chapter-body p{margin:0 0 1.35em;text-align:justify}.chapter-body p:first-child::first-letter{font-size:2.8em;float:left;line-height:.9;margin:.12em .10em 0 0;color:var(--accent);font-weight:700}.chapter-nav{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;margin-top:56px;padding-top:22px;border-top:1px solid var(--line)}.chapter-nav button{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:10px 12px;cursor:pointer}.chapter-nav .next{justify-self:end}.drawer-btn{display:none}.overlay{display:none}.footer{text-align:center;padding:40px 20px 80px;color:var(--muted)}
+@media(max-width:900px){.layout{display:block}.sidebar{position:fixed;left:-88%;top:58px;width:84%;height:calc(100vh - 58px);z-index:90;transition:.25s;box-shadow:var(--shadow)}body.drawer-open .sidebar{left:0}.overlay{display:block;position:fixed;inset:58px 0 0;background:rgba(0,0,0,.35);z-index:85;opacity:0;pointer-events:none;transition:.2s}body.drawer-open .overlay{opacity:1;pointer-events:auto}.drawer-btn{display:inline-block}.brand{font-size:14px}.chapter{padding:78px 20px 65px}.chapter h2{font-size:30px}.chapter-body{font-size:calc(var(--font-size) - 1px);line-height:1.9}}
+
+.version-badge{display:inline-block;margin-top:14px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:13px;letter-spacing:.06em;background:color-mix(in srgb,var(--paper) 80%, transparent)}
+
+.chapter-body .scene-break{text-align:center!important;color:var(--accent);letter-spacing:.6em;margin:2.2em 0 1.8em;font-size:.9em}
+
+.draft-note{color:var(--muted);font-size:.92em;margin:18px 0 0}
+</style></head><body><div id="progress"></div>
+<header class="topbar"><div style="display:flex;align-items:center;gap:10px"><button class="drawer-btn" id="drawerBtn">☰</button><div class="brand">甲申：北門之約</div></div><div class="controls"><button id="fontDown">A−</button><button id="fontUp">A＋</button><button id="themeBtn">☾ 深色</button></div></header>
+<div class="layout"><aside class="sidebar" id="sidebar"><h2>章節目錄</h2><a data-target="cover" href="#cover">封面</a><a data-target="intro" href="#intro">作品簡介</a><div class="vol-title">第一卷　墜入甲申</div><a data-target="ch-0" href="#ch-0">楔子　煤山一刀</a><a data-target="ch-1" href="#ch-1">第一章　未錄取</a><a data-target="ch-2" href="#ch-2">第二章　醒在死人旁邊</a><a data-target="ch-3" href="#ch-3">第三章　第一個死人</a><a data-target="ch-4" href="#ch-4">第四章　十二日</a><a data-target="ch-5" href="#ch-5">第五章　北京</a><a data-target="ch-6" href="#ch-6">第六章　她不認識我</a><a data-target="ch-7" href="#ch-7">第七章　永興米行</a><a data-target="ch-8" href="#ch-8">第八章　實數</a><div class="vol-title">第二卷　十二日</div><a data-target="ch-9" href="#ch-9">第九章　投名宴</a><a data-target="ch-10" href="#ch-10">第十章　大明會亡</a><a data-target="ch-11" href="#ch-11">第十一章　先生的信</a><a data-target="ch-12" href="#ch-12">第十二章　第一次面聖</a><a data-target="ch-13" href="#ch-13">第十三章　朕憑什麼信你</a><a data-target="ch-14" href="#ch-14">第十四章　三件預言</a><a data-target="ch-15" href="#ch-15">第十五章　袁崇煥之子</a><a data-target="ch-16" href="#ch-16">第十六章　南遷</a><a data-target="ch-17" href="#ch-17">第十七章　不肯走的皇帝</a><a data-target="ch-18" href="#ch-18">第十八章　闖軍到了</a><a data-target="ch-19" href="#ch-19">第十九章　吳三桂</a><a data-target="ch-20" href="#ch-20">第二十章　三月十八</a><div class="vol-title">第三卷　煤山未死</div><a data-target="ch-21" href="#ch-21">第二十一章　煤山</a><a data-target="ch-22" href="#ch-22">第二十二章　白綾未落</a><a data-target="ch-23" href="#ch-23">第二十三章　出城</a><a data-target="ch-24" href="#ch-24">第二十四章　北門半個時辰</a><a data-target="ch-25" href="#ch-25">第二十五章　三百七十一</a><a data-target="ch-26" href="#ch-26">第二十六章　皇帝還活著</a><a data-target="ch-27" href="#ch-27">第二十七章　南下</a><a data-target="ch-28" href="#ch-28">第二十八章　金陵鐘</a><a data-target="ch-29" href="#ch-29">第二十九章　南京再朝</a><div class="vol-title">第四卷　金陵再朝</div><a data-target="ch-30" href="#ch-30">第三十章　第一件事：發餉</a><a data-target="ch-31" href="#ch-31">第三十一章　第二件事：赦</a><a data-target="ch-32" href="#ch-32">第三十二章　崇禎十八年</a><a data-target="ch-33" href="#ch-33">第三十三章　吳三桂沒有開門</a><a data-target="ch-34" href="#ch-34">第三十四章　山海關</a><a data-target="ch-35" href="#ch-35">第三十五章　李自成</a><a data-target="ch-36" href="#ch-36">第三十六章　北京復城</a><a data-target="ch-37" href="#ch-37">第三十七章　皇帝回京</a><div class="vol-title">第五卷　山海逆潮</div><a data-target="ch-38" href="#ch-38">第三十八章　袁案</a><a data-target="ch-39" href="#ch-39">第三十九章　魏成甫的最後一局</a><a data-target="ch-40" href="#ch-40">第四十章　新軍</a><a data-target="ch-41" href="#ch-41">第四十一章　東江再立</a><a data-target="ch-42" href="#ch-42">第四十二章　寧遠</a><a data-target="ch-43" href="#ch-43">第四十三章　錦州</a><a data-target="ch-44" href="#ch-44">第四十四章　遼河</a><div class="vol-title">第六卷　遼東重明</div><a data-target="ch-45" href="#ch-45">第四十五章　盛京</a><a data-target="ch-46" href="#ch-46">第四十六章　陳筱依</a><a data-target="ch-47" href="#ch-47">第四十七章　遼寧</a><a data-target="ch-48" href="#ch-48">第四十八章　封國公</a><a data-target="ch-49" href="#ch-49">第四十九章　世襲罔替</a><a data-target="ch-50" href="#ch-50">第五十章　北門之約</a><a data-target="ch-51" href="#ch-51">尾聲　太平</a><div class="vol-title">附錄</div><a data-target="notes" href="#notes">史實與架空說明</a></aside><div class="overlay" id="overlay"></div>
+<main><section class="hero" id="cover"><div class="cover"><div class="eyebrow">明末歷史 × 穿越 × 中興 × 戰爭 × 愛情</div><div class="version-badge">完整長篇改寫版｜52章｜架空歷史線</div><h1>甲申：北門之約</h1><h2>——煤山救駕，大明中興</h2><p>二〇二五年的高中生王子燦意外墜入崇禎十七年，只剩十二天阻止北京陷落。他救不了一座已經從內部崩裂的京城，卻決定先救下一個本該死在煤山的皇帝。從白綾斷裂的那一刻起，史書失去答案：南京再朝、軍餉重整、山海關拒清、北京光復、遼東反攻……他必須在不知道明天的情況下，讓一個瀕死王朝重新學會說真話、發真餉、打能承受的仗，也讓那些原本只會成為「死傷若干」的人真正留下名字。</p><a class="start" href="#ch-0">開始閱讀</a></div></section>
+<section class="frontmatter" id="intro"><h2>作品簡介</h2><p>二〇二五年，十八歲的王子燦因落榜跌入人生低谷。一次意外墜落，他醒在崇禎十七年三月初七，並承接一名明末參將的身體與記憶。十二天後，北京將破、崇禎將死、山海關將成為改寫天下的門。王子燦一開始以為「知道歷史」就是最大的武器，直到他發現：真正能改變歷史的，不是背出答案，而是在每一次沒有答案的選擇裡，讓更多人活下來。</p><p>他知道三月十九北京必陷，知道崇禎將在煤山自縊，也知道山海關之後，大明將走向不可逆的覆亡。但當他真正置身其中才發現：知道歷史，不等於能控制歷史。</p><div class="note"><strong>新版核心句：</strong><br/>北京可以丟，大明不能先死在煤山。中興不是讓一個英雄替所有人赴死，而是讓皇帝、軍隊、制度與普通百姓都重新有活到明天的可能。</div><p class="draft-note">本版為完整改編稿：保留原作人物核心與「北門／實數／紅繩／圖書館」意象，主線改為煤山救駕、南京再朝、山海關拒清、復京與遼東中興。</p></section>
+<section class="chapter" data-index="0" id="ch-0">
+<div class="chapter-kicker">第一卷　墜入甲申</div><h2>楔子　煤山一刀</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>煤山的風像刀。崇禎十七年三月十九日，天還沒有亮，紫禁城外已是一片火海。王子燦踩著濕透的石階往煤山上跑，左肩的箭傷每震一下，就像有人把燒紅的鐵釘再往骨頭裡推一寸。身後是僅剩的親兵，前面則是沉默的松柏與被煙燻黑的天。</p><p>他知道史書上這個時辰會發生什麼。崇禎會在煤山自縊，王承恩陪死，北京城破，明朝中央權威一夜碎裂。可真正看見那條白綾時，所有史書上的字都忽然變輕。</p><p>崇禎沒有穿龍袍，只是一身染灰素衣。王承恩跪在一旁，哭得沒有聲音。皇帝把白綾往枝上一拋，抬頭看了很久。</p><p>「陛下！」</p><p>崇禎回頭，竟笑了一下。「王卿，你終究還是來了。」</p><p>「臣來帶陛下走。」</p><p>「走？朕還能走去哪裡？」</p><p>王子燦拔刀。王承恩臉色驟變。下一瞬，刀光斜掠，白綾應聲而斷。斷布飄進泥水。</p><p>崇禎震怒：「放肆！」</p><p>王子燦單膝跪地，卻沒有低頭。</p><p>「北京可以失，城池可以再奪。可陛下一死，南京留都失了正統，邊鎮各自為政，所有還想替大明打一仗的人，都不知道該替誰打。」</p><p>「你是要朕逃？」</p><p>「臣要陛下活。」</p><p>山下喊殺愈近。王子燦看著崇禎，一字一句道：「陛下若覺得自己有罪，就別用一條白綾把罪全留給活人。跟臣去南京。欠天下的，一件一件還。」</p><p>很久以後，史官把這一夜寫成「煤山救駕」。只有王子燦記得，真正改變歷史的不是刀有多快，而是崇禎看著泥裡那截白綾，終於往後退了一步。</p><p>故事從一條沒有套上脖子的白綾開始。</p><p class="scene-break">＊</p><p>山下，一名年輕親兵扶著樹喘氣。他從沒見過皇帝，只知道自己今夜一路跟著王參將殺進宮城，又跟著爬上煤山。直到看見那個披著粗布棉袍的人從樹下走過，他才突然明白：原來天子也有會發抖的手。</p><p>多年後，他會對孫子說，甲申那夜最奇怪的事不是皇帝活了，而是皇帝第一次看起來像一個普通人。那一刻，很多人不再只是為「萬歲」兩個字賣命。他們開始覺得，也許這個人真的可以被帶走、被勸、甚至被改變。</p><p>王子燦當時沒有想那麼遠。他只把斷掉的白綾踢到一旁，催所有人下山。史書後來把那一刀寫得乾脆，卻很少有人知道，刀落之後才是最難的部分。</p><p class="scene-break">＊</p><p>煤山下第一道宮門已經失去控制。有人穿著明軍衣甲往外跑，也有人把腰牌扔進火裡，想把自己從這個朝廷裡抹掉。王子燦帶崇禎下山時，只能用最少的話維持隊形。</p><p>「不准喊萬歲。」「不准回頭。」「看我手勢。」</p><p>皇帝第一次被人這樣命令。走到半山，他停了一次。山下宮城火光映在他臉上，乾清宮方向隱約傳來哭喊。</p><p>「皇后。」崇禎低聲道。</p><p>王子燦心裡一沉。他知道歷史裡周皇后會在坤寧宮自盡，也知道長平公主會被父親揮劍砍傷。可現在時間已被改動，他不知道宮裡究竟發生到哪一步。</p><p>「王承恩。」他轉頭，「皇后和太子最後消息？」</p><p>王承恩抹去眼淚，急促道：「太子已依前議送出一段，周后尚在宮中。」</p><p>崇禎猛地轉身。</p><p>王子燦一把抓住他手臂。這個動作在平時足以誅九族。</p><p>「不能回去。」</p><p>「朕的皇后還在！」</p><p>「所以才更不能回。」</p><p>崇禎眼裡第一次露出真正的殺意。王子燦卻沒有鬆手。</p><p>「臣派人去接。」</p><p>「你拿什麼保證？」</p><p>「沒有保證。」</p><p>又是這句。</p><p>崇禎胸口劇烈起伏。若王子燦說「必能救」，他反而可能不信。偏偏這個年輕人從不給他漂亮答案。</p><p>王子燦派出八名親兵與兩名熟宮路的內監回頭。他知道這會削弱護衛，也知道不派，崇禎很可能自己回去。</p><p>下山後，他們穿過一片御苑。夜色裡，樹影與煙混成一團。遠處有火銃聲。有人喊「賊入皇城」。</p><p>崇禎走得踉蹌。不是體力不支，是他每一步都像在離自己做了十七年皇帝的地方更遠。</p><p>王子燦忽然想到天台。自己墜落時也曾以為一切到此為止。可真正活下來之後，最難的不是墜落，是重新決定下一步往哪裡走。</p><p>「陛下。」</p><p>崇禎沒有看他。</p><p>「今日不是亡國日。」</p><p>「京師已失。」</p><p>「失的是城。」</p><p>「有何不同？」</p><p>王子燦看向黑暗裡那條往東的路。</p><p>「等陛下到了南京，就會知道。」</p><p>崇禎沒有回答。</p><p>後來王子燦才明白，煤山那一刀只救了崇禎的肉身。真正要把一個已經決定以死結束一切的人拉回「明天」，用了很多年。</p><p class="scene-break">＊</p><p>很多年後，崇禎曾問王子燦：「你那一刀若慢一息呢？」</p><p>王子燦答不出。</p><p>如果白綾已套上，如果王承恩晚一步，如果親兵在宮門被攔住，後面所有中興、遼東、書庫都不會存在。可他也不願把一切歸功於自己快了一刀。</p><p>「陛下其實也往後退了。」</p><p>「朕那時只是被你嚇住。」</p><p>「那也是退。」</p><p>崇禎想了半天，竟點頭。</p><p>史書習慣找一個決定性的瞬間。王子燦活得越久，越覺得所謂瞬間其實是很多準備最後重疊：提前的密詔、王承恩的動搖、陳筱依的路線、曹文瑞守住的時間、崇禎自己心裡那一點還沒完全熄掉的求生。</p><p>刀只是最後落下的那一筆。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="1" id="ch-1">
+<div class="chapter-kicker">第一卷　墜入甲申</div><h2>第一章　未錄取</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>二〇二五年七月，台北的午後熱得像一口蓋住的鍋。王子燦站在便利商店外，盯著手機螢幕上「未錄取」三個字看了很久。</p><p>他想讀台大歷史。從小迷明末：袁崇煥、松錦之戰、李自成、山海關。父親還常說王家可能是袁氏後裔，家裡有一面刻著「袁」字的舊鐵牌。王子燦替自己的人生排好了順序：念歷史、研究明清鼎革、去北京與遼西，最後把家族傳說查清。</p><p>第一關就沒有過。</p><p>手機連震十幾次。陳筱依傳來：「我也沒上。你人呢？不要跟我說你又跑去學校天台。」</p><p>王子燦真的在天台。他不是準備跳，只是忽然不知道回家後該用什麼表情面對父親。</p><p>陳筱依推門進來，跑得滿頭汗。</p><p>「一次考試而已。你是沒上台大，又不是大明亡了。」</p><p>王子燦終於笑。</p><p>「對我差不多。」</p><p>「那崇禎知道一定很感動。」</p><p>雨突然落下。兩人往樓梯口跑。王子燦伸手扶住生鏽欄杆，掌心剛壓上去，就聽見極輕一聲「喀」。</p><p>欄杆向外傾倒。</p><p>他整個人失去重心。</p><p>陳筱依撲來抓住他的手。</p><p>「不要放！」</p><p>「我沒有！」</p><p>雨水從指縫往下流。真正懸在十幾公尺高空時，王子燦腦裡沒有哲學，沒有失敗，只有恐懼。</p><p>他想活。非常想活。</p><p>手腕上的袁字鐵牌被斷裂紅繩甩出，在雷光裡亮了一瞬。</p><p>兩隻手終於滑開。</p><p>他墜落時，最後聽見的是陳筱依喊他的名字。</p><p>然後世界黑了。</p><p class="scene-break">＊</p><p>墜落前的最後一秒，王子燦其實想到父親。不是袁崇煥，也不是歷史，而是王建忠每天早上站在廚房煎蛋的背影。父親總說「失敗就重來」，他以前嫌這句話沒內容。等真正掉下去，才忽然想起自己甚至還沒跟父親說晚餐想吃什麼。</p><p>陳筱依趴在斷欄邊往下喊時，手掌被鐵鏽割出一道很深的口子。她後來一直記得那道疤。只是王子燦不知道。對他而言，2025年的世界在那聲雷之後被整齊切斷，像書翻到下一頁。</p><p>而他還不知道，自己最終真正要學的不是怎麼把明朝從滅亡裡拖回來，而是怎麼接受：一次考試、一次失敗，從來都不值得拿整個人生陪葬。</p><p class="scene-break">＊</p><p>王子燦的父親王建忠其實沒有責怪他落榜。</p><p>放榜前一晚，父親還在餐桌上說：「如果沒上，就休息一陣再想。」王子燦當時只覺得那是成年人不痛不癢的安慰。十七八歲的人很容易把一個目標看成全部人生，因為他還沒有足夠長的過去，證明世界真的會繼續。</p><p>陳筱依比他更早懂一點。她同樣落榜，卻已經在搜尋重考班與其他校系。</p><p>「你不是最愛講明末嗎？」她曾在便利商店問。</p><p>「嗯。」</p><p>「那明朝都亡成那樣，還有人活到第二天。你只是沒上學校。」</p><p>王子燦當時嫌她比喻很爛。</p><p>幾個小時後，他卻站在天台。</p><p>他沒有真的想死，這件事很重要。可是人生很多災難不是因為人準備好了才發生。欄杆生鏽、雨水、腳底打滑，幾個普通條件疊在一起，就能把一個原本只想吹風的人推下去。</p><p>這個經驗後來深深影響他看待歷史。</p><p>大明也不是某一天集體決定亡國。饑荒、軍餉、空額、黨爭、邊患、流寇、皇帝性格、官僚自保，每一件都像那根欄杆上的一點鏽。單獨看不致命，最後卻在同一場雨裡一起斷。</p><p>王子燦墜落前，鐵牌從手腕滑出去。他曾看見上面的「袁」字翻了一面，背面原本什麼都沒有。雷光太亮，他卻似乎看到兩道極淡的刻痕。</p><p>像「北門」。</p><p>也可能只是鏽。</p><p>他來不及確認。</p><p>後來在明末醒來時，那面鐵牌仍在身上。紅繩卻不是原來那條。這件事一度讓他瘋狂想找答案：穿越靠鐵牌？血脈？雷？瀕死？</p><p>可真正的戰爭沒有給他時間做實驗。</p><p>那也是他第一次被迫接受：有些最根本的問題可能永遠沒有答案，而人仍必須先活下去。</p><p class="scene-break">＊</p><p>王建忠在現代等了多久，王子燦永遠不知道。</p><p>偶爾夜深，他會想像父親坐在加護病房外，或站在一座墓前。每一次想到這裡，他都會有強烈的罪惡感，彷彿自己在明末活得越久，就越背叛原來的人生。</p><p>陳筱依聽懂後，只問：「如果你爸知道你在這裡活著，他會叫你怎樣？」</p><p>王子燦不用想。</p><p>「活著就好。」</p><p>「那不就好了。」</p><p>這句簡單得近乎粗暴，卻讓他放下一點。</p><p>他後來把「活著就好」寫在私人手記最前面，下面才是所有軍政條目。因為如果忘了最初為什麼想活，再大的歷史都可能把人變成工具。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="2" id="ch-2">
+<div class="chapter-kicker">第一卷　墜入甲申</div><h2>第二章　醒在死人旁邊</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>疼、冷、臭。</p><p>王子燦醒來時，第一眼看見的是一張死人的臉。那人側躺在泥裡，鼻孔結著黑紅的血。蒼蠅停在眼角，怎麼揮都不走。</p><p>沒有病房、沒有救護車，也沒有陳筱依。只有棉甲、長槍、弓、火繩槍與被踩爛的軍旗。空氣裡混著糞、汗、血、硝煙與腐肉味。</p><p>「將軍醒了！」一名滿臉鬍子的漢子撲過來，「王將軍？我是曹文瑞！」</p><p>王子燦盯著遠處殘破的「明」字旗。</p><p>「現在是哪一年？」</p><p>曹文瑞愣住：「崇禎十七年。」</p><p>「幾月？」</p><p>「三月初七。」</p><p>王子燦全身像被冰水澆過。</p><p>三月十九，北京陷落。</p><p>十二天。</p><p>另一段記憶忽然撞進腦海：六歲、北京、不能說出口的父親袁崇煥、史可法、習武、從軍、參將。兩個人生重疊在一起。他仍是2025年的高中生，也同時知道這具身體右肩逢雨會痛、左手拉弓更穩。</p><p>「我們在哪？」</p><p>「昌平南面。昨夜跟賊騎碰了一場。五百人的營，現在能站起來三百多。」</p><p>警鑼忽然響起。</p><p>「敵騎！」</p><p>曹文瑞把腰刀丟給他。</p><p>王子燦接住，身體本能地調整握法。</p><p>他第一個念頭是：我知道接下來會發生什麼。</p><p>第二個念頭則冷得多。</p><p>知道歷史，和有能力改變歷史，是兩件完全不同的事。</p><p>十二天。</p><p>倒數開始。</p><p class="scene-break">＊</p><p>曹文瑞私下讓軍醫再看了王子燦一次。軍醫說頭部沒有明顯外傷，大概只是驚厥後失憶。曹文瑞嘴上罵「將軍命硬」，心裡卻一直不安。眼前這個王燦說話方式變了，連看士兵的眼神都不一樣。</p><p>以前的王燦也會愛兵，但更硬，更像一把繃得太緊的刀。現在這個人會問傷兵叫什麼名字，會蹲下看發霉的乾糧，甚至會盯著一張軍冊發呆。</p><p>曹文瑞不知道發生了什麼，只在當晚對一名老兵說：「他像摔死過一次。」</p><p>老兵吐掉嘴裡草根：「沒死就行。」</p><p>沒有人想到，這句最普通的話，後來會變成王子燦一生最重要的準則。</p><p class="scene-break">＊</p><p>醒來後的第一夜，王子燦沒有睡。</p><p>不是因為敵騎，而是腦中的兩套記憶一直互相撞。</p><p>現代的他記得捷運、手機、冷氣，也記得歷史課本上崇禎十七年的時間線；另一個王燦則記得如何上馬、如何辨箭傷、哪些軍官可信，甚至記得史可法年輕時生氣會先捏一下眉心。</p><p>最可怕的是情緒也在。</p><p>想到袁崇煥時，他同時有兩種感覺。一種是研究者對歷史人物的熟悉，一種是六歲孩子對父親最後一面的恐懼。兩種情緒疊起來，幾乎讓他喘不過氣。</p><p>他偷偷問軍醫有沒有鏡子。</p><p>軍醫拿來一面磨得不算平的銅鏡。</p><p>鏡裡不是十八歲的自己。</p><p>眉骨更高，臉更瘦，右眉尾有一道小疤。王子燦盯著那張陌生又熟悉的臉，第一次真正接受：這不是夢裡穿了一套古裝。</p><p>曹文瑞從帳外進來，看他對著銅鏡發呆。</p><p>「將軍，你真不記得？」</p><p>「記得一點。」</p><p>「記得我？」</p><p>王子燦看著這張粗獷的臉，腦中浮出很多片段：曹文瑞偷酒、替他挨軍棍、在雪地裡把受傷的王燦背回營。</p><p>「你欠我三錢銀子。」王子燦試探。</p><p>曹文瑞臉色大變：「你不是失憶？」</p><p>王子燦笑了。</p><p>那是穿越後第一次真正的笑。</p><p>「看來這件記得很清楚。」</p><p>曹文瑞罵著出去。</p><p>王子燦卻因這段無關天下的小記憶安定了一點。</p><p>另一個王燦不是一具方便他使用的身體。那是一個有朋友、有債、有恐懼、有自己人生的人。</p><p>從那天開始，王子燦在心裡做了一個決定：他不會把「原來的王燦」當成被自己取代的工具。</p><p>如果自己能活下去，就連他的關係、他的承諾，也一起活下去。</p><p class="scene-break">＊</p><p>另一個王燦留下的記憶偶爾會突然自己浮上來。</p><p>某次他看見一碗羊湯，忽然知道史可法不吃羊膻；看見一匹灰馬，心裡會自然叫出牠以前的名字。這些細節比宏大的身世更讓王子燦不安。</p><p>他曾問自己：那個原來的王燦去了哪裡？</p><p>沒有答案。</p><p>最後他選擇一種近乎笨拙的尊重——所有原來王燦答應過的事，只要不違背自己的底線，就繼續做。照顧曾救過他的老兵、回史可法的信、把欠曹文瑞的酒補回去。</p><p>這也是為什麼王子燦後來很少說「這是我的身體」。</p><p>他更常想：這是兩段人生共同剩下來的時間。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="3" id="ch-3">
+<div class="chapter-kicker">第一卷　墜入甲申</div><h2>第三章　第一個死人</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>第一支箭落下時，王子燦甚至沒聽見弓弦。身旁士兵忽然「呃」了一聲，箭簇從喉結下方穿出，血沿箭桿往下淌。十秒鐘前還活著的人，轉眼就跪進泥裡。</p><p>曹文瑞猛撞他肩膀：「低頭！」</p><p>第二支箭擦過耳側。王子燦撲進泥裡，右手一撐，摸到一團滑而溫熱的東西。低頭，是一截腸子。</p><p>胃裡翻江倒海，地面卻先震起來。敵騎從煙中衝出，馬刀高舉。</p><p>王子燦腦中沒有李自成、沒有袁崇煥。只有一個念頭：我不想死。</p><p>身體比他先動。錯步、下沉、挑刀。戰馬側倒，他與騎士一起摔進泥裡。對方很年輕，鼻翼旁有一顆痣，眼裡和他一樣怕。刀尖距他左眼只有一寸。</p><p>王子燦右手在泥裡抓到短刃，刺了出去。</p><p>一下。</p><p>第二下時，對方已沒力。</p><p>他停住。</p><p>那雙眼睛裡沒有「賊」與「敵」，只有疼與不甘。</p><p>戰後王子燦跪在泥裡吐。曹文瑞翻出死者身上幾枚銅錢、半塊乾餅，還有一隻削得很醜的木老虎。</p><p>「他有孩子？」王子燦問。</p><p>「不知道。」</p><p>「埋的時候放回去。」</p><p>清點軍隊，帳面五百，能戰三百二十七。箭少三成，火藥少近半。</p><p>王子燦在新軍冊第一頁寫下兩個字：</p><p>實數。</p><p>「這有什麼用？」曹文瑞問。</p><p>「不知道自己有多少人，就不知道自己能做多少事。」</p><p>史書可以寫假的榮耀。</p><p>城牆不行。</p><p class="scene-break">＊</p><p>那名被王子燦殺死的年輕敵兵，最後沒有名字。俘虜裡沒有人認得他。曹文瑞只好讓人按無名屍埋。</p><p>王子燦站在土坑旁，看著木老虎被重新塞進死者衣襟。那東西一看就不是匠人做的，刀痕歪歪斜斜，像某個父親在行軍途中替孩子削的。也可能是某個孩子替父親削的。</p><p>他第一次意識到，自己以後每下一道命令，都會製造更多這種「不知道名字的人」。</p><p>這個念頭沒有讓他不敢打仗。恰恰相反，它讓他後來最討厭「斬獲若干」「死傷不計」這種詞。因為只要把人變成數字，很多決定就會突然變得太容易。</p><p class="scene-break">＊</p><p>第一次殺人後，王子燦的手一直抖到晚上。</p><p>他以為另一個王燦的身體有經驗，自己就能很快適應。結果身體會殺，腦子不會。那種分裂感反而更可怕——刀刺出去時動作熟練，事後卻想不起自己為什麼能那麼自然。</p><p>軍營裡沒有人因此特別關心。戰死七人、傷十六，這只是一次很小的遭遇戰。伙夫照樣生火，傷兵照樣呻吟，活著的人忙著補箭、餵馬。</p><p>王子燦第一次明白，戰爭殘酷的一部分，是死亡很快會變成日常。</p><p>他把那個年輕敵兵的木老虎記進自己的私人小冊。</p><p>曹文瑞看到後很不理解。</p><p>「這也記？」</p><p>「怕忘。」</p><p>「忘了不好嗎？」</p><p>王子燦停筆。</p><p>這個問題沒有簡單答案。太記得，可能讓人再也無法下命令；全忘了，又可能讓殺人變得太容易。</p><p>「記得，但還是做該做的。」他最後說。</p><p>曹文瑞看他一眼：「史先生教你的？」</p><p>「大概。」</p><p>其實一半是史可法，一半是現代的自己。</p><p>第二天，王子燦開始要求戰後不只報敵軍斬獲，也報己方傷亡、武器損失、彈藥消耗。書吏抱怨麻煩。</p><p>「以前只報死傷幾成。」</p><p>「幾成不能補人。」</p><p>「名字又不能打仗。」</p><p>「但名字能讓你知道下一次少誰。」</p><p>這些看似瑣碎的記錄，後來救過北營好幾次。哪一隊弓手傷亡最多、哪種火藥容易受潮、哪匹馬已經連跑三日，都能從冊裡看出。</p><p>王子燦並沒有發明什麼超越時代的東西。</p><p>他只是把「記錄」當真。</p><p>而在一個大家習慣讓數字服務臉面的時代，這本身就很不尋常。</p><p class="scene-break">＊</p><p>軍冊上的「實數」兩字後來成為王子燦最著名的標誌，甚至被後世寫成傳奇。</p><p>其實最開始只是因為他害怕。</p><p>他不想再遇到敵人時才發現箭少一半，不想以為有五百人，轉頭只剩三百。</p><p>恐懼逼他求真。</p><p>這件事讓他晚年很反感別人把自己塑造成天生理性的人。</p><p>「我不是不怕。」他對學生說，「我是因為怕，才想知道到底有多少。」</p><p>學生問：「那勇敢是什麼？」</p><p>王子燦想起泥裡那個木老虎。</p><p>「知道會怕的東西長什麼樣，還是看著它。」</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="4" id="ch-4">
+<div class="chapter-kicker">第一卷　墜入甲申</div><h2>第四章　十二日</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>三月初八，十二天變成十一天。部隊向北京撤，官道上全是敗兵、商隊與難民。</p><p>曹文瑞說軍糧不夠，不能收所有人。王子燦知道他對。他沒有喊「全救」，而是蹲在路邊算餘糧、日耗、傷兵與路程。最後定規矩：青壯幫軍隊推車、抬傷、拾柴，老人孩子編在中間；每日兩次稀粥。</p><p>不是慈善，是交換。</p><p>但仍救了人。</p><p>午後，他們遇見一具餓死的女人，懷裡抱著孩子。女人瘦得只剩骨頭，手臂仍環在孩子背後。</p><p>王子燦第一次真正看見「明末饑荒」。</p><p>他讓人挖坑。</p><p>曹文瑞低聲說：「前面還有很多，不能每個都埋。」</p><p>「我知道。」</p><p>嘴上說知道，手卻握得很緊。</p><p>夜裡，他重讀史可法的舊信：若城不可守，先救其民；若國不可救，先存其人。勿以一死求一己之名。死易，任事難。</p><p>王子燦想起天台。真正掉下去時，他沒有想死得是否漂亮，只想活。</p><p>他忽然理解，一個很想活的人仍願意分出糧，與一個不怕死的人喊忠義，是不同的重量。</p><p>他在地圖旁畫北京、南京、山海關三點。</p><p>第一步不是喊救國。</p><p>是把明天算清楚。</p><p class="scene-break">＊</p><p>夜裡分粥時，一個七八歲的小女孩端著破碗排到最前面。輪到她時，她沒有立刻走，而是問：「軍爺，北京會不會破？」</p><p>王子燦正好在旁邊。</p><p>他知道答案。</p><p>可對著那張髒兮兮的臉，他第一次發現「知道答案」有時候是一種殘忍。</p><p>「不知道。」他最後說。</p><p>女孩點點頭，捧著粥走了。</p><p>曹文瑞在旁邊看他：「你不是最會算？」</p><p>「有些事不能拿知道的結局去嚇現在的人。」</p><p>很多年後，王子燦會在北門重新見到那個女孩。她早已嫁人，抱著自己的孩子。她不記得當年那碗粥，也不記得問過什麼。</p><p>王子燦卻記得。</p><p class="scene-break">＊</p><p>撤往北京途中，王子燦第一次試著把現代衛生常識用在軍隊。</p><p>不是青黴素，也不是外科奇蹟。他做不到。</p><p>只是命令飲水點設在營地上游，糞坑挖到下風處，傷口先用煮過的布處理，死牲畜不要丟進取水溝。</p><p>士兵覺得他古怪。</p><p>「以前都這樣喝。」</p><p>「以前也常拉肚子。」</p><p>「打仗哪有不拉的。」</p><p>「那就少拉幾個。」</p><p>這種對話每天都有。</p><p>幾日後，一支同行難民隊開始腹瀉。王子燦強迫他們把取水點移開，又把病者與其他人稍微分開。沒有藥，只能補水、熬稀粥。仍然死了兩個老人。</p><p>王子燦很挫敗。</p><p>他知道二十一世紀有更好的辦法，卻沒有設備、藥品與化驗。知道原理而無法實現，和知道歷史卻無法立刻改變一樣折磨人。</p><p>陳筱依後來聽他提起，問：「那你做這些有用嗎？」</p><p>「有一點。」</p><p>「那就做有一點的。」</p><p>這句話慢慢成為王子燦的另一個習慣。</p><p>他不再因為做不到一百分就放棄十分。</p><p>一個快亡的王朝也一樣。不能一下救成太平盛世，至少先讓下一批喝水的人少病幾個。</p><p class="scene-break">＊</p><p>那對餓死的母子沒有名字。</p><p>王子燦多年後曾派人回去找過那一帶村籍，仍無法確認。</p><p>他一度很執著。</p><p>陳筱依問：「找不到就不算？」</p><p>「不是。」</p><p>「那你為什麼一定要名字？」</p><p>「因為我怕他們變成一句饑民。」</p><p>陳筱依沉默。</p><p>最後北門書庫設了一冊「無名簿」，專門記那些確有其人、卻無法知道姓名的死者與事件。</p><p>第一頁就是昌平官道旁，一名婦人與一名幼兒。</p><p>沒有名字，也不是沒有存在過。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="5" id="ch-5">
+<div class="chapter-kicker">第一卷　墜入甲申</div><h2>第五章　北京</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>三月初十，北京城牆出現在地平線。高牆像灰黑山脈，城門外卻擠滿難民。守軍只准有路引、有戶籍的人進城。有人舉著孩子求，有人把最後一袋米塞給守門兵。</p><p>王子燦把跟著自己的百姓分成軍前夫役、軍屬與眷口。守門千總翻到最後，眼睛都直了。</p><p>「王參將，你有六百多家眷？」</p><p>王子燦面不改色：「王家人丁興旺。」</p><p>曹文瑞在後面差點笑出聲。</p><p>進城後，笑不出來了。</p><p>同一條街，一邊酒樓仍有人喝酒，一邊米鋪前有人餓暈。末日不是所有人同時知道世界要完。有人已站在懸崖邊，有人還在計較今晚吃什麼。</p><p>北營帳面一千四百二十七人，三次點名後，真正能拿兵器的六百八十四。其餘是病死未銷、逃亡未報、虛掛姓名。每一個不存在的名字都在領餉。</p><p>王子燦命人另做真冊：姓名、年齡、籍貫、武器、傷病、家屬。舊冊也保留。</p><p>「為何？」</p><p>「我要知道誰從假的數字裡吃飯。」</p><p>當晚，曹文瑞帶回一個名字：魏成甫。</p><p>一名與內監、糧商、守將都有往來的太監。</p><p>「要查他，得去醉紅樓。」</p><p>「青樓？」</p><p>「也是消息場。他常找那裡一名女子。」</p><p>「誰？」</p><p>「陳筱依。」</p><p>王子燦手裡的筆掉在桌上。</p><p class="scene-break">＊</p><p>北營夜裡第一次按新冊發飯。六百八十四人，一個一個領。以前伙房總會多備幾十份「上官名額」，最後流去別處。這一次沒有。</p><p>有老兵看著碗裡多出來的一勺粥，問：「今天過節？」</p><p>伙夫說：「將軍把死人從冊上劃掉了。」</p><p>這句話聽起來很怪。</p><p>可士兵很快懂了。以前死人的名字仍領糧，活人反而吃不飽。王子燦只是把一件荒唐事改正。</p><p>當晚北營沒有因此士氣如虹。沒人高喊萬歲，也沒人突然願意為大明赴死。只是很多人比昨天多吃了半碗。</p><p>王子燦站在伙房外看著，第一次覺得所謂改革，大概就是這樣：宏大詞彙最後必須落到一隻碗裡。</p><p class="scene-break">＊</p><p>北京城內真正讓王子燦害怕的，不只是貧富差距，而是所有人都在預判政權更替。</p><p>商人開始把銀子藏出城，官員暗中送家眷，軍官給不同勢力遞話，連普通百姓也在問「闖王進城會不會免糧」。這不是單純的背叛，而是一整座城市在做風險管理。</p><p>北營營房裡也一樣。</p><p>王子燦找士兵私下談話，問：「如果城破，你怎麼辦？」</p><p>有人說死守。</p><p>有人說跑。</p><p>有人老實回答：「看別人。」</p><p>這個答案最真。</p><p>軍隊士氣從來不只是個人勇敢。當一個人相信旁邊的人會逃，他自己留下的成本就更高；當所有人都這樣想，崩潰可能一瞬間發生。</p><p>因此王子燦開始把最可靠的老兵分散到各隊，不讓一整隊全是新兵；又規定撤退訊號與集合點。</p><p>曹文瑞覺得不吉利。</p><p>「還沒打就教人怎麼退？」</p><p>「不知道怎麼退的人，最容易先跑。」</p><p>這個邏輯後來在北門得到驗證。當真正需要撤時，至少有一部分人知道往哪裡走，而不是所有人一起往最窄的門洞擠。</p><p>王子燦慢慢發現，他所謂的「現代思維」真正有用的不是某個神奇知識。</p><p>是預先承認事情可能失敗。</p><p>對崇禎而言，這恰恰是最難學的一件事。</p><p class="scene-break">＊</p><p>「王家人丁興旺」後來成了北營老兵最愛講的笑話。</p><p>每逢有人問王子燦當年怎麼把難民帶進城，老兵就添油加醋，最後甚至傳成王參將對守門官說「六百人都是我私生子」。</p><p>王子燦第一次聽見時差點把茶噴出來。</p><p>陳筱依笑到扶桌。</p><p>這些荒唐傳聞反而讓他安心。</p><p>如果一段歷史只剩莊嚴，人就會忘記當時的人也會講爛笑話、會偷懶、會怕、會想辦法鑽規則救人。</p><p>北門書庫後來甚至保留幾種互相矛盾的民間版本，旁邊註明「未必實」。</p><p>王子燦很喜歡。</p><p>歷史不只有官方那一種聲音。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="6" id="ch-6">
+<div class="chapter-kicker">第一卷　墜入甲申</div><h2>第六章　她不認識我</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>醉紅樓比王子燦想像中安靜。簾後琴聲、暖黃燈火、壓低的談話。真正值錢的不是酒色，是一個能把衙門裡不敢說的話說出口的地方。</p><p>陳筱依推門進來時，王子燦整個人僵住。</p><p>同一張臉，同樣微微上挑的眼尾，同樣一顆極淡的痣。只有眼神不同。現代的陳筱依十八歲，喜怒都快；眼前女子不過十九、二十，眼裡卻有長久防備留下的疲倦。</p><p>「王公子。」</p><p>禮貌，陌生。</p><p>她提筆寫下名字。陳筱依，一字不差。</p><p>「我像誰？」她問。</p><p>「一個朋友。」</p><p>「多遠？」</p><p>「三百多年。」</p><p>她當他說笑。</p><p>王子燦試探魏成甫與城防圖，她表面什麼都不知道，卻很快指出：「你不是來嫖的。進門到現在看我七次，看門四次，酒一次都沒看。」</p><p>樓下忽然傳來尖細笑聲。她替王子燦斟茶，袖口掩住手指，在桌面敲三下。</p><p>「明夜子時，宣武門西，永興米行後門。」</p><p>房門被推開。魏成甫走進來，胖臉白淨，笑容和氣。</p><p>「王參將也在？」</p><p>兩個男人第一次對視。</p><p>王子燦知道，這個人認得他。</p><p>甚至可能知道他真正是誰。</p><p class="scene-break">＊</p><p>魏成甫離開後，陳筱依把門重新關上。</p><p>「你剛才看他的眼神太明顯。」</p><p>「怎樣？」</p><p>「像你知道他以後會害你。」</p><p>王子燦心裡一跳。</p><p>她沒有追問，只收起茶杯。「在這裡，知道太多的人通常活不久。你如果真的有什麼秘密，不必告訴我。」</p><p>「妳不想知道？」</p><p>「想。」</p><p>「那為什麼不問？」</p><p>「想知道和該不該問是兩回事。」</p><p>這句話讓王子燦第一次真正對她產生敬意。現代的陳筱依會直接追問到底；眼前這個人則懂得在最想知道時停住。</p><p>他忽然明白：相同的臉，不代表相同的人生。</p><p>而愛上一張熟悉的臉，和愛上眼前這個人，也必須是兩回事。</p><p class="scene-break">＊</p><p>陳筱依在醉紅樓的房間很小，牆後卻藏著一個夾層。</p><p>裡面不是金銀，而是紙。</p><p>客人隨口說的名字、官員喝醉後抱怨的差事、哪個糧商最近突然有錢、誰在城門換了一個親信。單看每張都沒有用，放在一起卻慢慢形成網。</p><p>王子燦第一次看見時，幾乎以為她有現代情報分析概念。</p><p>「誰教妳？」</p><p>「我爹。」</p><p>陳允之以前查帳時常說，一筆假帳很容易做得漂亮，十本帳放一起就會打架。</p><p>「人也一樣。」她說，「每個人都能說一套話。看他和誰見面、銀子往哪裡走，才知道他真的做什麼。」</p><p>王子燦忽然覺得可惜。</p><p>如果她生在現代，可能會是很好的研究者、記者、分析師。</p><p>這個念頭讓他第一次正視時代對一個人的限制。陳筱依並不「比現代女性弱」，只是她能走的路少得多。</p><p>她進醉紅樓，是在那些有限的路裡選了一條最能接近答案的。</p><p>「你別用那種眼神看我。」她忽然說。</p><p>「什麼眼神？」</p><p>「可惜。」</p><p>王子燦一愣。</p><p>「我不可惜。」她把紙收回夾層，「我只是生在這裡。」</p><p>這句話讓王子燦很久不敢再替她想像「如果」。</p><p>尊重一個人，不只是替她想更好的世界。</p><p>也包括承認她在這個世界裡作出的選擇。</p><p class="scene-break">＊</p><p>現代陳筱依與明末陳筱依長得一樣這件事，王子燦從沒有找到解釋。</p><p>一開始他以為是輪迴。後來又懷疑只是穿越機制替他套上的熟悉面孔。再後來，他乾脆不想。</p><p>因為任何解釋都可能傷害眼前的人。</p><p>如果說輪迴，就像她的人生只為與自己重逢；如果說替代，又把她當成工具。</p><p>所以他最後只承認一件事：自己確實因熟悉而靠近，卻因不同而留下。</p><p>陳筱依知道後說：「這還差不多。」</p><p>「什麼叫還差不多？」</p><p>「代表我至少贏過另一個我。」</p><p>「妳們為什麼要比？」</p><p>「我高興。」</p><p>王子燦無法反駁。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="7" id="ch-7">
+<div class="chapter-kicker">第一卷　墜入甲申</div><h2>第七章　永興米行</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>永興米行地下藏的不是秘密武器，是糧。</p><p>一袋袋蓋著京倉印記的官糧，本該早已發到守城各營。陳筱依拿出私帳：北營上月帳領三百石，實際不到一百七十。差額被倉官、牙人、米商與軍中關係層層吃掉，有些糧甚至繞一圈後又被軍營高價買回。</p><p>「我爹就是查這個死的。」</p><p>她父親陳允之曾任戶部主事，查賑銀與軍糧虧空，被反誣受賄，死在獄中。她不是被賣進醉紅樓，而是自己進去。</p><p>「男人總覺得女人不懂國事，所以喝醉後說得特別放心。」</p><p>她聽，她記。</p><p>最下面還有一份十七人的名單：官、將、內監，名字後標著城門與衙署，最後一欄只有一字：順。</p><p>準備投李自成的人。</p><p>另一張紙上甚至有「王燦」。</p><p>「他們想拉你。因為你有兵，也因為你是袁督師之子。」</p><p>王子燦抬頭。她真的知道。</p><p>地面忽然傳來腳步。兩人吹燈躲進糧袋後，搜查者隔一層木板走過。</p><p>王子燦第一次沒把她和現代那個女孩比較。他只在想，這個女人一個人做這些事多久了？</p><p>腳步遠去後，她低聲說：「明晚有人請你赴宴。」</p><p>「要我降？」</p><p>「你就降給他看。」</p><p>「假降？」</p><p>「不然你真降，我第一個把帳冊交給皇帝。」</p><p>王子燦忽然覺得，她笑起來其實和現代那個人一點也不像。</p><p class="scene-break">＊</p><p>陳筱依的帳冊不是一天做成。每個名字旁都有極細小的記號：可信、可買、怕妻、嗜酒、欠賭債、與某內監有親。王子燦看得背後發涼。</p><p>「妳這不是帳，是情報網。」</p><p>「我又沒有兵。」</p><p>「所以？」</p><p>「沒有刀的人，就只能記得更清楚。」</p><p>這句話後來影響王子燦很深。他開始明白，戰爭不只在城牆和刀槍上。誰掌握糧、誰知道路、誰能讓一封信安全到下一個驛站，都可能比多一百個兵更重要。</p><p>陳筱依則第一次發現，王子燦不是只把她當漂亮的情報來源。他真的會問她「你怎麼判斷」「哪一條證據最可靠」。</p><p>在那個時代，這種被認真當作一個有判斷力的人，本身就是少見的尊重。</p><p class="scene-break">＊</p><p>永興米行的帳冊讓王子燦第一次接觸到「系統性腐敗」真正的樣子。</p><p>沒有一個人拿走全部。每一層只抽一點。倉官說是耗損，運夫說是路費，軍官說要養家丁，書吏說大家都拿。最後一袋糧從一石變成七斗、六斗、五斗。沒有哪一刀致命，士兵卻真的餓。</p><p>「抓魏成甫就能解決嗎？」陳筱依問。</p><p>王子燦沉默。</p><p>不能。</p><p>魏成甫只是把既有漏洞用得最熟的一個人。殺了他，新的中介還會出現。</p><p>「那你還抓？」</p><p>「抓。他有自己的罪。」</p><p>「制度呢？」</p><p>「另外改。」</p><p>這個區分很重要。王子燦不想走到另一個極端，認為一切都是制度所以個人無責；也不想只抓幾個壞人，就假裝問題解決。</p><p>後來他的很多改革都沿著這個思路：個人責任照追，程序漏洞也一起補。</p><p>只是當時，他連自己能不能活過十二天都不知道。</p><p>他把帳冊收進衣服，心裡第一次形成一個模糊念頭。</p><p>如果真能把崇禎帶到南京，這本破帳也許比一封忠君奏疏更值得帶走。</p><p>因為它告訴皇帝，大明不是被一道驚雷劈死。</p><p>是被無數「就拿一點」慢慢掏空。</p><p class="scene-break">＊</p><p>陳允之的名字後來被平反，官府還想追贈。</p><p>陳筱依只要了一份正式文書。</p><p>「不要牌坊？」王子燦問。</p><p>「我爹最討厭花公帑做沒用的東西。」</p><p>她把平反文書收進書庫，和父親當年的手稿放一起。</p><p>這個選擇讓王子燦再次確認兩人很像，也很不同。自己曾經很需要父親被公開昭雪；陳筱依更在意案卷能不能留下。</p><p>兩種需求都沒有誰更高尚。</p><p>正義對每個失去親人的人，可能是不同形狀。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="8" id="ch-8">
+<div class="chapter-kicker">第一卷　墜入甲申</div><h2>第八章　實數</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>回北營後，王子燦沒有先抓奸細。</p><p>他點兵。</p><p>從卯時到午時，一個個叫名字。人在就站出來，病了就抬出來，死了劃掉，逃了標記。兵器也逐件數：長槍、弓、鳥銃、火藥。</p><p>曹文瑞看著新冊，臉越來越黑。</p><p>「這數報上去，兵部先砍我們。」</p><p>「為什麼？」</p><p>「因為舊冊錯了十幾年。你現在說真話，就等於說以前所有簽字的人都在騙。」</p><p>王子燦明白。制度有時不是不知道問題，而是承認問題會讓太多人一起倒。</p><p>他仍封好新冊。</p><p>傍晚，兵部果然派人來要他停止「擅改舊制」。王子燦說冊子可以拿走。對方剛鬆口氣，他補一句：「但我抄了五份。」</p><p>曹文瑞笑出聲。</p><p>夜裡兩人啃硬餅。</p><p>「你真想救大明？」</p><p>「想。」</p><p>「靠點名？」</p><p>王子燦望著皇城。</p><p>「大明不是三月十九才亡的。是每天少一袋糧、少一個兵、少一筆真數，一點點亡到那天。」</p><p>「十二天補得完？」</p><p>「補不完。」</p><p>「那怎麼辦？」</p><p>「先讓皇帝知道，他到底還剩多少東西。」</p><p>王子燦在奏疏第一行寫：</p><p>臣不敢言勝。先請陛下知敗在何處。</p><p class="scene-break">＊</p><p>新軍冊開始實行後，第一個來找王子燦的不是貪官，而是一名老兵。</p><p>「將軍，我兒子其實去年就死了。」</p><p>他的兒子名字還掛在冊上，老兵一直替他領半份糧。</p><p>王子燦問：「為什麼現在說？」</p><p>老兵低著頭：「怕你查出來，連我也抓。」</p><p>王子燦沉默片刻，只把名字劃掉。</p><p>「從下月開始沒有。」</p><p>「不打板子？」</p><p>「你今天自己來說，先不究。」</p><p>消息很快傳開。第二天又有三個人來。</p><p>曹文瑞不太贊成：「這樣不是便宜他們？」</p><p>王子燦說：「如果每個承認錯的人都先砍，最後就只剩沒被抓到的人。」</p><p>這是他後來設計「先報實，再追責」原則最早的雛形。</p><p class="scene-break">＊</p><p>北營重新點驗後，王子燦還做了一件讓士兵非常不習慣的事：他讓隊長自己報缺點。</p><p>哪一隊最容易散、哪一隊夜間警戒差、哪支火銃最常啞火。</p><p>一開始所有人都寫「尚可」。</p><p>王子燦把紙全部退回去。</p><p>「尚可是什麼？」</p><p>沒人回答。</p><p>他乾脆自己示範，在北營總評後寫：主將新傷未癒；副將脾氣急；夜間口令混亂；糧不足五日。</p><p>曹文瑞看見「副將脾氣急」差點掀桌。</p><p>「這也算軍情？」</p><p>「算。」</p><p>「那你呢？」</p><p>「我寫了，容易自以為知道。」</p><p>曹文瑞愣了半天，最後笑罵：「這倒是真的。」</p><p>這種自報問題的做法沒有立刻變成制度，卻讓幾個隊長開始敢寫「箭不足」「新兵太多」「某隊長酒後誤事」。</p><p>王子燦第一次看見壞消息變多，反而安心。</p><p>因為真實的組織看起來本來就不會很漂亮。</p><p>只有完全沒有問題的報告，才最值得害怕。</p><p class="scene-break">＊</p><p>北營真冊第一次送進宮後，有幾名軍官私下恨王子燦。</p><p>他們不是大貪官，只是靠空額補自己多年被拖欠的俸餉。</p><p>這讓王子燦遇到一個更難的問題：如果制度本身欠人錢，人用違規方式補回來，該怎麼算？</p><p>他最後沒有一刀切。大額侵吞追責，小額且能證明長期欠餉的，部分折抵。</p><p>有人罵他不夠乾脆。</p><p>可他越來越相信，治理不是把世界切成黑白才叫有原則。</p><p>原則真正困難的地方，是灰色出現時仍要說得出界線在哪。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="9" id="ch-9">
+<div class="chapter-kicker">第二卷　十二日</div><h2>第九章　投名宴</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>投名宴設在西城私宅。桌上坐著京營軍官、守門千總、兵部小吏與內監。沒有人長著「叛徒」的臉。他們談家眷、糧價、城防，像一群只是替明天做準備的人。</p><p>魏成甫最後到，先替王子燦斟酒。</p><p>「袁督師在天有靈，看見公子替朱家守城，不知作何想。」</p><p>桌上所有人都看過來。</p><p>魏成甫笑：「今夜坐在這裡的，都是懂得替自己留路的人。」</p><p>一名守備說：「大明氣數如此，何必讓滿城百姓陪葬？」</p><p>這話甚至有道理。王子燦真正警惕的正是這點。人做最壞的事時，往往不覺得自己在作惡。</p><p>魏成甫推來一張紙：願率所部，開門迎順。</p><p>王子燦提筆，寫得很慢。寫到「迎」時停下。</p><p>「哪一門？」</p><p>魏成甫眼裡掠過笑意。接下來半刻鐘，他們說得比任何審訊都多。彰義門、德勝門、外城換防點，一張張彼此不全知的網。</p><p>最後一個「順」字尚未落筆，院後突然有人喊走水。火光竄起。</p><p>王子燦趁亂翻窗。巷口，陳筱依披灰斗篷等著。</p><p>「你放的火？」</p><p>「不然等你寫完？」</p><p>兩人沿暗巷疾走。</p><p>王子燦忽然停下。</p><p>「他們說對了一半。大明真的快亡了。」</p><p>陳筱依皺眉：「另一半呢？」</p><p>王子燦望向皇城。</p><p>「快亡，和該亡，不是一回事。」</p><p class="scene-break">＊</p><p>那場投名宴之後，王子燦回營一夜沒睡。</p><p>他一直想那名守備說的話：「何必讓滿城百姓陪葬？」</p><p>如果只看一句，甚至比很多喊忠君的人更像是為百姓著想。可同一個人又準備把城門交出去，換自己一家安全。</p><p>王子燦第一次真正理解，道德最難的地方不是分辨「好人壞人」，而是人在一個合理理由下能走多遠。</p><p>陳筱依坐在對面打盹。醒來後發現他還在盯那張沒有寫完的投名狀。</p><p>「後悔沒寫完？」</p><p>「我在想，如果開門真的少死很多人呢？」</p><p>她沒有立刻否定。</p><p>「那也要先問：誰保證？」</p><p>王子燦抬頭。</p><p>對。</p><p>沒有責任、沒有約束、沒有執行能力的善意，只是一個願望。</p><p>這個教訓，後來也被他用在自己身上。</p><p class="scene-break">＊</p><p>投名宴那晚，王子燦其實差一點真的把「順」字寫完。</p><p>不是因為想投李自成，而是他忽然想到：如果自己假戲真做，率北營開一個可控的門，能不能換百姓免於巷戰？</p><p>這個念頭只存在幾息，卻讓他背後發冷。</p><p>因為這正是「我比別人更知道結果」最危險的誘惑。只要相信自己判斷一定正確，就很容易替所有人決定風險。</p><p>陳筱依後來聽他坦白，沉默很久。</p><p>「你會嗎？」</p><p>「不知道。」</p><p>「如果我沒放火？」</p><p>「可能還是會撕掉。」</p><p>「可能？」</p><p>「我不想騙妳。」</p><p>她看著他，反而點頭。</p><p>「那就記住這次。」</p><p>王子燦真的記了一輩子。</p><p>後來手握重兵，他每次覺得「只有我看得懂局勢」時，都會想起那個差點落下的順字。</p><p>自信可以救命。</p><p>確信自己永遠正確，則可能害死很多人。</p><p class="scene-break">＊</p><p>那張沒寫完的投名狀一直留在王子燦手裡。</p><p>紙上最後停在「迎」字，後面留白。</p><p>多年後他把它放進北門書庫。學生常問：「公爺當時真的差點降？」</p><p>王子燦從不避。</p><p>「差點。」</p><p>「那不是污點？」</p><p>「是。」</p><p>「為什麼還留？」</p><p>「因為如果我只留下最後做對的地方，你們會以為人做對是因為從沒動搖。」</p><p>他覺得一個人的猶豫也應該被記錄。</p><p>否則後世只會得到一群從出生就知道答案的英雄，然後拿那些不存在的人要求自己。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="10" id="ch-10">
+<div class="chapter-kicker">第二卷　十二日</div><h2>第十章　大明會亡</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>三月十二日，王子燦第一次把「大明會亡」四個字說出口。</p><p>不是對皇帝，也不是對陳筱依。</p><p>是對曹文瑞。</p><p>兩人站在北營校場，看著剛剛重新點過的士兵。六百八十四個名字，經過兩日整補，只剩六百六十一個能持械。有人傷重，有人逃了，也有人趁夜把家眷送出城後再也沒回來。</p><p>曹文瑞沒有罵逃兵。</p><p>「怕死正常。」</p><p>王子燦低聲道：「不是怕死的問題。」</p><p>他把自己知道的歷史拆成最簡單的幾件事說給曹文瑞聽：闖軍會逼近，京師會破，皇帝會死在煤山，之後天下會更亂。至於自己怎麼知道，他只說是「夢」。</p><p>曹文瑞聽完，沉默很久。</p><p>「將軍，你是不是撞壞腦子了？」</p><p>王子燦苦笑：「我也希望。」</p><p>「那你為什麼還在這？」</p><p>「因為我知道結局，所以至少知道哪裡不能照原樣走。」</p><p>「你想守住北京？」</p><p>王子燦望著城牆。</p><p>「守不住。」</p><p>這個答案反而讓曹文瑞抬頭。</p><p>「那守什麼？」</p><p>王子燦想了很久。</p><p>「皇帝。」</p><p>曹文瑞差點笑出來：「你不是一直說不替皇帝賣命？」</p><p>「我救的不是朱由檢這個人。」王子燦說，「是他還活著這件事。」</p><p>在原本歷史裡，崇禎一死，南京只能另立新君，朝廷正統重新分配，文武各擁其主；邊鎮失去統一號令，吳三桂也沒有一個仍在位的皇帝可效忠。王子燦不能證明救活崇禎一定能救大明，但至少能確定：皇帝死去，是崩潰加速的一個巨大節點。</p><p>「所以你想讓皇帝跑？」曹文瑞問。</p><p>「南遷。」</p><p>「他肯？」</p><p>「不肯。」</p><p>「那你說半天等於沒說。」</p><p>王子燦笑了一下。</p><p>「所以要先讓他怕。」</p><p>曹文瑞皺眉。</p><p>「不是怕死。」王子燦指了指自己那本新軍冊，「要讓他怕自己一直相信的東西，全是假的。」</p><p>那天夜裡，王子燦把北營實數、官糧短缺與部分降順名單整理成三份。第一份送兵部。第二份託人送都察院。第三份，他決定想辦法直接送進宮。</p><p>他不知道哪一份會到。</p><p>也不知道哪一份會先把自己送進詔獄。</p><p>但時間只剩七天。</p><p class="scene-break">＊</p><p>曹文瑞聽完「皇帝不能死」的說法後，仍有一件事想不明白。</p><p>「要是皇帝活著，還是照以前那樣呢？」</p><p>王子燦沒有回答。</p><p>這正是整個計畫最危險的地方。救下一個人，比改變一個人容易。即使崇禎成功到南京，他仍可能多疑、急躁、頻繁換將，甚至把南方本就複雜的權力鬥爭搞得更糟。</p><p>「所以不是把人救出來就完了。」王子燦說。</p><p>「你還想管皇帝？」</p><p>「我想讓結果跟原本不一樣。」</p><p>曹文瑞看了他很久，最後只說：「那我覺得救皇帝還比較容易。」</p><p>王子燦苦笑。</p><p>他也這麼覺得。</p><p class="scene-break">＊</p><p>要救皇帝這個想法一旦成形，王子燦就開始重新評估所有資源。</p><p>不是「如何守住北京」，而是「如何讓崇禎離開北京後還像皇帝」。</p><p>御寶、太子、詔書暗記、可信內監、南京留都官署、沿路驛站，甚至誰能證明眼前這個穿布衣的人真是皇帝，都成了問題。</p><p>他第一次想到身份驗證。</p><p>如果崇禎逃出城，半路被地方官當成冒牌貨怎麼辦？如果大順也偽造「皇帝詔書」呢？</p><p>王承恩因此準備數套只有內廷與幾名大臣知道的暗記，另由崇禎親筆寫幾封不同內容、分路送出的密詔。</p><p>這些安排在當時看起來極其不體面。</p><p>皇帝還沒逃，就先準備證明自己是真的。</p><p>可王子燦堅持。</p><p>「最壞情況先想完，不代表希望它發生。」</p><p>崇禎很不喜歡這種說法。</p><p>直到真的在破寺裡靠一封密詔讓地方守將跪下時，他才完全理解。</p><p>一個國家的延續，有時竟取決於一個印、一個字跡、一個只有三個人知道的暗號。</p><p>宏大的正統，也需要很具體的驗證方式。</p><p class="scene-break">＊</p><p>王子燦後來把「皇帝活著」視為一種制度資產，而不是個人崇拜。</p><p>這個觀念最初讓很多人不舒服。</p><p>他甚至對崇禎說：「臣救的是陛下的職位，也救陛下這個人，但兩者不是完全一樣。」</p><p>皇帝臉色當然不好看。</p><p>可多年後，崇禎反而理解。</p><p>正因為皇帝不是國家本身，所以他可以犯錯、可以被勸、可以南遷；也正因為皇位在當時仍是國家權威核心，才必須在最危險時保住。</p><p>把人和職位分開，反而讓「忠君」少了一點盲目，多了一點實際責任。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="11" id="ch-11">
+<div class="chapter-kicker">第二卷　十二日</div><h2>第十一章　先生的信</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>史可法的回信在三月十三日到北京。</p><p>信很短。</p><p>「子燦，京師若危，毋徒死。能救一人則救一人，能存一軍則存一軍。若天子尚在，社稷尚有可為。死易，任事難。慎之。」</p><p>王子燦看完兩遍，把信收進衣襟。</p><p>這具身體記憶中的史可法，從來不是後世塑成的牌位。會罵人，會咳嗽，冬天手腳怕冷，教刀時卻比軍中教頭更狠。十五歲那年，王燦第一次殺人後吐了一夜，史可法沒有說「男兒當勇」，反而逼他把死者的長相寫下來。</p><p>「怕你有一天殺人殺得太容易。」</p><p>那句話如今重新浮上來。</p><p>曹文瑞看見信末「天子尚在」四字，咧嘴道：「史先生跟你想到一起。」</p><p>「不是。」王子燦說，「是我現在才懂他以前在說什麼。」</p><p>外面忽然傳來爭吵。幾個兵部派來的書吏要收走北營的新軍冊，理由是「擅改舊制，恐亂軍心」。</p><p>王子燦出去時，對方領頭的主事客氣得很。</p><p>「王參將，現在最忌諱自亂陣腳。舊冊既有成規，臨戰再查，容易讓各營疑懼。」</p><p>「假的就不疑懼？」</p><p>「此乃歷年積弊。」</p><p>「歷年積弊今天會守城嗎？」</p><p>對方臉色沉下來。</p><p>王子燦把冊子放到桌上。</p><p>「你可以拿走。」</p><p>主事一愣。</p><p>「但我另抄了五份。」</p><p>曹文瑞在後面笑出聲。</p><p>那主事終於拂袖而去。</p><p>陳筱依傍晚來時，聽完只問：「你為什麼非得把實數送上去？」</p><p>「因為皇帝最大的問題不是沒人告訴他壞消息。」</p><p>「那是什麼？」</p><p>「每一層都會把壞消息修得比較好看。」</p><p>王子燦拿起一張紙。北營原報一千四百二十七，實六百八十四。這個差額本身就是一道證據。</p><p>「我要讓他看見一個不能靠『再查』、『再議』、『酌情』混過去的數。」</p><p>陳筱依沉默了一會。</p><p>「如果他看見了還是不走？」</p><p>王子燦摸到衣襟裡史可法那封信。</p><p>「那就再找別的方法。」</p><p>窗外有鐘聲。</p><p>三月十三日。</p><p>六天。</p><p class="scene-break">＊</p><p>史可法的信被王子燦摺得很小，放在最貼身的位置。陳筱依看見一次，問他為什麼不裱起來。</p><p>「因為還要用。」</p><p>「信怎麼用？」</p><p>「迷路的時候看。」</p><p>陳筱依笑他像小孩。</p><p>王子燦卻很認真。現代的他習慣把歷史人物看成結論：忠臣、名將、失敗者。真正承接另一個王燦的記憶後，他才發現「先生」兩字比「史可法」三字更重。</p><p>這也讓他後來在南京重新見到史可法時，不敢把對方當作一張能任意使用的歷史牌。</p><p>知道一個人未來會死，不代表你有權替他提前決定怎麼活。</p><p class="scene-break">＊</p><p>史可法那句「死易，任事難」，王子燦以前只當作一種道德勸告。</p><p>真正到了北京才知道，「任事」之難不是願不願意努力，而是做事永遠帶著責任。</p><p>把許勇調走，張四可能補上去死；分軍糧給百姓，士兵可能少一餐；派人救皇后，就少八個人護皇帝。每個決定都有代價，而且代價常常由別人承擔。</p><p>王子燦最初因此變得猶豫。</p><p>史可法在回信裡還有一句沒有被他常常引用的話：「任事者，知其有失而不得不任。」</p><p>不是要他不怕錯。</p><p>是知道會錯，仍不能把不決定當成清白。</p><p>這句話在後來每一場大戰前都折磨他。</p><p>也保護他。</p><p>因為一旦承認「無決定也是決定」，他就不能用拖延把責任偷偷交給命運。</p><p class="scene-break">＊</p><p>史可法後來知道王子燦曾經因自己的信決定救崇禎，沉默很久。</p><p>「我那封信不是叫你扛皇帝。」</p><p>「我知道。」</p><p>「那你為何？」</p><p>「因為『天子尚在』也是先生寫的。」</p><p>史可法嘆氣。</p><p>「讀書最怕斷章取義。」</p><p>王子燦笑。</p><p>兩人都知道，信本身沒有提供完整答案。王子燦只是從裡面抓到一句符合自己判斷的話。</p><p>這也讓他更加警惕：人很容易在經典、歷史與老師話裡，只挑支持自己的部分。</p><p>所以後來他引用史可法時，總喜歡把原文前後一起抄。</p><p>陳筱依嫌他囉嗦。</p><p>他說：「怕被後人拿去亂用。」</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="12" id="ch-12">
+<div class="chapter-kicker">第二卷　十二日</div><h2>第十二章　第一次面聖</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>三月十四日，王子燦第一次進乾清宮。</p><p>宮牆比他想像中更紅，殿內卻冷。不是天氣冷，是所有人說話都刻意壓著聲音。王子燦一路跪、一路等，膝蓋在石地上磨得發疼，才終於被帶進去。</p><p>崇禎坐在御案後。</p><p>比畫像瘦得多，也老得多。眼窩深陷，鬍鬚已有灰白。三十多歲的人，看起來像四十多。案上堆滿奏疏，幾份還攤開著，邊角被手指揉皺。</p><p>「你就是王燦？」</p><p>「臣在。」</p><p>「北營一千四百餘人，為何你報六百八十四？」</p><p>「因為臣只有六百八十四人。」</p><p>殿內一靜。</p><p>一名兵部官員立刻出列：「陛下，該營舊冊——」</p><p>「朕沒問你。」崇禎冷冷打斷。</p><p>他盯著王子燦：「其餘人呢？」</p><p>「死者未銷、逃者未除、調者未移、虛名領餉。」</p><p>「誰吃了？」</p><p>「臣只查出北營這一層。再往上，請陛下給臣三日。」</p><p>有人倒吸一口氣。這話等於公開說整條軍餉系統都有鬼。</p><p>崇禎卻沒立刻發怒。</p><p>「三日？」</p><p>王子燦抬頭。</p><p>「臣怕陛下沒有三日。」</p><p>這次殿上不是安靜，是死寂。</p><p>「放肆！」旁邊有人喝道。</p><p>王子燦俯首：「臣死罪。」</p><p>「你知道就好。」崇禎聲音很輕，「說。」</p><p>王子燦把三件事說出來。</p><p>第一，大順軍會迅速逼近京師，昌平防線很快失守。</p><p>第二，城外幾處軍營將不戰而潰，京師九門中至少有內應。</p><p>第三，三月十九以前，北京必有大變。</p><p>他沒有直接說穿越。只說自己從軍中情報、降順名單與對方行軍速度推斷。</p><p>崇禎問：「你要朕做什麼？」</p><p>「準備南遷。」</p><p>「不可能。」</p><p>回答快得像刀。</p><p>王子燦早料到。</p><p>「那至少先送太子與二王南下。」</p><p>「退下。」</p><p>「陛下——」</p><p>「朕叫你退下。」</p><p>王子燦起身前，把那本真實軍冊放在御案下。</p><p>「臣只有一件事不敢欺君。」</p><p>崇禎冷眼看他。</p><p>「什麼？」</p><p>「數。」</p><p>離宮時，王子燦不知道自己有沒有說動皇帝。</p><p>但當晚，宮裡傳出一道密令。</p><p>內廷開始秘密清點車馬、金銀與太子可用的護衛。</p><p>崇禎嘴上說不走。</p><p>身體卻第一次替自己準備了一條路。</p><p class="scene-break">＊</p><p>退朝後，崇禎一個人在殿裡把那本北營實冊翻了三遍。</p><p>王承恩站在旁邊，不敢說話。</p><p>皇帝停在「帳一千四百二十七，實六百八十四」那一頁，忽然問：「你說，其他營也這樣？」</p><p>王承恩只能說不知道。</p><p>崇禎最痛苦的從來不是沒人給答案，而是每個答案都可能是假。正因如此，他愈來愈想親自管每一件事，也愈來愈不信任何人。</p><p>王子燦那句「臣只有一件事不敢欺君：數」，第一次給了他一個不同的思路。</p><p>也許不是找到一個永遠不會騙的人。</p><p>而是讓不同的人互相證明。</p><p>這個想法還很模糊，卻在多年後變成覆核制度最早的一顆種子。</p><p class="scene-break">＊</p><p>第一次面聖結束後，兵部那名被皇帝當殿打斷的官員私下找到王子燦。</p><p>對方不是來報復，而是冷冷提醒：「王參將，你今日報真數，明日各營都照你辦，京師軍心可能先亂。」</p><p>王子燦本來想反駁，最後卻承認：「有可能。」</p><p>對方一怔。</p><p>「那你還報？」</p><p>「因為假數不會因不查就變真。」</p><p>「但臨戰查弊，時機不對。」</p><p>這句也有道理。</p><p>王子燦因此調整方法。他不再要求所有營立刻清算舊帳，而是先報「現在可用」；歷史欠帳等危機後再追。</p><p>這是他第一次在官僚反對裡真正學到東西。</p><p>不是所有反對改革的人都是既得利益。有人只是看見另一種風險。</p><p>如果把所有不同意見都當成阻力，改革者很快也會變成自己最討厭的那種人。</p><p class="scene-break">＊</p><p>崇禎在南京曾回想第一次面聖。</p><p>他問王承恩：「朕那日是不是差點殺了王燦？」</p><p>「萬歲說了三次放肆。」</p><p>「朕常說。」</p><p>王承恩不敢笑。</p><p>皇帝自己卻笑了。</p><p>他後來承認，那本六百八十四人的軍冊比任何預言更真正改變自己。因為預言可以疑，數字卻能去點。</p><p>當天他派人偷偷核過。</p><p>真的只有那麼多人。</p><p>那一刻，他第一次親手碰到帝國資訊被層層修飾後的差距。</p><p>王子燦救崇禎的第一步，並不是煤山斬綾。</p><p>是讓皇帝第一次相信：壞消息本身不等於不忠。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="13" id="ch-13">
+<div class="chapter-kicker">第二卷　十二日</div><h2>第十三章　朕憑什麼信你</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>「朕憑什麼信你？」</p><p>第二次召見來得比王子燦預料更快。</p><p>三月十五日清晨，昌平急報入宮。王子燦前一日說出的第一件事，應驗了。</p><p>崇禎這次沒有讓太多人旁聽，只留下王承恩與兩名近臣。御案上攤著王子燦那份北營實冊，旁邊還有幾份剛送到的京營點驗數。不同營的缺額都大得驚人。</p><p>「你說昌平會失，失了。」</p><p>「不是臣神。」王子燦說，「是它本來就守不住。」</p><p>「那你還知道什麼？」</p><p>王子燦沉默。</p><p>他知道太多。知道皇后會死，知道長平公主會被斬臂，知道太子流離，知道李自成入城後追贓助餉，知道吳三桂會與多爾袞合作。可每說一件，都等於把未來往另一條路推。</p><p>「陛下若真要臣說，臣先請一道免死。」</p><p>崇禎冷笑：「你還怕死？」</p><p>「怕。」</p><p>這答案讓皇帝一怔。</p><p>「臣很怕。」王子燦平靜道，「所以臣說的每一句，都是想活著把它做完。」</p><p>崇禎盯他很久，終於道：「說。」</p><p>王子燦沒有要免死詔，改要一塊可以夜間通行內外城的令牌。</p><p>「三件事。第一，請立刻讓太子、定王、永王準備南下，不公開。第二，調可信兵守皇城北面與東面，不要把希望全押在九門。第三，若三月十八夜城防崩潰，陛下不要回乾清宮，直接往煤山東側。」</p><p>王承恩手一抖。</p><p>崇禎問：「為何煤山？」</p><p>王子燦看著他。</p><p>「臣會去接陛下。」</p><p>「你把朕當什麼？」</p><p>「當一個不能死的人。」</p><p>皇帝臉色極難看。</p><p>王子燦卻第一次發現，崇禎不是不理解。他是被太多東西綁住：祖宗、名節、天子守社稷、群臣如何看、天下如何看。南遷對皇帝不是換一座城，而像承認自己拋下祖宗。</p><p>「陛下。」王子燦慢慢道，「活著不是偷生。若陛下南下後只顧享樂，那叫逃。若是去南京重整兵馬，再打回北京，那叫轉進。」</p><p>「你哪來這麼多怪詞？」</p><p>王子燦差點笑。</p><p>「臣鄉下話。」</p><p>崇禎沒笑。</p><p>可最後，那塊夜行令牌仍被王承恩遞到他手裡。</p><p>王子燦握住時，知道第二道門已經開了一條縫。</p><p class="scene-break">＊</p><p>那天離宮後，王子燦在午門外站了很久。</p><p>他剛剛用一個皇帝最忌諱的東西換到一塊令牌：恐懼。</p><p>這讓他不舒服。因為他突然發現，自己和魏成甫其實都懂一件事——人害怕時最好操縱。差別只在於，他想把皇帝推向活路，而魏成甫想把人推向自己的利益。</p><p>陳筱依聽完後只說：「所以你更要小心。」</p><p>「小心什麼？」</p><p>「別因為你覺得目的對，就開始覺得所有手段都對。」</p><p>王子燦把這句話記了很久。</p><p>很多年後，他坐鎮遼東、手握數萬兵馬時，這句話仍比任何軍法都更常提醒他：知道自己可能變成什麼，比相信自己永遠不會變壞可靠得多。</p><p class="scene-break">＊</p><p>王承恩拿出夜行令牌時，手指明顯在抖。</p><p>這不是一塊普通腰牌，而是崇禎第一次承認「可能需要逃」。對一個把天子守國門當成最後尊嚴的皇帝來說，準備退路本身就是羞恥。</p><p>王子燦沒有安慰。</p><p>他知道安慰很容易變成替皇帝合理化逃跑。更重要的是讓崇禎理解，退不是目的，是為了還能再做事。</p><p>「臣若拿這牌胡作非為？」王子燦問。</p><p>崇禎冷冷道：「朕就殺你。」</p><p>「如果臣救駕失敗？」</p><p>「那你先死。」</p><p>「如果陛下自己不肯走？」</p><p>皇帝瞪了他一眼。</p><p>王子燦沒退。</p><p>最後崇禎說：「若真到你說的時候，你再勸一次。」</p><p>不是承諾。</p><p>但這句話讓王子燦知道，皇帝心裡那道門已經不是完全關死。</p><p>從宮裡出去後，他把令牌交給陳筱依看。</p><p>她翻來覆去兩次。</p><p>「就靠這塊東西，你能把皇帝帶出來？」</p><p>「不能。」</p><p>「那還有什麼？」</p><p>王子燦開始一項一項列：路、車、衣服、可靠的人、備用接點、印信、太子消息。</p><p>陳筱依聽到最後笑：「你終於不像寫戲文了。」</p><p>「什麼意思？」</p><p>「以前你總說哪一天會發生什麼，像只要知道劇情就能贏。現在開始像真的要做事。」</p><p>王子燦沒反駁。</p><p>她說得對。</p><p>預言只負責告訴你懸崖在哪。</p><p>真正讓人不掉下去的，是一堆很無聊、很麻煩的準備。</p><p class="scene-break">＊</p><p>夜行令牌在王子燦手裡其實沒有想像中萬能。宮門守衛會認牌，也會認人；一旦局勢崩潰，牌子甚至可能變成一張告訴別人「此人值得抓」的標記。</p><p>所以他另外準備了一個最不體面的方案：把令牌折斷。</p><p>「真到不能用時，就丟。」陳筱依說。</p><p>王子燦摸著金屬邊緣，忽然覺得這很像大明。制度有效時，象徵能開門；制度失效時，再漂亮的印信也只是金屬。</p><p>這個認知讓他後來特別不迷信官銜與文書。</p><p>權力能不能運作，最後還是要有人真的承認、執行。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="14" id="ch-14">
+<div class="chapter-kicker">第二卷　十二日</div><h2>第十四章　三件預言</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>三月十五日到十六日，王子燦故意說了三個「預言」。</p><p>他不說太大，只說能被很快驗證的。</p><p>第一，某營今日報「尚可固守」，實際上主將家眷昨夜已先送出城。</p><p>第二，彰義門附近會出現一名以勸降為名入城的內監。</p><p>第三，永定門外某支勤王兵不會按時抵達。</p><p>第一件在午前證實。第二件到傍晚證實。第三件原本最不確定，卻也因道路阻斷而成真。</p><p>崇禎再次召他。</p><p>這一次皇帝沒有問「你怎麼知道」，而是把所有人都遣出去，只留王承恩。</p><p>「你到底是誰？」</p><p>王子燦跪在地上。</p><p>「王燦。」</p><p>「朕知道你叫王燦。」</p><p>「也是袁崇煥之子。」</p><p>王承恩倒抽一口氣。</p><p>崇禎的表情瞬間僵住。</p><p>殿內像被人抽走空氣。</p><p>「再說一次。」</p><p>「臣父，袁崇煥。」</p><p>崇禎站起來，手扶御案。那個名字隔了十四年，仍像一把沒有拔乾淨的刀。</p><p>「你來報仇？」</p><p>「想過。」</p><p>「現在呢？」</p><p>王子燦抬頭。</p><p>「陛下死了，臣父也活不回來。」</p><p>崇禎嘴唇動了一下。</p><p>王子燦繼續道：「臣不求陛下今天替先父翻案。臣只求陛下不要讓自己在五日後變成另一樁後人只能拿來嘆氣的舊案。」</p><p>這句話近乎冒犯。</p><p>崇禎卻沒有叫人。</p><p>過了很久，他問：「朕最後如何？」</p><p>王子燦沉默。</p><p>「說。」</p><p>「煤山，自縊。」</p><p>皇帝臉色白了。</p><p>「誰陪朕？」</p><p>王子燦看向王承恩。</p><p>王承恩雙膝一軟。</p><p>「王承恩。」</p><p>崇禎重新坐下，像突然老了十歲。</p><p>「皇后呢？」</p><p>「……死。」</p><p>「太子？」</p><p>「流落民間，結局眾說紛紜。」</p><p>崇禎閉上眼。</p><p>王子燦沒有再說。</p><p>這不是炫耀知道未來的時刻。</p><p>很久後，皇帝問：「如果朕走，真能救大明？」</p><p>王子燦回答得很慢。</p><p>「不能保證。」</p><p>「那你讓朕走？」</p><p>「因為不走，臣知道會亡。走了，至少不知道。」</p><p>崇禎睜眼。</p><p>第一次，他從這個年輕人嘴裡聽見一個不是保證的答案。</p><p>也正因如此，他開始相信。</p><p class="scene-break">＊</p><p>崇禎在聽見「煤山、自縊」四字後，當夜沒有召任何人。</p><p>他獨自在乾清宮坐到天亮。案上是一份太子課業、一封山西失守急報、一張內帑清冊，還有王子燦留下的北營實數。</p><p>王承恩遠遠守著。</p><p>天快亮時，皇帝忽然問：「朕若真死，天下會罵朕嗎？」</p><p>王承恩跪下，不敢答。</p><p>「會說朕是亡國之君吧。」</p><p>仍沒有人敢答。</p><p>崇禎低頭笑了一下。</p><p>他真正害怕的，從來不只是死。是自己一生勤政，最後仍只剩「亡國」二字。</p><p>也正因如此，王子燦後來那句「活著把欠的還」，才真正刺進他心裡。</p><p class="scene-break">＊</p><p>第三個預言應驗後，崇禎對王子燦的態度從懷疑變成另一種更危險的東西——依賴。</p><p>「下一步呢？」</p><p>「還會發生什麼？」</p><p>「吳三桂何時到？」</p><p>皇帝開始頻繁問未來。</p><p>王子燦很快警覺。</p><p>他不希望自己變成另一種形式的欽天監。只要每個決策都等「王燦預言」，朝廷不會變強，只會換一個依賴對象。</p><p>因此第四次召見時，崇禎再問「賊軍下一步如何」，王子燦故意回答：「臣不知道。」</p><p>皇帝不滿：「你前面不是都知道？」</p><p>「臣能判斷部分，不是神。」</p><p>「那你那些事如何料中？」</p><p>王子燦沉默片刻。</p><p>「陛下可以當臣知道一條原本的路。但現在每做一件不同的事，後面都會變。」</p><p>這已經接近坦白。</p><p>崇禎盯著他很久，沒有追問「原本」是什麼。</p><p>「所以從現在開始，朕也沒有答案？」</p><p>「是。」</p><p>皇帝很不喜歡。</p><p>王子燦卻第一次覺得放心。</p><p>一個國家真正恢復判斷力的第一步，也許就是停止等待某個人告訴所有人答案。</p><p class="scene-break">＊</p><p>崇禎知道未來後，曾偷偷做過一件王子燦不知道的事。</p><p>他讓王承恩去看煤山那棵樹。</p><p>「結不結實？」</p><p>王承恩當場哭了。</p><p>皇帝卻只是沉默。</p><p>這不是準備自縊，而是人面對一個被告知的死法時，本能想確認。</p><p>後來王承恩把這件事告訴王子燦。</p><p>王子燦沒有覺得荒唐。</p><p>如果有人告訴自己幾天後會死在某處，他大概也會去看。</p><p>預知未來不會讓人自動理性。</p><p>有時只會讓恐懼變得更具體。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="15" id="ch-15">
+<div class="chapter-kicker">第二卷　十二日</div><h2>第十五章　袁崇煥之子</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>袁崇煥三個字一旦說出口，王子燦與崇禎之間就再也回不到普通君臣。</p><p>三月十六日夜，皇帝私下召他到東暖閣。沒有禮部官員，沒有記注官，只有兩個曾被同一樁舊案困住十四年的人。</p><p>崇禎先開口。</p><p>「你父之事，朕當年信了很多人。」</p><p>王子燦沒有接「陛下聖明」之類的話。</p><p>「臣知道。」</p><p>「你知道？」</p><p>「臣知道陛下當時也怕。」</p><p>皇帝臉色微變。</p><p>「怕遼東失，怕京師再危，怕武將擁兵，怕群臣欺瞞。每一件都是真的。」王子燦停了一下，「但怕不能讓錯變成對。」</p><p>崇禎看著桌上的燭火。</p><p>「你恨朕嗎？」</p><p>「恨過。」</p><p>「現在？」</p><p>「現在沒空。」</p><p>王承恩在旁邊差點把頭埋進胸口。</p><p>崇禎竟短促地笑了一聲。</p><p>那可能是王子燦第一次看他像個普通人。</p><p>「若大明不亡，朕給你父平反。」</p><p>「不是交換。」</p><p>「什麼？」</p><p>「臣救陛下，不是拿陛下的命換先父清白。」王子燦說，「先父是非，自有證據。陛下要活，是因為天下還需要一個能把命令送到南京、湖廣、山東、遼東都算數的人。」</p><p>崇禎沉默。</p><p>王子燦趁機把更難聽的話說完。</p><p>「如果真到南京，陛下也得改。」</p><p>「你是在教朕做皇帝？」</p><p>「臣是在告訴陛下，原來那個做法的結果。」</p><p>皇帝的目光瞬間冷下來。</p><p>王子燦知道自己踩到最危險的地方，卻沒有退。</p><p>「軍報要允許報敗，戶部要報實糧，將領臨陣不能一天三改，言官可以罵但不能只會罵。最重要的——」</p><p>「最重要什麼？」</p><p>「別因為怕被騙，就誰都不信。」</p><p>室內安靜得能聽見燭芯爆裂。</p><p>崇禎最終沒有發怒，只疲憊地說：「朕若真能到南京，再聽你說。」</p><p>王子燦知道，這已經是最大的讓步。</p><p>臨走前，皇帝叫住他。</p><p>「你父之事。」</p><p>王子燦回頭。</p><p>「朕負他。」</p><p>他曾以為自己聽見這句話會痛快，會哭，甚至會跪下。</p><p>結果什麼都沒有。</p><p>他只是突然想到：父親已經死了十四年。</p><p>有些道歉來得太晚，作用不是讓死人復活。</p><p>是讓活人不要再犯一次。</p><p class="scene-break">＊</p><p>「朕負他」說出口後，崇禎反而像鬆了一口氣。</p><p>十四年來，袁崇煥不是一個名字，而是一件不能碰的舊案。每次有人提起，都牽動自己當年的判斷。皇帝最怕的不是承認一個臣子可能冤，而是承認自己可能親手做錯一件無法挽回的事。</p><p>王子燦沒有跪謝，反而讓這句道歉顯得更真。</p><p>如果他立刻哭著謝恩，事情就會變成一場君恩。</p><p>可他只是說：「先父聽不到。」</p><p>崇禎臉色難看。</p><p>王子燦又補：「所以陛下以後要少做一件需要對死人道歉的事。」</p><p>王承恩在旁邊連呼吸都不敢太大。</p><p>皇帝最後沒罵。</p><p>這大概是他真正開始改變的時刻之一。</p><p class="scene-break">＊</p><p>袁崇煥身世公開給崇禎後，王子燦回北營時一夜沒說話。</p><p>曹文瑞大概猜到發生什麼，拿酒來。</p><p>「皇帝認錯了？」</p><p>「嗯。」</p><p>「痛快嗎？」</p><p>王子燦搖頭。</p><p>曹文瑞喝一口：「正常。我爹死前欠我一句對不起，後來真聽見也沒用，人照樣埋了。」</p><p>王子燦看他。</p><p>「你爹怎麼死的？」</p><p>「賭債，被人打。」</p><p>這和忠臣冤案一點也不像。</p><p>可王子燦忽然發現，對一個兒子而言，「父親死得值不值得寫進史書」並不能減輕失去。</p><p>兩人坐到酒喝完。</p><p>曹文瑞最後說：「你要真有機會把皇帝拉走，就拉。不是替你爹原諒他。是別讓下一個兒子也只能等死人道歉。」</p><p>這句話在煤山上一直跟著王子燦。</p><p>他不是替父親原諒崇禎。</p><p>他只是拒絕讓「錯已經犯過」變成再錯一次的理由。</p><p class="scene-break">＊</p><p>袁崇煥的名字開始在宮裡重新被提起後，一些舊臣立即改口，彷彿自己當年從未跟著指責。</p><p>王子燦很厭惡。</p><p>「現在人人都說先父冤，當年怎麼沒人說？」</p><p>史可法只答：「有人說了。只是沒用。」</p><p>這讓王子燦冷靜下來。</p><p>歷史不是「所有人都沉默」。常常是有人警告、有人反對，只是聲音沒贏。</p><p>所以他後來整理袁案時，刻意把當年不同意見也收入。</p><p>不是為替誰洗白。</p><p>是提醒後人：事後一致的道德判斷，往往比當時的現實簡單太多。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="16" id="ch-16">
+<div class="chapter-kicker">第二卷　十二日</div><h2>第十六章　南遷</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>南遷兩字，到了朝堂就變成一場仗。</p><p>有人說天子不可棄宗廟。有人說北京乃國本。有人主張送太子南下，皇帝留守。也有人嘴上高喊死守，私下卻已把家眷送往通州。</p><p>王子燦站在殿末，第一次真正看見制度在危機時如何被「名義」卡住。</p><p>每個人都知道形勢壞。</p><p>可誰也不願成為第一個公開說「走」的人。因為若北京最後守住，主張南遷者就會成為千古罪人；若守不住，大家又一起死，責任反而平均。</p><p>崇禎問：「誰願護太子南下？」</p><p>殿上有人出列，也有人低頭。</p><p>王子燦知道，這只是第一步。</p><p>散朝後，他找陳筱依。</p><p>「我要一條從皇城到通州，再往南的路。」</p><p>「官道？」</p><p>「不能全走官道。」</p><p>她展開自己多年做的商路圖。米行、鹽商、驛站、寺院、私碼頭，一條條細線像血管。</p><p>「如果城破，官道最先被堵。」她說，「皇帝車駕太顯眼，也不能帶太多人。」</p><p>「所以換衣。」</p><p>「皇帝肯？」</p><p>「不肯也得肯。」</p><p>她看著王子燦半晌。</p><p>「你現在膽子很大。」</p><p>「時間少。」</p><p>兩人最後設計三套方案。甲案：皇帝正常南遷，最好；乙案：太子先走，皇帝後撤；丙案：城破後由皇城北面經煤山轉東，換民服，用小隊護送到預備據點，再分段南下。</p><p>丙案看起來最荒唐。</p><p>王子燦卻把它放在最上面。</p><p>陳筱依問：「你覺得最後會用哪個？」</p><p>「最壞的。」</p><p>「為什麼？」</p><p>「因為他還是不想走。」</p><p>她沒有說話。</p><p>過了一會，她從腕上解下一條紅繩，綁到王子燦右手。</p><p>「這什麼？」</p><p>「認屍體。」</p><p>「妳不能講吉利一點？」</p><p>「可以。」她重新想了一下，「活著回來，我再幫你解。」</p><p>王子燦看著紅繩。</p><p>他忽然很想告訴她，在另一個時代，也有一個女孩罵他白痴。</p><p>最後沒有說。</p><p>因為他已經很久沒有把她當成另一個人的影子。</p><p class="scene-break">＊</p><p>三套撤離方案寫完後，陳筱依把每條路都親自走了一次。</p><p>白天走一遍，夜裡再走一遍。哪個巷口有狗、哪戶人家晚上會關門、哪座橋若被封還能從哪個河埠繞，她全記。</p><p>王子燦第一次看到時很驚訝。</p><p>「這麼細？」</p><p>「你們當兵的看城圖只看門和路。」</p><p>「不然？」</p><p>「逃命的人會遇到菜攤、棺材鋪、鎖死的院門、突然衝出來的牲口。」</p><p>她把一處原本畫成直線的小巷圈起來。</p><p>「這裡下雨積水，馬跑不快。」</p><p>王子燦立刻改線。</p><p>很多年後，軍中把這種做法叫「踏勘」。沒人知道最早教會王子燦的，不是將軍，是一個在醉紅樓靠自己活下來的女人。</p><p class="scene-break">＊</p><p>撤離路線的三套方案裡，最困難的不是道路，而是太子。</p><p>只要崇禎死、太子也失聯，南京就必須重新處理皇統。王子燦因此堅持把太子列為比金銀、檔案都高的優先目標。</p><p>崇禎對此非常矛盾。</p><p>把太子先送走，等於向群臣承認京師可能不保；不送，一旦城破，皇統可能同時斷裂。</p><p>最後他選擇秘密轉移。</p><p>太子離宮前，王子燦只見了一面。那還只是個少年，臉色白得厲害，卻努力不在父皇面前哭。</p><p>崇禎對他說的是「代朕南巡」。</p><p>王子燦聽見這四字，忽然理解政治語言的另一種功能。</p><p>有時不是欺騙別人。</p><p>是讓一個人保留足夠尊嚴，去做他其實已經知道必須做的事。</p><p>太子走後，崇禎在殿裡站了很久。</p><p>他仍然說自己不走。</p><p>但王子燦知道，這個父親至少已經替兒子承認了最壞情況。</p><p class="scene-break">＊</p><p>太子南下的消息被嚴密封鎖，卻仍然有風聲。</p><p>有人因此更加恐慌：連太子都走了，北京是不是必亡？</p><p>王子燦第一次體會「正確措施也可能帶來副作用」。</p><p>他只好反過來散布另一層說法：太子是奉旨南巡督運糧餉。</p><p>這當然不是完整真話。</p><p>他為此糾結很久。</p><p>陳筱依問：「你是不是覺得只要是好人就不能說半句假話？」</p><p>「至少不該騙百姓。」</p><p>「那你現在把全部真相貼出去，會怎樣？」</p><p>王子燦答不上。</p><p>政治裡的透明不是一句「全說」就能解決。</p><p>這是他很早學到、也一直不喜歡的一課。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="17" id="ch-17">
+<div class="chapter-kicker">第二卷　十二日</div><h2>第十七章　不肯走的皇帝</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>三月十七日，崇禎仍然不肯走。</p><p>這是王子燦最無力的一天。</p><p>前線急報一封接一封，京師外圍像被潮水逐步淹沒。勤王兵有的還在路上，有的根本無法靠近。城內米價上漲，守軍缺餉，內廷開始有人找出路。</p><p>皇帝卻在朝會上再次說：「朕死社稷。」</p><p>群臣山呼。</p><p>王子燦站在人群裡，幾乎想罵人。</p><p>死社稷很容易成為一句漂亮話。真正難的是承認京師守不住，承認自己判斷錯，承認活著南下會被人罵逃君，然後仍然去做。</p><p>散朝後，他直接去找王承恩。</p><p>「陛下若到最後一刻仍不走，你幫我一件事。」</p><p>王承恩看著他。</p><p>「什麼？」</p><p>「不要陪死。」</p><p>老太監愣住。</p><p>「你帶陛下往煤山。」</p><p>「王將軍，咱家侍奉萬歲二十多年——」</p><p>「正因為二十多年，才別讓他死在你眼前。」</p><p>王承恩眼眶紅了，卻沒答應。</p><p>那晚王子燦回營，發現五百四十五名士兵仍在。</p><p>他集合全營。</p><p>「從現在開始，想走的可以走。發三日糧，不記逃兵。」</p><p>隊伍一陣騷動。</p><p>第一個人走出來時，低著頭。王子燦親自把糧袋給他。第二個、第三個。最後走了四十多人。</p><p>曹文瑞問：「真不抓？」</p><p>「留下的人我要能相信。」</p><p>剩下的人裡也不是人人忠烈。有人家眷就在城裡，有人沒地方去，有人只是怕第一個走丟臉。</p><p>王子燦反而安心。</p><p>人的選擇本來就不乾淨。</p><p>只要最後站在該站的位置上，就夠。</p><p>深夜，陳筱依在城防圖旁寫了五個字：人、糧、軍、信、怕。</p><p>「怕？」王子燦問。</p><p>「最大的那個。」她說，「士兵怕死，官員怕責，皇帝怕被騙，商人怕破產，百姓怕明天沒飯。每個人都給自己留一條後路。」</p><p>她用筆在城圖上畫了許多小門。</p><p>「最後，整座北京都是後門。」</p><p>王子燦看了很久。</p><p>他忽然明白，救一個皇帝只是開始。</p><p>如果以後真的有「以後」，他要救的，是讓一個國家不必靠每個人偷偷留後門才能活下去。</p><p class="scene-break">＊</p><p>五百四十五人留下後，王子燦讓人把離開者姓名也記下。</p><p>曹文瑞不解：「不是說不記逃兵？」</p><p>「不是記罪。」</p><p>「那記什麼？」</p><p>「記他們拿了三日糧。」</p><p>曹文瑞翻白眼：「你真是算帳算瘋了。」</p><p>王子燦卻很認真。有人走，不代表這個人就從世界上消失。三日糧從哪來，之後是否回營，家屬是否仍在，這些都是真實成本。</p><p>後來有七個離開者在城破當日又回來。</p><p>其中一人說：「我把老婆孩子送出去了。」</p><p>王子燦只點頭，讓他歸隊。</p><p>沒有質問為何先走。</p><p>戰爭已經夠殘酷，不必再把每個普通人的恐懼加工成道德審判。</p><p class="scene-break">＊</p><p>士兵自願離營那一夜，王子燦刻意站在營門口。</p><p>每一個離開的人都必須從他面前走過。</p><p>這不是羞辱，而是要讓「可以走」真的可信。如果只在校場上說一句，等人真走時又被軍法隊抓回來，留下的人也不會再信他。</p><p>第一個離開的是個三十多歲的弓手。走到門口時，他突然跪下。</p><p>「將軍，我娘在城南。」</p><p>「去。」</p><p>「我不是怕死。」</p><p>王子燦看著他。</p><p>「怕死也沒關係。」</p><p>弓手愣住。</p><p>這句話後來在北營傳得很快。</p><p>「將軍說怕死沒關係。」</p><p>有人覺得不像軍中話。</p><p>可也正因如此，留下的人反而少了證明自己勇敢的壓力。真正需要守時，他們更願意承認害怕。</p><p>王子燦漸漸發現，承認恐懼不會自動摧毀士氣。</p><p>假裝所有人都不怕，才會讓每個怕的人覺得自己已經輸了一半。</p><p class="scene-break">＊</p><p>離營士兵裡，有一個人後來真的投了大順。</p><p>消息傳回北營時，曹文瑞氣得要追。</p><p>王子燦攔住。</p><p>「我說走了不算逃兵。」</p><p>「可他投賊！」</p><p>「那是之後的事。」</p><p>這個區分讓很多人不滿。</p><p>可王子燦堅持，不能因為一個人後來做錯，就把他之前被允許的選擇倒過來變罪。</p><p>法律與承諾如果能因結果不好就追溯修改，誰還會信下一次承諾？</p><p>這件事很小，卻慢慢塑造了他後來對制度一致性的執著。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="18" id="ch-18">
+<div class="chapter-kicker">第二卷　十二日</div><h2>第十八章　闖軍到了</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>三月十七日午後，大順軍真正出現在北京城外。</p><p>不是史書上一句「賊至城下」，而是看不到盡頭的人馬。遠處旌旗密得像林子，騎兵在地平線上來回穿梭，炮車一輛一輛推到預定位置。</p><p>城頭守軍第一次集體安靜。</p><p>有人以前沒見過這麼多敵人。</p><p>城外很快有人來勸降。</p><p>使者甚至點名王子燦。</p><p>「袁督師之後！你父為朱家所殺，何苦再替朱家送命？」</p><p>這句話沿城牆傳開，不少士兵都看向他。</p><p>王子燦站上女牆。</p><p>「我父的帳，我自己算。」</p><p>城外使者大笑：「那你還守？」</p><p>「我守的不是朱家的臉。」</p><p>「那是什麼？」</p><p>王子燦看向城內。街巷裡還有搬糧的百姓、推車的老人、抱孩子的女人。</p><p>「他們的命。」</p><p>使者又喊：「開城，免死！」</p><p>王子燦沒有回答。</p><p>因為他知道，大順不全是屠夫。很多人真的是被災荒與官府逼到拿刀。可「開城免死」也不是一句能保證所有人安全的契約。軍紀會崩、追贓會來、舊怨會清算。</p><p>晚上，第一輪炮擊開始。</p><p>陳筱依第一次登城。炮聲震得腳下磚石發顫，她臉色發白，卻硬是沒下去。</p><p>「怕？」王子燦問。</p><p>「怕。」</p><p>「那下去。」</p><p>「你也怕，怎麼不下？」</p><p>她把紅繩重新纏緊。</p><p>「王子燦。」</p><p>「嗯？」</p><p>「我如果叫你活，你會聽嗎？」</p><p>「會。」</p><p>「騙人。」</p><p>王子燦笑了。</p><p>她忽然抱了他一下，很快，像確認這個人真的還在。</p><p>「那至少別死得太快。」</p><p>王子燦沒有說什麼。</p><p>遠處炮火照亮城外。</p><p>他知道，真正的倒數已經不是兩天。</p><p>是每一個時辰。</p><p class="scene-break">＊</p><p>城外那句「袁督師之後」傳開後，北營裡其實有人動搖。</p><p>一名老兵夜裡問王子燦：「將軍，你爹真是袁督師？」</p><p>「是。」</p><p>「那皇上殺了你爹，你還救皇上？」</p><p>王子燦想了想。</p><p>「我救他，不代表我覺得他當年做對。」</p><p>老兵更糊塗。</p><p>王子燦只好換個說法：「你跟鄰居有仇，鄰居家著火，裡面還有孩子，你救不救？」</p><p>老兵抓頭。</p><p>「先救吧。」</p><p>「差不多。」</p><p>這個比喻後來在營中傳得面目全非，最後變成「王將軍說皇帝是鄰居家小孩」。</p><p>王子燦聽見時差點吐血。</p><p>陳筱依笑了一整晚。</p><p class="scene-break">＊</p><p>第一輪炮擊後，城頭有個十七歲新兵一直找不到火繩。</p><p>他急得哭。旁邊老兵一巴掌打過去：「哭個屁！」</p><p>王子燦走過去，把人拉到牆後。</p><p>「叫什麼？」</p><p>「周、周虎。」</p><p>「第一次？」</p><p>少年點頭。</p><p>「我也是。」王子燦說。</p><p>老兵愣住。</p><p>王子燦沒解釋自己是第一次守北京。他只替周虎重新點好火繩，讓他去搬箭，不再負責當下最容易慌的射擊位置。</p><p>曹文瑞看見後問：「這樣不是讓他逃？」</p><p>「他搬箭也是在打仗。」</p><p>後來周虎沒有成為英雄。北門撤退時，他背走兩名傷兵，自己活下來。</p><p>幾年後加入新軍，最後做到一名普通隊官。</p><p>王子燦很喜歡這種結局。</p><p>不是每個害怕的少年都要被逼成烈士。</p><p>能找到一個他做得到的位置，也是一種用人。</p><p class="scene-break">＊</p><p>大順勸降使者走後，周虎那個十七歲新兵問王子燦：「將軍，他們真會免死嗎？」</p><p>王子燦沒有說「一定騙人」。</p><p>「有些人可能真的想少死人。」</p><p>周虎更困惑：「那我們為什麼不降？」</p><p>「因為我不確定他們能不能保證城裡每個人，也不確定開門後會發生什麼。」</p><p>「那就是不知道？」</p><p>「對。」</p><p>少年點頭。</p><p>王子燦後來才發現，誠實說不知道並沒有讓士兵立刻失去信心。</p><p>有時比「敵人全是騙子」更有力量，因為士兵知道主將不是靠編故事逼他留下。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="19" id="ch-19">
+<div class="chapter-kicker">第二卷　十二日</div><h2>第十九章　吳三桂</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>吳三桂的名字在三月十八日清晨傳進宮。</p><p>山海關兵奉詔回援。</p><p>很多人像抓到最後一根繩。有人說關寧鐵騎一到，京師就有救。甚至有人開始討論如何內外夾擊李自成。</p><p>王子燦卻知道，來不及。</p><p>更麻煩的是，他也知道另一條歷史：北京陷後，吳三桂會在山海關與李自成交戰，最後與清軍聯手。那扇門一開，後面的世界完全不同。</p><p>他向崇禎請一道手詔。</p><p>「給吳三桂？」皇帝問。</p><p>「是。」</p><p>「催他快來。」</p><p>「不是。」</p><p>王子燦提出一個與所有人相反的命令：吳三桂不必孤軍急趕北京，先穩山海關；若京師有變，只認皇帝親書密詔，不得擅引關外兵入關。</p><p>崇禎皺眉。</p><p>「朕還在北京，你卻先防他引外兵？」</p><p>「臣防的不是吳三桂一個人。」</p><p>王子燦說得很慎重。</p><p>「臣防的是任何人在天下最亂的時候，借一支自己控制不了的兵，去解眼前的急。」</p><p>這是一個很現代的風險觀，但他沒有這樣說。</p><p>崇禎最終寫下手詔。</p><p>「山海關不可失。無朕親詔，不得借兵。」</p><p>王子燦另外附了一封私人信。</p><p>「若京師陷，天子未必死。守關，等旨。」</p><p>信送出後，陳筱依問他：「你確定這樣比較好？」</p><p>王子燦搖頭。</p><p>「不確定。」</p><p>她有些意外。</p><p>「你不是知道歷史？」</p><p>「我只知道原本那條。」</p><p>王子燦望著東方。</p><p>「從我讓皇帝開始準備走的那一刻，後面就可能全不一樣了。」</p><p>陳筱依笑了。</p><p>「你終於不像神棍了。」</p><p>「我本來就不是。」</p><p>「以前比較像。」</p><p>王子燦也笑。</p><p>可笑完，他心裡反而更沉。</p><p>在原本歷史裡，他至少知道下一頁。</p><p>從現在開始，頁面是白的。</p><p class="scene-break">＊</p><p>吳三桂收到那封「守關，等旨」的信時，關內外同樣亂成一團。</p><p>他把信看了兩遍，問幕僚：「這個王燦到底多大？」</p><p>「二十上下。」</p><p>吳三桂皺眉：「二十歲敢寫信教我守關？」</p><p>幕僚不敢答。</p><p>他把信扔在桌上，過一會又撿回來。</p><p>真正讓他在意的不是王子燦，而是崇禎親筆詔書仍然有效。只要皇帝活著，自己的一切選擇就有另一種政治成本。</p><p>這正是王子燦想要的。</p><p>他不指望吳三桂忽然變成毫無私心的忠臣。只要讓每個選項的代價不同，歷史就可能往另一邊偏一點。</p><p>很多時候，改變世界不是把一個人變好。</p><p>只是讓他在關鍵時刻覺得另一條路更划算。</p><p class="scene-break">＊</p><p>南京送往山海關的親詔分三路走。</p><p>一封沿官驛，一封由商隊夾帶，一封交給熟悉沿海的信使。王子燦堅持「同一件重要消息不要只走一條路」。</p><p>兵部有人嫌浪費。</p><p>第一封真的在半路失蹤後，就沒人再說。</p><p>這件小事後來被新軍大量採用。軍令有主傳遞，也有備份路線；重大軍情不靠一名信使承擔全部。</p><p>王子燦每次解釋，都說這不是什麼高深兵法。</p><p>「因為人會死，馬會倒，橋會斷。」</p><p>一個制度如果假設每一環都不出錯，那就不是制度，是祈禱。</p><p>這種近乎悲觀的設計思維，最初被人笑「王總督凡事想壞」。</p><p>多年後，反而成了遼東軍政的一個特色：任何重要事，都先問「這一環斷了怎麼辦」。</p><p class="scene-break">＊</p><p>那封送往吳三桂的私信沒有官方文書那麼整齊。</p><p>王子燦在末尾多寫了一句：「將軍若要活，先讓關活。」</p><p>吳三桂後來把這句記了很多年。</p><p>因為它沒有要求他為名節死，也沒有道德綁架。</p><p>只是把他的個人利益與山海關是否存在綁在一起。</p><p>王子燦很早就懂，說服不必總從高尚出發。</p><p>如果一個正確選擇同時也對當事人有利，成功機率反而更高。</p><p>這不是卑鄙。</p><p>是承認人有自己的利益。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="20" id="ch-20">
+<div class="chapter-kicker">第二卷　十二日</div><h2>第二十章　三月十八</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>三月十八日的北京，有一種奇怪的平靜。</p><p>城外的炮聲整日沒有真正停過，城內卻還有人開店。酒樓只開半扇門，米鋪門板上貼著「售罄」，街邊有人兜售早已不值錢的古玩。末日逼近時，人並不會整齊地恐慌；有人哭，有人賭，有人照常吃飯，更多人只是茫然地等。</p><p>王子燦把北營最後能動的人分成三組。第一組守北城，第二組護送預先登記的百姓沿小街往東，第三組——最少，也最精——只等一個命令。</p><p>護駕。</p><p>曹文瑞看著第三組名單：「三十七人，夠嗎？」</p><p>「不夠。」</p><p>「那還排？」</p><p>「人多更走不了。」</p><p>王子燦又檢查一次路線。皇城北側、煤山、東安門外幾個巷口、陳筱依安排的布莊、再到通州方向的私碼頭。每個點都準備了不同衣服、馬匹與假路引。</p><p>最荒唐的一套衣服是兩件舊棉袍。</p><p>一件給崇禎。</p><p>一件給王承恩。</p><p>陳筱依把棉袍遞給他時笑：「天下大概沒人替皇帝準備過這麼破的龍袍。」</p><p>王子燦沒笑。</p><p>「今晚妳走。」</p><p>「我去哪？」</p><p>「跟第一批百姓出城。」</p><p>「不。」</p><p>「陳筱依。」</p><p>「王子燦。」她學他的語氣，「你要用我的路、我的人、我的假文書，然後叫我先走？」</p><p>「因為城破後——」</p><p>「因為城破後危險，所以你可以留，我不行？」</p><p>王子燦一時語塞。</p><p>她看了他一會，忽然伸手摸了摸他腕上的紅繩。</p><p>「你到底把我當誰？」</p><p>這句話他聽過。</p><p>在醉紅樓那晚，她也問過類似的。</p><p>「一開始，我確實覺得妳像另一個人。」</p><p>「現在呢？」</p><p>王子燦看著她。</p><p>「現在很久沒想起她了。」</p><p>陳筱依怔了一下。</p><p>這答案比「妳就是妳」更誠實。</p><p>她低頭把紅繩重新打了個結。</p><p>「那我更不能走。」</p><p>黃昏時，魏成甫送來最後一條消息：彰義門有人準備今晚開門，宮中也有人打算趁亂逃。</p><p>王子燦立刻派人入宮。</p><p>回來的人只帶一句話。</p><p>「陛下仍不出城。」</p><p>曹文瑞罵了一句。</p><p>王子燦卻忽然平靜。</p><p>「好。」</p><p>「好什麼？」</p><p>他把刀繫緊。</p><p>「那就用丙案。」</p><p class="scene-break">＊</p><p>三月十八日晚，王子燦與陳筱依最後一次在完整的北京城裡吃飯。</p><p>兩人分一個冷饅頭。外面炮聲一陣遠一陣近。</p><p>陳筱依忽然問：「你那個時代，打仗也這樣嗎？」</p><p>王子燦沉默。</p><p>「更快。」</p><p>「更快是好事？」</p><p>「不是。」</p><p>他想起現代課本上的戰爭照片。武器進步從來不等於人更懂得避免戰爭。</p><p>陳筱依咬了一口饅頭：「那你們三百多年後也沒學會？」</p><p>王子燦笑得有點苦。</p><p>「學會很多，也忘很多。」</p><p>她沒再問。</p><p>那頓飯後，他們都以為可能再也沒有機會一起坐下吃東西。</p><p>多年後，兩人最常提起的反而就是那個又冷又硬的饅頭。</p><p class="scene-break">＊</p><p>魏成甫最後送來彰義門內應情報時，提出交換條件。</p><p>「保我一命。」</p><p>王子燦沒有立刻答。</p><p>「你給的消息若真，保你暫不死。」</p><p>「暫？」</p><p>「你其他罪另算。」</p><p>魏成甫氣笑：「王將軍，你這生意做得不好。」</p><p>「因為不是生意。」</p><p>兩人對視。</p><p>魏成甫最後還是說了。</p><p>這也讓王子燦看到另一種現實：即將崩潰的制度裡，資訊往往來自最不可靠的人。不能因為來源壞就全不信，也不能因為情報有用就洗掉來源的罪。</p><p>於是他第一次建立一種很粗糙的分級：消息本身另外驗證，提供者另外評價。</p><p>多年後陳筱依把這套方法說得更直接：</p><p>「壞人也會說真話，好人也會記錯。」</p><p>王子燦非常喜歡。</p><p>這句話後來被寫在北門書庫情報卷首頁。</p><p class="scene-break">＊</p><p>三月十八夜，王子燦把自己現代帶來的最後一個東西拿出來。</p><p>不是手機。手機早不在身上。</p><p>是一小片塑膠學生證套，卡在鐵牌紅繩裡，不知道怎麼一起過來。上面的字已磨花，只剩一角。</p><p>他看了很久，最後又收回去。</p><p>陳筱依問：「那是什麼？」</p><p>「學生用的東西。」</p><p>「你以前是學生？」</p><p>「嗯。」</p><p>「那你現在每天教皇帝，不算升得很快？」</p><p>王子燦笑。</p><p>這個笑讓他突然沒那麼怕明天。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="21" id="ch-21">
+<div class="chapter-kicker">第三卷　煤山未死</div><h2>第二十一章　煤山</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>三月十九，寅時。</p><p>第一聲警鐘從西南方向傳來時，北京城還沒有亮。</p><p>鐘聲隔著煙與屋脊一層一層撞過來，先是一聲，接著是另一座城樓回應，再下一刻，整座京師像忽然被誰從睡夢裡掐住喉嚨，鑼、鼓、哭喊、馬蹄與火銃聲一起醒了。</p><p>王子燦站在北營臨時指揮所裡，面前攤著三張圖。</p><p>一張是北京城圖；一張是陳筱依這幾日重新畫出的巷道與暗門；最後一張最難看，只有幾行數字——可戰三百七十一人，傷兵八十七，能用火銃一百零九杆，弓一百六十二張，箭不到四千，火藥只夠幾輪齊射。</p><p>這才是真的北京。</p><p>不是兵部冊上那座尚有十餘萬京軍、城高池深的都城。</p><p>曹文瑞掀簾進來，甲上全是灰。</p><p>「彰義門亂了。」</p><p>王子燦抬頭：「破了？」</p><p>「不知道。」</p><p>「那就別報破。」</p><p>曹文瑞怔了一下，隨即點頭。</p><p>這些天，他們已經習慣了王子燦近乎偏執的做法——不知道就是不知道。敵軍多少，不知道；哪一門已降，不知道；皇城現在是否安全，不知道。誰敢拿「聽說」「大概」「想必」當成軍報，王子燦就讓他重新跑一趟。</p><p>這在平日顯得麻煩，在城破前夜卻成了少數還能依靠的東西。</p><p>外面忽然有人喊：「西南火起！」</p><p>王子燦衝出去。</p><p>遠處天際一片橘紅，像黎明提前從地上升起。</p><p>不是天亮。</p><p>是火。</p><p>陳筱依從另一側快步過來，把一張剛收到的紙塞給他。</p><p>「永定門方向有潰兵往北跑，彰義門有人換旗，但消息沒核。」</p><p>「東線？」</p><p>「暫時還能走。」</p><p>王子燦低頭看圖。</p><p>此前十二日所有準備，到這個時候只剩三個目的：讓百姓撤、讓皇帝活、讓北門多撐一會。</p><p>至於北京能不能守住——他早已不再騙自己。</p><p>「第一批民隊走了多少？」</p><p>「一百四十餘。」</p><p>「還有？」</p><p>「二百一十七。」</p><p>這個數字後來會被很多人記住。</p><p>此刻它只是陳筱依帳本上最後一行。</p><p>王子燦轉身下令：「甲組護民，按昨夜標好的小街往東，不許走大路。老人孩子先。乙組上城。丙組跟我待命。」</p><p>許勇在人群裡往後看了一眼。</p><p>他的母親與妹妹就在第一批撤離隊伍中。老婦人被人扶上板車，小姑娘死死抓著他的袖子不放。</p><p>「哥，你不一起走？」</p><p>許勇蹲下，把妹妹的手一根一根掰開。</p><p>「我等會兒。」</p><p>「你騙人。」</p><p>十二歲的孩子已經懂得什麼叫等會兒。</p><p>許勇沒有再說，只把自己腰間那塊半乾的餅塞進她懷裡。</p><p>王子燦走過來，停在他旁邊。</p><p>「你可以跟她們走。」</p><p>許勇抬起頭。</p><p>「將軍也可以。」</p><p>「我有事。」</p><p>「我也有。」</p><p>他看向北城。</p><p>「去年我爹餓死，北營給我一口糧。前幾日你讓我把娘接進城。現在後面走的都是人，我總不能讓別人的兒子全站在前面。」</p><p>王子燦看著這個原本在另一條歷史裡可能早已死去的年輕人。</p><p>以前他總以為，自己救過許勇一次，這條命就像被自己從歷史裡拿了回來。</p><p>如今他才知道，救下一個人，不等於擁有替他決定下一次選擇的權力。</p><p>「別逞強。」王子燦說。</p><p>許勇笑了一下：「跟你學的。」</p><p>王子燦罵了句髒話，轉身離開。</p><p>就在此時，皇城方向突然傳來三次急鼓。</p><p>不是他們約定的任何一個信號。</p><p>眾人同時停了一瞬。</p><p>一匹馬從街角衝來，馬上的內監幾乎是摔下來的。</p><p>「王參將！」</p><p>他的帽子不見了，一隻鞋也跑丟了，臉上全是血，不知道是自己的還是別人的。</p><p>「萬歲不見了！」</p><p>王子燦胸口一沉。</p><p>「什麼叫不見？」</p><p>「乾清宮沒人！王公公也不在！宮裡有人說……說萬歲換了衣裳往北去了！」</p><p>王子燦閉了一下眼。</p><p>不用再問。</p><p>煤山。</p><p>史書上的那棵樹突然從紙上站到了眼前。</p><p>他已經為這一刻準備了十二天，可真正來臨時，腦中仍有短短一瞬的空白。</p><p>曹文瑞抓住他肩膀。</p><p>「城後的人還沒走完。」</p><p>王子燦知道。</p><p>二百一十七人。</p><p>煤山只有一個崇禎。</p><p>可那一個人如果死了，南京的正統、各鎮的詔令、尚未崩散的中央權威，都會在同一刻被扯斷。</p><p>這不是「一個皇帝」與「二百一十七個百姓」哪個命比較值錢。</p><p>是兩件都不能丟的事，偏偏此刻只有一個王子燦。</p><p>他盯著城圖，指節慢慢發白。</p><p>曹文瑞先開口：「去。」</p><p>王子燦抬頭。</p><p>「你守這裡？」</p><p>「不然你分兩半？」</p><p>「老曹，半個時辰。」</p><p>「幾個人？」</p><p>「三百七十一。」</p><p>曹文瑞朝城外方向看了一眼，像在估一筆明知道算不平的帳。</p><p>「弓箭？」</p><p>「不到四千。」</p><p>「炮？」</p><p>「那門舊炮最多三發。」</p><p>「火藥？」</p><p>「省著用。」</p><p>曹文瑞忽然笑了。</p><p>「你這人真會做人情。」</p><p>王子燦沒有笑。</p><p>「守不住就撤。」</p><p>「撤哪？」</p><p>「巷子。東走。能帶多少帶多少。」</p><p>「那你呢？」</p><p>「煤山。」</p><p>曹文瑞把長槍往肩上一扛，嘴裡罵了一句。</p><p>「行了。」</p><p>王子燦還沒動。</p><p>「老曹。」</p><p>「又怎樣？」</p><p>「你別死。」</p><p>曹文瑞看了他兩息，突然抬手在他胸甲上重重敲了一下。</p><p>「那你也別讓皇帝死。」</p><p>沒有誓言。</p><p>沒有「與城共存亡」。</p><p>兩個人都知道，真正到了這種時候，漂亮話一點用都沒有。</p><p>王子燦轉身點出三十七名親兵。</p><p>「只帶刀、短銃、兩日乾糧。重甲不要。」</p><p>有人問：「去哪？」</p><p>「接一個人。」</p><p>沒有人再問。</p><p>陳筱依已經把兩件破棉袍、假路引與一個小包袱送到他手上。</p><p>「東安門那條路若斷，改走第二線。布莊後門有人。通州那邊的船最晚等到午時。」</p><p>她語速很快，像是在交代一筆尋常買賣。</p><p>王子燦聽完，伸手抓住她手腕。</p><p>「妳跟第一批走。」</p><p>「我說過不走。」</p><p>「這不是商量。」</p><p>「那我也不聽。」</p><p>王子燦壓低聲音：「煤山之後如果我回不來——」</p><p>「那我去找你。」</p><p>「陳筱依。」</p><p>「王子燦。」</p><p>她也壓低聲音。</p><p>「你要救皇帝，是因為你覺得他活著還能做事。那我留下，也是因為我覺得自己還能做事。你不能只准自己有這種理由。」</p><p>王子燦一時說不出話。</p><p>她抽回手，把他腕上的紅繩重新勒緊。</p><p>「去。」</p><p>「妳呢？」</p><p>「我把最後一批人送出去，再去第二接應點。」</p><p>「別回頭。」</p><p>「你先做到。」</p><p>兩人對視一瞬。</p><p>下一刻，王子燦轉身帶人衝向皇城。</p><p>街道已經開始失去秩序。</p><p>有官轎逆著人流往南，有人拖著箱子，有潰兵把甲脫下扔進陰溝，還有人站在自家門口發呆，像只要不動，城破就與自己無關。</p><p>跑過一處坊口時，兩名士兵正撬一戶人家的門。</p><p>親兵問：「將軍？」</p><p>王子燦腳步頓了一下。</p><p>如果是昨日，他會抓。</p><p>現在不行。</p><p>「記臉。走。」</p><p>只四個字。</p><p>他討厭這四個字。</p><p>因為它承認了一件他一直不願承認的事：任事不是把所有錯都立刻糾正，而是在每一刻決定，哪一件事如果現在不做，後果最不可逆。</p><p>皇帝若死，追不回。</p><p>百姓若被堵在城裡，追不回。</p><p>兩個搶劫的兵，至少還可能明日抓。</p><p>他只能往前。</p><p>越靠近皇城，火越亮。</p><p>午門外一片混亂，有人說賊兵已進宮，有人說尚在外城。王子燦只問守門內監一件事：「北面哪條路還通？」</p><p>對方嚇得發抖，指向一條偏道。</p><p>王子燦衝進去。</p><p>他熟悉煤山這個地名。</p><p>熟悉得像認識一位從未見過的人。</p><p>可進了宮城，他很快在第一個岔路口停住。</p><p>左邊？右邊？</p><p>史書沒有寫。</p><p>課本沒有畫。</p><p>他知道崇禎最後會死在煤山，卻不知道從眼前這扇偏門到煤山哪條路最快。</p><p>那一瞬間，他幾乎想笑。</p><p>穿越者知道歷史。</p><p>可歷史從來不負責告訴你岔路口往哪轉。</p><p>「這邊！」</p><p>一名跟來的老內監忽然指向右側。</p><p>「過御苑，再穿北上門！」</p><p>王子燦沒有問他名字。</p><p>只是跟著跑。</p><p>後來他一直記得這個無名內監。</p><p>因為真正改變歷史的那條路，有一小段是這個人指出來的。</p><p>＊＊＊</p><p>與此同時，北門城樓上，曹文瑞正把所有人按到位置。</p><p>「弓手別他娘的先射！」</p><p>「火銃三排，第一排放完退後裝！」</p><p>「那門破炮誰管？」</p><p>一個老炮手舉手。</p><p>曹文瑞看他：「幾發？」</p><p>「三發。」</p><p>「第四發呢？」</p><p>老炮手咧嘴：「第四發看祖宗。」</p><p>周圍人笑了一聲。</p><p>「那就別勞煩祖宗。」曹文瑞道，「三發後撤。」</p><p>城後最後一批百姓正在穿過巷口。</p><p>有人背著鍋，有人抱著祖宗牌位，有人兩手空空。戰爭來得太快，逃命時最能看出一個人最後覺得什麼不能丟。</p><p>副將低聲問：「真要守半個時辰？」</p><p>曹文瑞看了看天色。</p><p>「王子燦說半個時辰。」</p><p>「他說的就算？」</p><p>「不算。」</p><p>「那——」</p><p>「後面的人走完才算。」</p><p>第一支箭從城外飛上來。</p><p>曹文瑞低頭避過，箭釘進後方木柱。</p><p>他拔刀。</p><p>「來了。」</p><p>城外鼓聲再起。</p><p>而王子燦已經跑上煤山第一級石階。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="22" id="ch-22">
+<div class="chapter-kicker">第三卷　煤山未死</div><h2>第二十二章　白綾未落</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>煤山的風裡全是煙。</p><p>王子燦衝上最後一段石階時，肺像被火燒，左肩舊傷一路滲血。身後三十七名親兵只剩三十二人，有五個倒在進宮的路上，沒有人有時間回頭。</p><p>樹就在前面。</p><p>那棵後世無數史書、照片、導覽詞裡都會被提起的樹，此刻只是一棵黑沉沉的老槐，枝椏在天光未明的煙霧裡伸開。</p><p>崇禎站在樹下。</p><p>沒有龍袍。</p><p>沒有冠冕。</p><p>只穿一身灰白素衣，髮髻散了一半。王承恩跪在旁邊，肩膀抖得厲害，卻哭不出聲。</p><p>皇帝手裡是一條白綾。</p><p>王子燦忽然覺得時間變得很慢。</p><p>他讀過這一幕太多次。</p><p>「朕死，無面目見祖宗於地下。」</p><p>「任賊分裂朕屍，勿傷百姓一人。」</p><p>後世把這些話抄成一行一行，讀起來有悲劇的整齊。</p><p>真正站在這裡，他只看見一個四十多歲、十七年沒有把國家救回來、如今決定用死替自己畫句點的人。</p><p>崇禎把白綾往枝上一拋。</p><p>「陛下！」</p><p>王子燦喊到聲音都裂了。</p><p>崇禎回頭。</p><p>他竟沒有驚訝。</p><p>「王卿。」</p><p>聲音很輕。</p><p>「你終究還是來了。」</p><p>王子燦三步併作兩步衝上去。</p><p>「臣來帶陛下走。」</p><p>崇禎看了他一眼，又看山下火光。</p><p>「走？」</p><p>「走。」</p><p>「朕還能走去哪裡？」</p><p>「南京。」</p><p>皇帝笑了一聲。</p><p>那笑裡沒有喜意。</p><p>「京師陷，宗廟棄，朕南奔苟生。你要後世怎麼寫朕？」</p><p>王子燦拔刀。</p><p>王承恩臉色驟變，猛地撲來：「王將軍！」</p><p>刀光從兩人之間掠過。</p><p>啪。</p><p>白綾斷了。</p><p>一截掛在枝上，另一截落進泥水。</p><p>崇禎整個人僵住。</p><p>「放肆！」</p><p>這兩個字幾乎是吼出來的。</p><p>幾名親兵下意識跪倒。王承恩也抱住王子燦腰，像怕他下一刀砍的是皇帝。</p><p>王子燦沒有還刀入鞘。</p><p>他單膝跪地，抬頭看著崇禎。</p><p>「臣有罪。」</p><p>「你何止有罪！犯駕、欺君、挾君南奔，你——」</p><p>「陛下可以到南京再殺臣。」</p><p>崇禎像被噎住。</p><p>王子燦把早已準備好的破棉袍扔在泥地上。</p><p>「現在先換衣。」</p><p>王承恩倒吸一口氣。</p><p>「王燦！」</p><p>「山下已亂。再晚一刻，連下山的路都未必有。」</p><p>「朕不走！」</p><p>「那臣就綁陛下走。」</p><p>這回連王承恩都忘了哭。</p><p>崇禎死死盯著他。</p><p>「你敢？」</p><p>王子燦也看著他。</p><p>「臣連白綾都敢砍。」</p><p>山下忽然一聲炮響。</p><p>遠處宮城火光映亮半片天空。</p><p>幾個人都沉默了一瞬。</p><p>王子燦把刀插回鞘中，聲音低了下來。</p><p>「陛下，北京可以丟。」</p><p>崇禎眼神陡然一冷。</p><p>「你再說一遍。」</p><p>「城可以再打回來。」</p><p>「天子守國門。」</p><p>「那也得天子先活著。」</p><p>「祖宗陵寢俱在北方，朕若南奔——」</p><p>「陛下死在這裡，陵寢就能自己守住？」</p><p>王承恩低聲：「王將軍……」</p><p>王子燦卻停不下來了。</p><p>他花了十二天，從第一次面聖開始就在等這個時刻。</p><p>「南京有留都，有六部，有庫、有糧、有江南財賦。山東未全失，湖廣未全失，兩廣、福建尚在。遼東邊軍還有人。只要陛下活著，詔書仍然有一個主人，各鎮至少知道該向誰請命。」</p><p>崇禎冷笑：「所以你救的只是朕這塊招牌？」</p><p>王子燦怔了一下。</p><p>這問題比他預想得更尖。</p><p>「不只。」</p><p>「那是什麼？」</p><p>王子燦看著他。</p><p>「臣想救一個還來得及改的皇帝。」</p><p>風吹過樹梢。</p><p>崇禎的臉色一點點變了。</p><p>「你以為朕還能改？」</p><p>「不知道。」</p><p>「不知道？」</p><p>「臣只知道死了一定改不了。」</p><p>山下又是一陣喊殺。</p><p>王子燦往前一步。</p><p>「陛下不是一直說自己負天下嗎？」</p><p>崇禎嘴角抽了一下。</p><p>「那就別用一條白綾把債全扔給活人。」</p><p>「欠的軍餉，活著補。」</p><p>「錯殺的人，活著查。」</p><p>「餓死的百姓，活著救。」</p><p>「用錯的將，活著換。」</p><p>「北京若真沒了，活著打回來。」</p><p>他的聲音沒有很大。</p><p>可每一句都像把崇禎原本準備好的遺言撕掉一行。</p><p>「死太便宜了。」王子燦說。</p><p>崇禎的手忽然抖了一下。</p><p>王承恩看見了。</p><p>皇帝自己也看見了。</p><p>那是王子燦第一次在這個人身上看見不是憤怒、不是猜疑，而是最原始的恐懼。</p><p>怕死。</p><p>崇禎也怕死。</p><p>只是他比任何人都更不允許自己承認。</p><p>「朕若活著被天下恥笑呢？」</p><p>王子燦說：「臣陪陛下一起被笑。」</p><p>「朕若到了南京，照樣守不住呢？」</p><p>「再退。」</p><p>「退到哪？」</p><p>「哪裡還有百姓、糧和兵，就退到哪裡。」</p><p>「你要朕做逃亡天子？」</p><p>「臣要陛下做活著的天子。」</p><p>崇禎望著他，眼眶第一次紅了。</p><p>「王燦。」</p><p>「臣在。」</p><p>「你知道你說的每一句，都夠殺頭？」</p><p>「等到了南京，陛下慢慢挑。」</p><p>王承恩忽然笑出一聲，又趕緊低頭。</p><p>崇禎看向他。</p><p>「連你也笑朕？」</p><p>王承恩跪得更低。</p><p>「奴婢……奴婢只是覺得，萬歲若還能罵人，就還沒到該死的時候。」</p><p>這句話說完，他自己先哭了。</p><p>哭得像一個老人，不像司禮監秉筆，不像陪伴天子的內官。</p><p>崇禎看著他。</p><p>王承恩陪了他太多年。</p><p>如果這個人剛才說「奴婢陪萬歲一起死」，也許一切仍會按照史書走。</p><p>可王承恩把那件破棉袍撿起來，抖掉泥。</p><p>「萬歲。」</p><p>他說。</p><p>「走吧。」</p><p>很久很久，崇禎沒有動。</p><p>山下的火聲越來越近。</p><p>最後，他低頭看向泥中的斷白綾。</p><p>然後往後退了一步。</p><p>只有一步。</p><p>王子燦後來活了幾十年，見過北京光復、寧遠、錦州、盛京，也見過自己被封國公。</p><p>可如果有人問他歷史真正在哪一刻轉向，他永遠只想到這一步。</p><p>不是他的刀。</p><p>是崇禎自己往後退的那一步。</p><p>＊＊＊</p><p>換衣服成了另一場戰爭。</p><p>崇禎接過粗棉袍時，臉色難看得像王子燦遞給他的是囚衣。</p><p>「朕就穿這個？」</p><p>「這件最不會有人認。」</p><p>「太大。」</p><p>「總比龍袍顯眼。」</p><p>王承恩在旁邊幫忙解帶，手忙腳亂。</p><p>崇禎忽然停住。</p><p>「皇后。」</p><p>王子燦心裡一沉。</p><p>這也是他最怕的一刻。</p><p>在原本歷史裡，周皇后會自縊，長平公主會遭崇禎揮劍砍傷。可因為他提前布局，一些皇子與宮眷的撤離已經開始，現在究竟進展到哪一步，他不知道。</p><p>「臣已派人接。」</p><p>「誰？」</p><p>「八名親兵、兩名熟宮路的內監。」</p><p>「人呢？」</p><p>「還沒回。」</p><p>崇禎立刻把棉袍一甩。</p><p>「朕回去。」</p><p>王子燦一把抓住他的手臂。</p><p>親兵們全低下頭，假裝沒看見這第二次犯駕。</p><p>「不能回。」</p><p>「朕的皇后在宮裡！」</p><p>「所以陛下更不能回。」</p><p>「放手！」</p><p>「不放。」</p><p>崇禎眼裡殺意真的出來了。</p><p>「王燦，你有妻室嗎？」</p><p>王子燦腦中閃過陳筱依的臉。</p><p>「沒有。」</p><p>「那你憑什麼叫朕別回去？」</p><p>這一次，王子燦沒有立刻回答。</p><p>因為皇帝問得對。</p><p>所有戰略、正統、江南財賦，在這個問題前都很輕。</p><p>他慢慢鬆了一點手，卻沒有放開。</p><p>「臣不能保證娘娘一定救得出來。」</p><p>崇禎的眼睛一下紅了。</p><p>「但陛下現在回去，只是多一個人死。」</p><p>「那朕就陪她。」</p><p>「她若活著呢？」</p><p>崇禎僵住。</p><p>王子燦盯著他。</p><p>「娘娘若被救出來，等到南京，卻發現陛下因為以為她死了又回去送死——陛下要臣怎麼跟她說？」</p><p>一句話把崇禎定在原地。</p><p>王承恩抹著眼淚，小聲道：「萬歲，王將軍說得是。」</p><p>崇禎閉上眼。</p><p>「等多久？」</p><p>「一炷香。」</p><p>「半炷香。」</p><p>「好。」</p><p>他們在煤山腳下等了不到半炷香。</p><p>一隊人從煙裡衝出來。</p><p>最前面的親兵肩上扛著一名受傷內監，後面兩頂不起眼的小轎。</p><p>王承恩幾乎撲過去。</p><p>轎簾掀開。</p><p>周皇后臉色蒼白，卻活著。</p><p>崇禎往前一步，整個人像突然失去皇帝的殼。</p><p>「梓童。」</p><p>周皇后看著他身上的破棉袍，又看斷在泥裡的白綾，沒有問發生什麼。</p><p>她只說：「走。」</p><p>崇禎點頭。</p><p>這一次，不需要王子燦再勸。</p><p>＊＊＊</p><p>下山後的路比上山更難。</p><p>煤山救下皇帝只是把一個人從繩子旁拉開。</p><p>真正要把他活著送出北京，還有一道道門。</p><p>第一個問題就是稱呼。</p><p>「從現在起，不能喊萬歲。」王子燦說。</p><p>王承恩嘴唇動了一下。</p><p>「那叫什麼？」</p><p>王子燦看向崇禎。</p><p>「朱先生。」</p><p>崇禎的臉又黑了。</p><p>「不行？」</p><p>「……行。」</p><p>王承恩低頭憋得肩膀都在抖。</p><p>第二個問題是走路。</p><p>皇帝走得太像皇帝。</p><p>王子燦看了兩條街，忍不住說：「陛下——朱先生，別一直走中間。」</p><p>「路就在中間。」</p><p>「逃難的人不走那麼正。」</p><p>崇禎瞪他。</p><p>周皇后在旁邊第一次笑了一下。</p><p>「聽王將軍的。」</p><p>皇帝只好往牆邊靠。</p><p>一行人穿過御苑，再過偏門。遠處有人搶庫，有人焚文書，也有人跪在地上哭喊萬歲。</p><p>崇禎幾次停步。</p><p>王子燦沒有催得太狠。</p><p>他知道這個人正在一寸一寸離開自己做了十七年皇帝的世界。</p><p>走到一處高牆缺口時，崇禎回頭。</p><p>紫禁城的屋脊在煙裡只剩黑影。</p><p>「朕還回得來嗎？」</p><p>王子燦站在他旁邊。</p><p>他知道原本歷史的答案。</p><p>可現在，那個答案已經失效。</p><p>「不知道。」</p><p>崇禎看他。</p><p>「你不是知道後世？」</p><p>「從剛才開始，不知道了。」</p><p>「何意？」</p><p>王子燦看向那條被自己斬斷的歷史。</p><p>「臣知道的那個陛下，已經死在煤山。」</p><p>崇禎沒有說話。</p><p>王子燦繼續道：「現在這個，史書沒寫。」</p><p>兩人並肩站了一息。</p><p>「那你還敢帶路？」崇禎問。</p><p>王子燦笑得有些疲憊。</p><p>「臣只知道下一個路口往哪。」</p><p>「再下一個呢？」</p><p>「到了再問。」</p><p>崇禎沉默片刻，也笑了一下。</p><p>「走。」</p><p>＊＊＊</p><p>就在他們穿過東側巷道時，一名親兵突然停下。</p><p>前方有十餘名潰兵正在搜人。</p><p>不是大順軍。</p><p>是明軍。</p><p>城真正崩潰時，衣服已經不能代表哪一邊。</p><p>王子燦示意所有人靠牆。</p><p>那群人很快發現他們。</p><p>「站住！」</p><p>為首者提刀過來，上下打量崇禎。</p><p>「哪家的？」</p><p>王子燦遞出假路引。</p><p>「通州糧商，帶家眷。」</p><p>對方根本沒看，直接伸手：「銀子。」</p><p>王子燦沒動。</p><p>那人刀背敲了敲他的胸口。</p><p>「城都破了，還裝什麼？」</p><p>身後的王承恩手已經在抖。</p><p>不是怕被搶。</p><p>是怕皇帝受辱。</p><p>王子燦只好從包袱裡摸出一小錠銀子。</p><p>對方掂了掂，嫌少，又伸手去拉周皇后的轎簾。</p><p>下一刻，王子燦的刀已經抵在他喉嚨。</p><p>兩邊同時拔刀。</p><p>「拿了銀子就走。」王子燦說。</p><p>那人盯著他，似乎沒想到一個糧商護衛敢這樣。</p><p>遠處忽然傳來大順軍號聲。</p><p>潰兵臉色一變，罵了一句，帶人跑了。</p><p>直到腳步聲遠去，王承恩才長出一口氣。</p><p>崇禎從頭到尾沒說話。</p><p>走出一段後，他忽然問：「這些也是朕的兵？」</p><p>沒有人回答。</p><p>「是。」王子燦最後說。</p><p>崇禎低頭看著地面。</p><p>煤山上的失敗是一個王朝的象徵。</p><p>這個小巷裡的一錠銀子，卻讓他第一次摸到失敗具體的形狀。</p><p>＊＊＊</p><p>到布莊接應點時，陳筱依已經在等。</p><p>她看見王子燦先鬆了一口氣，接著才發現他身後那個穿破棉袍的中年男人。</p><p>她愣了半息。</p><p>然後低頭行了一個極輕的禮。</p><p>「朱先生。」</p><p>崇禎看向王子燦。</p><p>「你的人都這麼大膽？」</p><p>王子燦道：「臣只認識這種。」</p><p>陳筱依沒有空理他們，把新的路引與兩匹馬牽出來。</p><p>「東線剛斷了一段，改走水關。通州船還在，但最多等到午時。」</p><p>「北門？」王子燦問。</p><p>她沉默了一瞬。</p><p>「還在打。」</p><p>只四個字。</p><p>王子燦胸口像被什麼撞了一下。</p><p>「老曹？」</p><p>「沒消息。」</p><p>他下意識往北面看。</p><p>崇禎也看見了。</p><p>「你要回去？」</p><p>王子燦沒有立刻答。</p><p>曹文瑞替他守的是半個時辰。</p><p>現在皇帝已經出了宮城。</p><p>如果回去，也許能多帶出幾個人。</p><p>如果不回，護駕路上少不了他。</p><p>又是兩件都對的事。</p><p>崇禎忽然說：「不准回。」</p><p>王子燦猛地看他。</p><p>皇帝的聲音不高。</p><p>「他讓你來救朕，不是讓你救到一半再回去陪他死。」</p><p>王子燦的牙關一下咬緊。</p><p>崇禎看著他。</p><p>「這道旨，你聽。」</p><p>很久，王子燦低頭。</p><p>「臣遵旨。」</p><p>這是煤山救駕後，他第一次真心覺得皇帝的一道命令幫了自己。</p><p>因為有些選擇，當事人永遠不可能覺得自己選得對。</p><p>有人替你把路封死，反而能讓你繼續走。</p><p>午前，一行人抵達通州外的私碼頭。</p><p>船還在。</p><p>船夫見到他們，只問一句：「人齊？」</p><p>陳筱依看了一圈。</p><p>少了很多人。</p><p>「能走的齊。」</p><p>船解纜。</p><p>北京的火在遠處越來越小。</p><p>崇禎站在船尾，看了整整一個時辰。</p><p>沒有人勸他坐下。</p><p>直到城影再也看不見，他才低聲問王子燦：</p><p>「南京真的還有用？」</p><p>王子燦靠在船艙邊，肩傷疼得眼前發黑。</p><p>「有。」</p><p>「你確定？」</p><p>「不確定。」</p><p>崇禎轉頭。</p><p>王子燦閉著眼說：「但比死在樹上有用。」</p><p>皇帝沉默很久。</p><p>「王燦。」</p><p>「臣在。」</p><p>「若有一日朕又想死。」</p><p>「臣再砍一次。」</p><p>王承恩在旁邊終於忍不住笑出聲。</p><p>船沿運河南下。</p><p>北京在身後陷落。</p><p>大明卻沒有在那一天結束。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="23" id="ch-23">
+<div class="chapter-kicker">第三卷　煤山未死</div><h2>第二十三章　出城</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>救下皇帝並不等於逃得出去。</p><p>從煤山到東安門外不到幾里，王子燦卻走了人生最長的一段路。</p><p>崇禎換成普通士紳打扮，王承恩成了老僕。三十七名親兵分成三批，前面探路、中間護衛、後面斷尾。皇帝第一次在人群裡沒有任何儀仗，也沒有人跪。</p><p>經過一條巷子時，一個挑水的百姓甚至撞了崇禎肩膀，罵了句「沒長眼」。</p><p>崇禎愣在原地。</p><p>王子燦差點笑出來，又覺得此刻笑太危險。</p><p>第一個預備據點已被亂兵搶空。第二個巷口則出現大順游騎。王子燦帶人繞路，穿過一間正在起火的紙鋪。紙灰像黑雪一樣落在每個人頭上。</p><p>一名親兵中箭倒下，沒有叫。</p><p>王子燦想停，對方只抓住他褲腳。</p><p>「走。」</p><p>一個字。</p><p>他們繼續。</p><p>到布莊後門時，陳筱依已等在那裡。她看見崇禎先愣了一瞬，隨即行了一個不太標準的禮。</p><p>「陛——」</p><p>王子燦立刻咳了一聲。</p><p>她改口：「老爺，裡面請。」</p><p>崇禎看了她一眼，竟配合地點頭。</p><p>布莊地窖裡藏著兩套商隊文書。原本預備給太子，如今先給皇帝。陳筱依已買通一支往通州運布的車隊，車底做了夾層。</p><p>崇禎看著那個窄得幾乎不能翻身的暗格，臉色很難看。</p><p>「朕要躺這裡？」</p><p>陳筱依很認真地說：「要不然陛下坐車頂？」</p><p>王子燦咳得更厲害。</p><p>皇帝瞪了她一眼，最後還是躺進去。</p><p>車隊出發前，王子燦收到北門消息。</p><p>百姓還有一百多人。</p><p>曹文瑞仍在守。</p><p>他握著紙條沉默。</p><p>陳筱依看懂他的表情。</p><p>「你要回去？」</p><p>「皇帝交給妳。」</p><p>「不行。」</p><p>「路妳最熟。」</p><p>「那你呢？」</p><p>王子燦望向北城方向。</p><p>「我答應過他半個時辰。」</p><p>崇禎在車底忽然開口。</p><p>「王燦。」</p><p>王子燦蹲下。</p><p>「活著回來。」皇帝說。</p><p>這四個字不是命令。</p><p>王子燦怔了一下。</p><p>「臣盡量。」</p><p>他轉身往北門跑。</p><p>陳筱依在身後罵：「又是盡量！」</p><p>王子燦沒有回頭。</p><p>紅繩在腕上隨步伐晃動。</p><p class="scene-break">＊</p><p>布車出城前，陳筱依把所有假路引再核一遍。</p><p>崇禎藏在夾層裡，狹窄得幾乎不能動。王承恩躺在另一輛車底。</p><p>守卡軍士掀開布包時，陳筱依甚至有心情抱怨運價。</p><p>「這批布再耽擱，南京那邊不認價。」</p><p>她說得像真商人。</p><p>一名士兵還摸了摸車板。崇禎就在下面。</p><p>王子燦若在場，大概會把手按在刀上。</p><p>陳筱依沒有。</p><p>她只繼續嫌棄天氣、路況和兵爺查得太慢。</p><p>車隊放行後，她才發現自己掌心全是汗。</p><p>崇禎後來問她：「你那時不怕？」</p><p>「怕。」</p><p>「看不出。」</p><p>「看出來就死了。」</p><p>皇帝沉默良久。</p><p>他第一次明白，勇敢和不怕，真的不是同一件事。</p><p class="scene-break">＊</p><p>陳筱依護送布車離開北京後，整整兩個時辰不知道王子燦生死。</p><p>她不能回頭。</p><p>每一個關卡都可能暴露皇帝，任何異常都會害死整支車隊。她只能把害怕壓成最普通的動作：數車、核路引、罵車夫、看天。</p><p>到第一個安全接點，崇禎從夾層出來時幾乎站不起來。</p><p>「王燦還沒回？」他第一句問。</p><p>「沒有。」</p><p>皇帝沉默。</p><p>陳筱依第一次看見他不是因為國事而不安，而是單純在等一個人的消息。</p><p>這讓她對崇禎的看法稍微變了一點。</p><p>她仍不喜歡這個皇帝。父親的案子、軍糧、北京的亂，不會因為他此刻狼狽就消失。</p><p>但她開始理解王子燦為什麼堅持把他救下來。</p><p>只要人還活著，就還能被要求負責。</p><p>死人只剩評價。</p><p class="scene-break">＊</p><p>布車經過一處檢查時，崇禎躺在夾層裡聽見外面兩個士兵抱怨欠餉。</p><p>其中一人說：「皇帝要是知道我們三個月沒拿錢就好了。」</p><p>崇禎全身僵住。</p><p>這句話不是罵，反而更刺。</p><p>因為士兵仍然相信「皇帝若知道就會處理」。</p><p>他忽然意識到，很多時候自己不是完全不知道，而是知道的東西經過太多層，最後失去具體樣子。</p><p>到了南京後，他第一次主動要求戶部把「欠餉月數」按營列出。</p><p>那兩個不知道車底躺著誰的士兵，沒有留下名字。</p><p>卻改了一項制度。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="24" id="ch-24">
+<div class="chapter-kicker">第三卷　煤山未死</div><h2>第二十四章　北門半個時辰</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>北門已經快守不住。</p><p>王子燦趕回來時，城樓一角正在燃燒。守軍從五百多人打到三百餘，傷兵躺滿牆根。曹文瑞左臂中了一箭，還在罵人搬滾木。</p><p>「你回來幹什麼！」</p><p>「半個時辰還沒到。」</p><p>「皇帝呢？」</p><p>「出城了。」</p><p>曹文瑞愣了一瞬，然後咧嘴笑。</p><p>「真讓你扛走了？」</p><p>「他自己走的。」</p><p>「放屁。」</p><p>兩人都笑了一下。</p><p>城後撤離名冊顯示，還有二百一十七名百姓。這些人不是抽象數字。王子燦能看見他們：幾個孩子、一名腿傷老人、推不動車的一家五口，還有幫忙抬人的婦人。</p><p>他集合殘兵。</p><p>「皇帝已離城。」</p><p>眾人一陣騷動。</p><p>「北京守不住了。」</p><p>更大的騷動。</p><p>王子燦沒有騙。</p><p>「城後還有二百一十七個人。半個時辰。」</p><p>他指向城下。</p><p>「想走的現在走。我不記逃兵。」</p><p>沒有人動。</p><p>並不是每個人都高尚。許勇是因為妹妹還在撤離隊裡；有人兄弟沒走；有人只是覺得此時轉身太丟臉；也有人已經打紅眼。</p><p>正因如此，王子燦才覺得真。</p><p>城外大順軍再次喊降。</p><p>「皇帝已死！降者免死！」</p><p>王子燦走上女牆。</p><p>「誰告訴你皇帝死了？」</p><p>城外一靜。</p><p>這句話像石頭投進水裡。對方很快派人往中軍回報。王子燦知道，光是讓敵人不確定皇帝生死，就能多買一點時間。</p><p>「給我半個時辰！」他喊。</p><p>「你有何資格談條件？」</p><p>王子燦看了看身後的人。</p><p>「沒有。」</p><p>他拔刀。</p><p>「所以拿命換。」</p><p>第一輪攻勢很快撞上城牆。</p><p>弓手只在進入有效射程後放箭。火銃三輪輪射，裝填慢得讓王子燦想念現代一切機械。那門曹文瑞一直嫌棄的舊炮打到第三發時炸膛，兩名炮手當場被碎鐵割倒。</p><p>曹文瑞還有力氣罵：「我就說！」</p><p>一刻。</p><p>兩刻。</p><p>每隔一會就有人喊後方還剩多少人。</p><p>一百四十六。</p><p>九十二。</p><p>四十一。</p><p>王子燦第一次知道，時間真的可以用血買。</p><p>半個時辰不是三十分鐘。</p><p>是三百多個人，一點一點變少的速度。</p><p class="scene-break">＊</p><p>北門第一刻過去時，撤離隊伍才走到第二條巷。</p><p>一輛車輪陷進坑裡，後面全堵住。負責護送的士兵急得想把車推翻，一名婦人卻死死護住車上的老人。</p><p>最後是幾個本來準備逃命的百姓一起抬。</p><p>沒有人知道城上每多撐一刻，下面發生的是這些小事。</p><p>不是什麼偉大轉移。</p><p>只是有人鞋掉了、有人孩子哭、有人走錯巷、有人回頭找母親。</p><p>王子燦後來看到撤離紀錄時，才知道北門半個時辰其實不是被一場戰鬥「用掉」。</p><p>它被一百件普通得不能再普通的小事用掉。</p><p>正因如此，那半個時辰才真正值得。</p><p class="scene-break">＊</p><p>北門之戰最危險的不是城牆，而是消息。</p><p>「南邊門已開！」</p><p>「皇帝死了！」</p><p>「大順說降者免死！」</p><p>每一條都在動搖守軍。王子燦乾脆下令：未經指定傳令者確認，任何人不得在隊列裡傳外門消息。</p><p>有人罵這是堵嘴。</p><p>王子燦知道確實有這個風險。可戰場上未驗證謠言能讓一整段防線瞬間垮掉。</p><p>他另外設一名專門報時的人。</p><p>「一刻。」</p><p>「兩刻。」</p><p>每一次報時都像把所有人的神經拉緊。</p><p>士兵開始不再想「北京守不守得住」，只想下一刻。</p><p>再撐一刻。</p><p>再一刻。</p><p>這是王子燦後來最常教新軍的一個方法：當目標太大到讓人絕望，就把它拆成下一個能完成的動作。</p><p>一座王朝救不救得回，不是北門士兵當時要解的題。</p><p>他們只需要守到後面那批人走完。</p><p class="scene-break">＊</p><p>北門第二輪攻勢裡，王子燦曾短暫失聰。</p><p>炮聲在近處炸開後，耳邊只剩長鳴。他看見士兵嘴巴在動，卻聽不見。</p><p>那幾十息讓戰場變得像默片。箭飛、血濺、有人倒下，一切沒有聲音，反而更恐怖。</p><p>聲音慢慢回來時，第一個聽見的是有人喊：「還剩六十二！」</p><p>不是兵。</p><p>是城後尚未撤出的百姓。</p><p>王子燦忽然重新抓住節奏。</p><p>六十二。</p><p>再守。</p><p>數字在那一刻不是冷冰冰的統計，而是他繼續站著的理由。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="25" id="ch-25">
+<div class="chapter-kicker">第三卷　煤山未死</div><h2>第二十五章　三百七十一</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>最後能站著的，三百七十一人。</p><p>這個數字後來被寫進《北門軍冊》，成了後世爭論最多的細節之一。有人說不可能精確到個位，有人說是後人附會。王子燦卻記得很清楚，因為那是曹文瑞親口報給他的。</p><p>「三百七十一。」</p><p>「傷兵？」</p><p>「能拿刀的都算。」</p><p>敵軍第二輪上來。</p><p>王子燦肩上中箭。箭頭卡在甲縫，沒有穿透太深。他沒拔，怕拔了反而流血更多。</p><p>許勇在旁邊替他砍斷箭桿。</p><p>「將軍，剩十一戶。」</p><p>王子燦喘著氣：「走到哪？」</p><p>「東巷口。」</p><p>「再撐。」</p><p>城門內側突然傳來爆響。</p><p>不是外面的炮。</p><p>有人從裡面破壞門栓。</p><p>王子燦衝下城樓，看見一名老守備跪在門洞旁，滿臉是淚。那人不在陳筱依的名單上，甚至是前一天還公開誓死守城的人。</p><p>「我兒在他們手上！」老人哭喊，「我只有一個兒！」</p><p>王子燦愣了一瞬。</p><p>原來叛變不一定來自貪財，也可能來自一個父親。</p><p>可門已鬆。</p><p>他沒有時間審判。</p><p>「堵門！」</p><p>車、木箱、石塊全推進去。最後連屍體都被用來填縫。</p><p>曹文瑞先中一箭，又中第二箭。王子燦抓住他：「你下去！」</p><p>曹文瑞推開。</p><p>「我娘死十年了。」</p><p>王子燦一怔。</p><p>曹文瑞以前總說老母在山東，等他回家。</p><p>「騙你們的。」他笑得滿嘴血，「當兵的人總得覺得有地方回。」</p><p>「別說了。」</p><p>「將軍。」</p><p>「幹嘛？」</p><p>「我挺喜歡你現在這樣。」</p><p>「以前呢？」</p><p>「也喜歡，就是煩。」</p><p>他撿起長槍。</p><p>「我最後替你擋一次。以後自己擋。」</p><p>曹文瑞帶著十幾人衝進門洞。</p><p>王子燦只看見那杆長槍在人群上方晃了幾次。</p><p>然後消失。</p><p>沒有遺言，沒有回頭。</p><p>後方忽然有人大喊：「全撤完了！」</p><p>王子燦站在血與泥裡，腦中一片空白。</p><p>半個時辰到了。</p><p>他第一次下令：</p><p>「撤。」</p><p>這一聲，不是敗。</p><p>是他們已經把該買的時間買到了。</p><p class="scene-break">＊</p><p>曹文瑞失蹤後，王子燦有好幾個月夢見那杆長槍。</p><p>每次夢裡，他都覺得只要自己再往前一步，也許就能把人拉回來。醒來後才知道，那是最沒有意義的假設。</p><p>戰後清理北門時，有人找到一塊帶血的護腕，像是曹文瑞的。王子燦沒有拿來當遺物。</p><p>「不確定就別說是他的。」</p><p>這種執拗讓旁人不理解。</p><p>可他已經受夠了「大概」「可能」「應該」最後變成史書上的確定句。</p><p>曹文瑞如果沒有屍體，就寫「失蹤，推定戰死」。</p><p>這不是冷。</p><p>是王子燦能給一個朋友最後的尊重：不替他編一個更漂亮的結局。</p><p class="scene-break">＊</p><p>撤退命令下達後，真正的混亂才開始。</p><p>守久的人容易產生一種錯覺：只要往後走就是失敗。王子燦連喊三次「撤」仍有人不動。</p><p>許勇甚至說：「將軍，我們還能打。」</p><p>「我知道。」</p><p>「那為什麼走？」</p><p>「因為任務完了。」</p><p>這四字比「守到最後一人」更難理解。</p><p>王子燦親自抓住兩名還要往門洞衝的士兵，把人往巷子裡推。</p><p>「活著！」</p><p>很多年後，遼東新軍把「達成任務後撤離」寫進操典。王子燦堅持撤退不是恥辱，也不是只有打敗才能撤。</p><p>他曾看過太多歷史人物為了名節把部隊與自己一起留在已失去意義的位置。</p><p>北門讓他明白，勇敢不只是不退。</p><p>有時是完成該做的之後，願意承認現在該走。</p><p class="scene-break">＊</p><p>曹文瑞消失前最後一次回頭，其實王子燦沒有看見。</p><p>許勇看見了。</p><p>多年後他告訴王子燦，曹文瑞衝進門洞前回頭一次，像想確認主將還在不在。</p><p>「他有沒有說什麼？」</p><p>「沒有。」</p><p>王子燦沉默。</p><p>他忽然很慶幸沒有一句完美遺言。</p><p>真實的人不會總在最關鍵時刻說出最適合被刻碑的句子。</p><p>曹文瑞只是回頭。</p><p>這就夠了。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="26" id="ch-26">
+<div class="chapter-kicker">第三卷　煤山未死</div><h2>第二十六章　皇帝還活著</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>北京城破的消息傳遍天下時，另一個消息同時沿驛路往南跑。</p><p>皇帝未死。</p><p>最初沒人信。大順方面很快宣布崇禎已自盡；北京城內也有人說在煤山找到屍體。可幾日後，山東某驛站收到一封蓋有御寶與內廷暗記的詔書。再過一天，徐州、淮安也收到。</p><p>詔書只有幾件事。</p><p>京師陷。</p><p>朕尚在。</p><p>各鎮不得擅散。</p><p>山海關守將吳三桂固守關門，不得引外兵。</p><p>南直隸諸司備行在。</p><p>這幾行字的力量遠超王子燦預料。</p><p>逃散的官員開始找新的方向；原本觀望的地方軍知道皇帝還能發命令；最重要的是，南京不必立刻討論「另立誰」。正統沒有斷。</p><p>王子燦是在通州東南一處破寺裡重新見到崇禎。</p><p>他渾身是血，少了一隻護臂，肩傷腫得發熱。</p><p>陳筱依看見他，第一句是：「你白痴！」</p><p>第二句就哭了。</p><p>她一邊罵一邊替他剪開衣服。</p><p>「曹文瑞呢？」</p><p>王子燦沒有回答。</p><p>她的手停了一下。</p><p>崇禎坐在寺廟角落，看著這一幕。皇帝沒有龍椅，腳上穿的是一雙不合腳的布鞋。</p><p>很久，他問：「北門多少人？」</p><p>「最後三百七十一。」</p><p>「活多少？」</p><p>王子燦低頭。</p><p>「不知道。」</p><p>崇禎閉上眼。</p><p>片刻後，他讓王承恩取紙。</p><p>王子燦以為他要寫褒獎。</p><p>崇禎卻只寫了一行：</p><p>北門軍卒，凡可核姓名者，錄其名；死者恤家，生者給餉，不得只報總數。</p><p>王子燦看著「錄其名」三字，喉嚨忽然發緊。</p><p>這可能只是皇帝在逃亡路上的一道小命令。</p><p>但他知道，有些改變就是從這裡開始。</p><p>不是「忠烈三百餘」。</p><p>是每一個人都有名字。</p><p class="scene-break">＊</p><p>破寺那一夜，崇禎第一次和普通士兵吃同一鍋粥。</p><p>他端著粗陶碗，盯著碗底幾粒米，忽然問王承恩：「北營平日就吃這個？」</p><p>王承恩不敢答。</p><p>王子燦在旁邊說：「有時更稀。」</p><p>皇帝看他一眼，沒有發火。</p><p>一名不知皇帝身份的傷兵端著碗經過，還抱怨：「今天算好了，至少有米。」</p><p>崇禎把自己的碗慢慢喝完。</p><p>第二天，他在詔書裡加了一句原本沒有的話：凡護駕及北門軍卒，先發口糧，再論賞格。</p><p>這不是什麼大制度。</p><p>只是皇帝第一次從「軍餉」兩字想到一碗真正能入口的粥。</p><p class="scene-break">＊</p><p>破寺裡的第一夜，崇禎幾乎沒睡。</p><p>外頭每有馬蹄聲，他就抬頭。王承恩靠牆打盹，手卻始終按在袖中短刀上。皇帝忽然問王子燦：「北京如今如何？」</p><p>「不知道。」</p><p>「朕的宮城呢？」</p><p>「不知道。」</p><p>「太子呢？」</p><p>「前路接點已有人去確認。」</p><p>崇禎臉上掠過惱怒。</p><p>「你什麼都不知道。」</p><p>王子燦看著他。</p><p>「對。」</p><p>皇帝愣住。</p><p>「臣現在能保證的，只有下一個接點、下一餐糧、下一批人往哪走。」</p><p>崇禎沉默。</p><p>這是他第一次被迫活在資訊不完整的世界裡，而不是坐在宮裡等所有奏報彙總到御案。也許正因如此，他第一次真正理解地方官和將領為什麼常常「沒有完整答案」。</p><p>半夜，外出探路的親兵回來，確認太子已安全向南。崇禎長長吐出一口氣。</p><p>接著問的不是「何時復京」，而是：「明日我們吃什麼？」</p><p>王子燦笑。</p><p>這問題很小。</p><p>卻代表皇帝終於開始想明天。</p><p class="scene-break">＊</p><p>北門殘兵陸續追上南下隊伍時，每一個人都先被問名字。</p><p>有人覺得多此一舉。</p><p>王子燦卻堅持。</p><p>「先知道誰回來。」</p><p>這句話後來變成傷亡核對最基本的規則。很多軍隊習慣先報「大概損失」，再慢慢補。王子燦反過來：能核一個是一個。</p><p>因為他親眼見過「失蹤」如何在帳上被快速變成「死亡」，也見過活人因名字沒被更新而失去餉糧。</p><p>一個人回來，不該還在冊上死著。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="27" id="ch-27">
+<div class="chapter-kicker">第三卷　煤山未死</div><h2>第二十七章　南下</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>從通州往南京，不是一條直線。</p><p>王子燦原本以為救出皇帝後，最大的難題已經過去。真正上路才發現，帶著一個失去京師的皇帝穿過半個中國，比從煤山救人更複雜。</p><p>每到一地，都要先確認誰還忠於朝廷。驛站可能已換旗，地方官可能準備觀望，潰兵也可能把任何車隊當肥羊。皇帝的身份不能一直藏，卻也不能太早公開。</p><p>崇禎第一次真正看見自己統治下的北方。</p><p>不是奏疏上的「流民數萬」，而是一個個站在路旁的人。</p><p>某日隊伍經過一個荒村。村口只剩三戶。老人認出王承恩手裡不慎露出的宮中器物，猜到車中人的身份，跪在泥裡喊萬歲。</p><p>崇禎沒有下車。</p><p>走出很遠後，他忽然問：「那村今年賦多少？」</p><p>沒人答得出。</p><p>皇帝又問：「為何剩三戶？」</p><p>還是沒人知道。</p><p>王子燦沒有趁機說教。</p><p>有些答案讓皇帝自己看見，比臣子講一百遍有效。</p><p>夜裡宿營，崇禎主動找他。</p><p>「你說朕到了南京要改。」</p><p>「是。」</p><p>「第一件改什麼？」</p><p>王子燦想了想。</p><p>「別急著殺人。」</p><p>崇禎皺眉。</p><p>「第二？」</p><p>「先發餉。」</p><p>「第三？」</p><p>「報實數。」</p><p>「就這些？」</p><p>「先把最普通的事情做對。」</p><p>皇帝似乎不滿意。他大概期待一套救國奇策。</p><p>王子燦卻知道，大明缺的恰恰不是奇策。從遼東到流寇，幾十年裡各種「萬全之策」太多，真正缺的是一件事做完。</p><p>陳筱依在旁邊整理沿途情報，忽然插話：「還有一件。」</p><p>崇禎看她。</p><p>「讓說真話的人不至於先倒楣。」</p><p>皇帝沉默。</p><p>王子燦想笑，又忍住。</p><p>這一路上，陳筱依對皇帝越來越不怕。</p><p>崇禎對她則從「那個醉紅樓女子」變成「陳氏」。</p><p>歷史的改變有時很宏大。</p><p>有時也只是皇帝開始聽一個原本根本不可能進入朝堂視野的女人說話。</p><p class="scene-break">＊</p><p>南下途中，王子燦還遇到另一個難題：要不要對外公布自己是袁崇煥之子。</p><p>崇禎認為公開有利。袁氏在遼東仍有名望，能替朝廷塑造「前嫌盡釋」的故事。</p><p>王子燦卻拒絕。</p><p>「臣現在最大的用處不是當一面旗。」</p><p>「那是什麼？」</p><p>「做事。」</p><p>他不願讓父親的名字變成動員口號，也不願自己因血統被神化。</p><p>陳筱依知道後說：「你以前不是很在意自己是不是袁家後人？」</p><p>「以前那是我想證明自己的東西。」</p><p>「現在？」</p><p>「現在是我爹，不是我的功勞。」</p><p>她笑了。</p><p>王子燦後來把這句話也教給自己的孩子：祖先可以是故事，不能是免考卷。</p><p class="scene-break">＊</p><p>南下途中，一行人曾在一處渡口卡了整整一天。</p><p>不是因為追兵，而是船不夠。</p><p>崇禎第一次親眼看見「一道聖旨」為什麼不能立刻解決問題。地方官跪著領旨，嘴上說萬死不辭，可河面上就是只有三條能用的船，其中一條還漏水。</p><p>王子燦站在岸邊算人、馬、糧，最後決定先送傷兵與皇帝，部分護衛繞路。</p><p>「朕先？」崇禎問。</p><p>「是。」</p><p>「百姓呢？」</p><p>「第二批。」</p><p>皇帝皺眉。</p><p>「那不是讓朕先逃？」</p><p>「陛下若留在這裡，所有人都會等陛下一起走，結果更慢。」</p><p>崇禎不喜歡。</p><p>但這一次，他只問：「要多久？」</p><p>「兩個時辰。」</p><p>「若兩個時辰後還沒過完？」</p><p>「臣留下。」</p><p>皇帝看著他，最後上船。</p><p>王子燦站在岸邊目送，忽然意識到一個小變化：崇禎開始問執行，而不只問體面。</p><p>這比任何一次公開罪己詔都更讓他有希望。</p><p class="scene-break">＊</p><p>崇禎南下途中第一次發燒，整個隊伍幾乎亂套。</p><p>王承恩以為是天意，幾名官員甚至開始私下討論萬一皇帝病死怎麼辦。</p><p>王子燦卻只做最普通的事：停一日、補水、請當地最可靠的醫者、減少行程。</p><p>兩天後燒退。</p><p>皇帝醒來聽說眾人反應，哭笑不得。</p><p>王子燦說：「陛下現在不能連感冒都變成國本。」</p><p>「朕是皇帝。」</p><p>「所以更要把能制度化的先制度化。」</p><p>太子南下、密詔備份、南京留都，都是在做一件事：讓國家不要因一個人的身體立刻斷掉。</p><p>崇禎第一次沒有把這理解成削弱皇權。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="28" id="ch-28">
+<div class="chapter-kicker">第三卷　煤山未死</div><h2>第二十八章　金陵鐘</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>南京的鐘聲是在四月一個陰天裡響起的。</p><p>先是城南。</p><p>接著城中寺觀、官署、城門一處一處跟著響，聲音沿著秦淮與城牆傳開，最後連城外等候入城的百姓都知道——皇帝到了。</p><p>沒有龍輦。</p><p>沒有完整鹵簿。</p><p>沒有金瓜、寶纛、鼓吹與成列羽林。</p><p>崇禎騎的是一匹在路上換過三次鞍的灰馬，身上的袍服雖已換回帝王常服，袖口卻仍看得出旅途磨損。王承恩在後面，瘦了一圈。周皇后與部分宮眷另乘車入城。</p><p>最不像皇帝的，反而是這支隊伍最中央的那個人。</p><p>可當南京六部官員、勳臣、守備與成千百姓在城門內外跪下時，王子燦第一次真正看見「崇禎活著」不是一句口號。</p><p>「萬歲——」</p><p>呼聲從最前面漫出去。</p><p>有人哭。</p><p>有人伏地不起。</p><p>有人只是跟著旁人跪。</p><p>還有幾個商人躲在後排，悄悄抬頭觀察哪位大人站在哪裡，像已經在計算下一輪生意該跟誰做。</p><p>政治忠誠從來沒有史書寫得那麼整齊。</p><p>王子燦站在隊尾，卻覺得這幅不整齊的畫面比任何山呼萬歲都更可靠。</p><p>因為至少此刻，所有人都不需要再問一個問題：</p><p>大明接下來誰是皇帝？</p><p>原本那條歷史裡，崇禎一死，南京必須在宗室之間重新選擇正統。每多一天爭論，軍隊、財賦與地方官就多一天觀望。</p><p>現在這個問題不存在。</p><p>崇禎下馬。</p><p>所有人都以為他會走上臨時鋪好的御道，說一句「朕必復京師」之類足以記進實錄的話。</p><p>皇帝卻站在城門前問南京兵部尚書：</p><p>「今日值城兵餉，發了沒有？」</p><p>對方明顯愣了一下。</p><p>「回陛下，尚……尚在造冊。」</p><p>崇禎的眉頭立刻皺起。</p><p>王子燦站在後面，心裡一沉。</p><p>這是舊崇禎最熟悉的表情。</p><p>下一步通常就是責問、追查、有人下獄。</p><p>可皇帝只是停了兩息。</p><p>「先按實在營數發三日。」</p><p>兵部尚書忙道：「陛下，冊籍未清，恐有冒領——」</p><p>「冒領再查。」</p><p>崇禎看了王子燦一眼。</p><p>「兵餓了，今晚就會自己找餉。」</p><p>王子燦沒說話。</p><p>這句是他一路南下時講過的。</p><p>皇帝記住了。</p><p>南京迎駕的第一道真正命令，不是北伐，不是追責，也不是封賞。</p><p>是發三日軍餉。</p><p>＊＊＊</p><p>南京不是一張空白紙。</p><p>這件事在崇禎進城不到六個時辰後就變得非常明顯。</p><p>這裡本來就有六部、有都察院、有勳臣、有守備、有自己的官場秩序。北京來的行在官員一到，等於兩套中央機構突然被塞進同一座城。</p><p>誰坐哪裡？</p><p>誰向誰報？</p><p>南京戶部的銀子算南京的，還是行在的？</p><p>北來官員原有品級高，能不能直接接管南衙？</p><p>皇帝住哪？朝會在哪？文書走哪一道？</p><p>第一天下午，禮部就在爭座次。</p><p>第二天清晨，兵部為一份調兵文書誰先署名吵了半個時辰。</p><p>第三天，一名御史正式上疏，彈劾王子燦「挾至尊南狩，棄神京而辱國體」。</p><p>王子燦讀到奏疏時笑了。</p><p>不是氣笑。</p><p>是真的覺得荒謬。</p><p>陳筱依坐在旁邊整理帳冊，抬頭看他：「寫什麼？」</p><p>「說我挾天子。」</p><p>「你有。」</p><p>王子燦看她。</p><p>「煤山上你不是差點綁他？」</p><p>「那叫救駕。」</p><p>「寫進史書才叫救駕。當時看起來就是綁人。」</p><p>王子燦被堵得沒話。</p><p>更讓他意外的是，崇禎把那份奏疏留中了。</p><p>沒有下獄。</p><p>沒有廷杖。</p><p>甚至沒有立刻駁斥。</p><p>直到第一次南京大朝，彈劾者當殿再次提起，崇禎才開口。</p><p>「卿言王燦挾朕南奔。」</p><p>御史伏地：「臣不敢妄言，然京師乃宗廟之地，天子輕棄——」</p><p>「若無王燦，今日諸卿要迎哪位天子？」</p><p>殿上瞬間安靜。</p><p>御史額頭貼地，說不出話。</p><p>崇禎沒有乘勝追罵。</p><p>他看向滿殿官員。</p><p>「朕失京師，有朕之責。南來亦是朕之決。」</p><p>王子燦抬起頭。</p><p>這句話很短。</p><p>卻是他第一次聽崇禎在公開朝會上把責任放到自己名字前面。</p><p>不是「奸臣誤朕」。</p><p>不是「守將失職」。</p><p>是朕之決。</p><p>殿內仍然沒有人敢說話。</p><p>可王子燦知道，有些東西已經和北京最後幾年不同了。</p><p>＊＊＊</p><p>南京百姓真正相信皇帝會留下，不是在迎駕那日。</p><p>是第三天糧價沒有暴漲。</p><p>行在南下帶來數千官員、軍士、僕役與家眷。照往常做法，大量人員突然進城，最容易出現兩件事：徵房、徵糧。</p><p>王子燦在進南京前就建議，行在各部必須自帶十日口糧；能住官舍住官舍，能借寺觀借寺觀，不得以「奉旨」為名強占民宅。</p><p>命令寫得很漂亮。</p><p>第一天就有人違反。</p><p>一名從北京逃出的五品官帶著家眷，看中城南一戶商人的兩進宅院，直接讓隨從把主人趕去後屋，說待朝廷安定後再給租錢。</p><p>商人不敢告官。</p><p>是鄰居把事情捅到陳筱依那裡。</p><p>她帶人查完，直接把文書送到王子燦案頭。</p><p>「怎麼辦？」</p><p>王子燦看完：「照規矩。」</p><p>「他是跟皇上一路逃下來的。」</p><p>「所以？」</p><p>「所以有人會說寒了忠臣的心。」</p><p>王子燦把紙放下。</p><p>「那就先寒一個。」</p><p>當天下午，衙役真的上門，把那名官員一家請出去。</p><p>沒有打，沒有鎖。</p><p>只把提前準備好的官舍鑰匙交給他。</p><p>整條巷子都在看。</p><p>一名老太太躲在門後問：「連官也趕？」</p><p>衙役答：「聖旨。」</p><p>消息比任何安民告示傳得都快。</p><p>第二天城南房租就開始回落。</p><p>王子燦第一次非常清楚地理解：</p><p>制度可信不可信，不看第一條規則寫得多好。</p><p>看第一個有身分的人違反時，規則敢不敢真的碰他。</p><p>＊＊＊</p><p>崇禎進南京後第四夜，召王子燦到臨時行宮。</p><p>殿裡只有兩個人。</p><p>桌上不是軍圖，而是幾份名單。</p><p>福王、潞王、桂王。</p><p>崇禎用手指壓著紙。</p><p>「你說過，若朕死，南京會另立新君。」</p><p>「是。」</p><p>「誰？」</p><p>王子燦沉默了一息。</p><p>到了這一步，再隱瞞沒有意義。</p><p>「福王。」</p><p>崇禎沒有立刻說話。</p><p>燭火在他臉上晃。</p><p>「他後來如何？」</p><p>王子燦知道弘光政權的結局。</p><p>也知道現在說太多未必有用。</p><p>「很快亡。」</p><p>崇禎的手指慢慢離開名單。</p><p>「那朕呢？」</p><p>「臣知道的那個陛下，死在煤山。」</p><p>這句話已不是第一次說。</p><p>可在南京說出來，意思完全不同。</p><p>崇禎看著南方這座本來會迎接另一個皇帝的城市。</p><p>「朕有時覺得，你說的是另一個人的一生。」</p><p>王子燦低聲道：「臣也一樣。」</p><p>崇禎抬眼。</p><p>王子燦沒有再解釋。</p><p>從煤山那一刀之後，他也失去了原本人生所有確定答案。</p><p>兩個本來「應該」死在不同地方的人，忽然都活進一條沒有史書的時間裡。</p><p>「王燦。」</p><p>「臣在。」</p><p>「從今日起，不准再拿後世結局逼朕。」</p><p>王子燦一怔。</p><p>「臣——」</p><p>「你可以告訴朕原本發生什麼。」</p><p>崇禎看著他。</p><p>「但現在怎麼做，朕與諸臣自己負責。」</p><p>王子燦慢慢低頭。</p><p>「臣遵旨。」</p><p>這道旨意讓他意外地鬆了一口氣。</p><p>因為如果大明真的要被救，不能永遠靠一個穿越者拿未來當聖旨。</p><p>＊＊＊</p><p>當晚他回到分給自己的舊宅。</p><p>宅子大得過分。</p><p>前院、書房、兩側廂房、後院，全都空著。</p><p>王子燦站在院中，忽然不知道自己該睡哪一間。</p><p>最後還是睡了書房。</p><p>第二天陳筱依來，看了十幾間空房，第一句不是「好大」。</p><p>是：「這兩間可以放帳。」</p><p>王子燦盯著她。</p><p>「妳真的只想到這個？」</p><p>「不然？」</p><p>「這是皇上賞我的宅子。」</p><p>「所以不能放帳？」</p><p>兩天後，東廂兩間房全塞滿北京帶出的軍冊、投降名單、南下沿途糧價、南京庫存抄本。</p><p>第三間也開始不夠。</p><p>北方逃來的書吏、失散軍官、商人與百姓漸漸知道「王參將府裡有人收消息」，每天都有人敲門。</p><p>有時是一份軍報。</p><p>有時只是某縣米價。</p><p>還有人專程來說哪個逃難官員半路丟下家眷。</p><p>史可法第一次來，看著滿地卷宗，皺眉。</p><p>「你這裡比兵部還亂。」</p><p>王子燦指一摞：「可我找得到。」</p><p>裡間立刻傳出陳筱依的聲音：</p><p>「找不到！山東那冊誰動了？」</p><p>史可法笑得咳了半天。</p><p>王子燦也笑。</p><p>那一刻他突然感到一種很奇怪的安定。</p><p>不是因為南京安全。</p><p>而是他第一次在這個時代有一個地方，可以把刀解下來，把紙放到桌上，知道明天還會有人來敲門。</p><p>所謂中興若真的存在，也許就該從這種不起眼的事情開始。</p><p>先讓人重新相信，東西今天放下，明天還在。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="29" id="ch-29">
+<div class="chapter-kicker">第三卷　煤山未死</div><h2>第二十九章　南京再朝</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>南京再朝後的第一場真正大爭論，不是北伐。</p><p>是「誰有罪」。</p><p>北京失守，皇帝南奔，京畿數百里易手。這樣的事若沒有人負責，滿朝上下誰都說不過去。</p><p>問題是，幾乎每個人都能指出另一個比自己更該負責的人。</p><p>兵部說京營積弊非一日。</p><p>戶部說國庫空虛，軍餉無從發放。</p><p>內廷說將領虛報兵額、臨敵先逃。</p><p>守將說兵部朝令夕改。</p><p>南方官員說北方朝臣多年壅蔽聖聽。</p><p>北來官員則反問：南京坐擁江南財賦，從前怎不多送一兩銀？</p><p>每一句都有一部分是真的。</p><p>也每一句剛好把自己從責任中心推遠半步。</p><p>朝會從辰時吵到近午。</p><p>崇禎坐在上首，臉色越來越沉。</p><p>王子燦坐得靠後，卻能從皇帝握住扶手的手看出來——那個熟悉的舊習正在回來。</p><p>憤怒。</p><p>抓人。</p><p>審問。</p><p>用幾顆人頭向自己證明問題已經被處理。</p><p>果然，一名御史剛念完「京師失陷，法當窮治」，崇禎便冷聲道：</p><p>「兵部、京營、戶部經手諸臣，先交有司——」</p><p>「陛下。」</p><p>王子燦起身。</p><p>整座殿突然安靜。</p><p>很多人其實已經在等他開口。</p><p>因為所有人都知道，這個年輕人現在能打斷皇帝。</p><p>這種特權本身就讓不少人不舒服。</p><p>崇禎看他：「你又有什麼話？」</p><p>「臣請先別抓。」</p><p>「他們無罪？」</p><p>「有罪就查。」</p><p>「那為何不能抓？」</p><p>王子燦從袖中取出兩本冊子。</p><p>一本舊，一本新。</p><p>他走到殿中，放在御案前。</p><p>「這是北營舊冊。帳面一千四百餘人。」</p><p>他翻開另一本。</p><p>「這是真冊。臣接手時真正可戰六百八十四。」</p><p>殿上有人低頭。</p><p>崇禎沒有說話。</p><p>王子燦繼續。</p><p>「舊冊為什麼假？」</p><p>「因為每一層都知道，說真數的人先倒楣。」</p><p>「主將說只有六百兵，兵部第一句會問：其餘八百去哪了？」</p><p>「戶部說庫裡沒銀，陛下第一句會問：天下賦稅去哪了？」</p><p>「地方報災，報少了死人，報多了先被疑欺君。」</p><p>他停了一下。</p><p>「久了，所有人都學會一件事。」</p><p>「把壞消息修到能看。」</p><p>殿內寂靜。</p><p>這不只是批評官員。</p><p>也在批評皇帝。</p><p>崇禎的臉很難看。</p><p>「你是說，朕逼他們作假？」</p><p>王子燦低頭。</p><p>「臣說，現在若先把報出問題的人全部抓起來，明日開始，陛下看到的又會全是好消息。」</p><p>一名給事中立刻出列：「王將軍此言，是要赦貪縱奸？」</p><p>「不是。」</p><p>「那缺糧、缺兵、虧空皆不究？」</p><p>「先分兩件事。」王子燦道，「洞有多大，誰挖的。」</p><p>那官員一愣。</p><p>「先知道洞多大，才能堵。至於誰挖的，查清再辦。」</p><p>崇禎盯著桌上的冊子。</p><p>「如何做？」</p><p>王子燦吸了一口氣。</p><p>這其實是他一路南下都在想的方案。</p><p>「限三十日，各軍、各庫、各衙自報實數。兵額、存糧、欠餉、欠賦、可用船隻，重新造冊。」</p><p>「主動自報且經覆核大致相符者，舊帳先記，不因『報少』立即治罪；若其間有明確侵吞，再另案查。」</p><p>「三十日後仍虛報者，重辦。」</p><p>殿上立刻炸開。</p><p>有人說這等於給貪官洗罪。</p><p>有人說三十日根本查不完。</p><p>有人問誰來覆核。</p><p>有人乾脆說軍國大事豈能兒戲。</p><p>王子燦沒有一一辯。</p><p>他只看崇禎。</p><p>因為最後決定的人不是滿殿聲音。</p><p>皇帝沉默很久。</p><p>「若有人藉機把貪墨全推成舊帳？」</p><p>「所以要交叉核。」</p><p>「誰核？」</p><p>「兵部查人，戶部查餉，都察院抽查，地方互核。」</p><p>「他們一起串通呢？」</p><p>王子燦停了一下。</p><p>「那就還是會被騙。」</p><p>滿殿一靜。</p><p>有人甚至露出「這算什麼答案」的表情。</p><p>王子燦卻繼續道：</p><p>「臣沒有一套永遠不會被騙的法。」</p><p>「只能讓作假更麻煩，讓說真話沒那麼容易先死。」</p><p>崇禎看著他。</p><p>很久，皇帝靠回椅背。</p><p>「試。」</p><p>只有一個字。</p><p>卻把原本要發出去的幾道逮捕令壓了回去。</p><p>＊＊＊</p><p>三十日自報令一出，朝野第一反應不是感激。</p><p>是觀望。</p><p>沒有人相信皇帝真的能忍住。</p><p>南京右軍都督府先送來一份新冊：原報兵一萬一千，實在營六千九百餘。</p><p>差了四千多人。</p><p>奏疏送進宮時，王承恩都不敢說話。</p><p>崇禎看了半天，手背青筋一根根浮起。</p><p>「四千。」</p><p>他低聲道。</p><p>「四千個人，吃了朕多少年餉？」</p><p>王子燦站在旁邊。</p><p>「陛下。」</p><p>「朕知道。」</p><p>崇禎閉上眼。</p><p>又過了好一會，他拿筆在奏疏上批：</p><p>「據實再核。」</p><p>四個字。</p><p>沒有「著錦衣衛拿問」。</p><p>沒有「斬監候」。</p><p>第二天，更多真冊開始進來。</p><p>越來越難看。</p><p>某衛所帳面三千，實兵一千八。</p><p>某糧倉帳面存米五萬石，實存三萬二。</p><p>某州積欠賦銀三年，地方一直報「催徵中」。</p><p>崇禎的脾氣不是突然消失。</p><p>第三日他摔了一只杯子。</p><p>第五日罵了戶部尚書半個時辰。</p><p>第七日差點又要抓人。</p><p>王子燦只做一件事：每次都把「如果現在抓，自報還會不會繼續」放到他面前。</p><p>皇帝很不喜歡這種問題。</p><p>但他開始會停一下。</p><p>那一下，常常就是制度能不能活下來的差別。</p><p>＊＊＊</p><p>史可法在南京。</p><p>王子燦第一次去見他時，老人正在看揚州與淮安的軍報。</p><p>他站在門口，忽然不知道該怎麼叫。</p><p>兩段人生的記憶一起湧上來。</p><p>「先生。」</p><p>史可法抬頭。</p><p>看了他很久。</p><p>然後走過來，一巴掌拍在他後腦。</p><p>「膽子更大了。」</p><p>王子燦鼻子一下發酸。</p><p>「先生。」</p><p>「別叫第二次。」</p><p>史可法把他按到椅子上。</p><p>第一個問題不是煤山。</p><p>不是皇帝。</p><p>「曹文瑞呢？」</p><p>王子燦沉默。</p><p>史可法懂了。</p><p>「屍首？」</p><p>「沒有。」</p><p>「名字？」</p><p>「記了。」</p><p>「那就好。」</p><p>老人只說三個字。</p><p>王子燦卻低下頭，很久沒說話。</p><p>史可法也不安慰。</p><p>他知道有些死不能用「節哀」兩字處理。</p><p>桌上有酒。</p><p>兩人一直喝到夜裡。</p><p>史可法問：「你究竟想把大明改成什麼？」</p><p>王子燦愣住。</p><p>「臣……沒想那麼大。」</p><p>「你連皇帝都從樹上砍下來了，還說沒想那麼大？」</p><p>王子燦苦笑。</p><p>「我不知道怎麼造一個完美國家。」</p><p>「誰要你造完美國家？」</p><p>史可法給自己倒酒。</p><p>「說你知道的。」</p><p>王子燦想了很久。</p><p>「不能再報假兵。」</p><p>「嗯。」</p><p>「不能讓發餉永遠排在面子後面。」</p><p>「嗯。」</p><p>「災民不能先證明自己快餓死，才有資格拿糧。」</p><p>「還有？」</p><p>「打敗仗的人要能活著回來說為什麼敗。」</p><p>史可法看著他。</p><p>「這不就很多了？」</p><p>「可這些都不是大政。」</p><p>老人笑。</p><p>「天下大部分有用的事，本來看起來就不大。」</p><p>王子燦也笑。</p><p>這句話他在另一段記憶裡聽過。</p><p>原來無論歷史怎麼改，史可法還是史可法。</p><p>＊＊＊</p><p>自報令最大的反對，不來自真正的大貪官。</p><p>反而來自一批自認清廉的官員。</p><p>他們擔心「先報實數、再論責任」會把多年侵吞的人都洗白。</p><p>一名老御史甚至在朝堂上說：</p><p>「法若不嚴，何以懲奸？」</p><p>王子燦問他：「法若嚴到沒人敢說真話，又如何知道奸在哪？」</p><p>兩人爭了很久。</p><p>最後史可法插了一句：</p><p>「都對。」</p><p>滿殿人看他。</p><p>史可法道：「王燦怕看不到真數，御史怕有人趁機脫罪。那就分兩段。」</p><p>於是制度再改。</p><p>自報本身不得作為唯一治罪證據；但若日後查出侵吞，仍可追究。相反，主動揭露並協助追回者，量情減責。</p><p>這不是王子燦原來的方案。</p><p>卻更好。</p><p>那一夜他回府，陳筱依正在整理新版條文。</p><p>「被先生改了？」</p><p>「嗯。」</p><p>「不高興？」</p><p>王子燦想了一下。</p><p>「以前可能會。」</p><p>「現在？」</p><p>「有人把我的辦法改好，省我犯錯。」</p><p>陳筱依笑。</p><p>「你終於開始像個能一起做事的人。」</p><p>「我以前不像？」</p><p>「以前像一個知道答案的學生。」</p><p>王子燦怔住。</p><p>這話太準。</p><p>穿越最初，他最大的問題不是不知道歷史。</p><p>恰恰是太相信自己知道。</p><p>到了南京，他才真正開始學會：</p><p>政策不是一道選擇題。</p><p>沒有課本背面的標準答案。</p><p>＊＊＊</p><p>三十日後，第一輪實數彙總送到御前。</p><p>數字非常難看。</p><p>卻第一次能拿來做事。</p><p>戶部知道實際還有多少糧。</p><p>兵部知道哪幾支軍隊是空殼。</p><p>南京知道北方恢復區真正能調多少民夫。</p><p>崇禎翻完厚厚一疊冊子，沉默半晌。</p><p>「朕以前看到的天下，比這個好看多了。」</p><p>王子燦說：「假的東西通常比較整齊。」</p><p>皇帝沒生氣。</p><p>他拿起朱筆，在彙總首頁寫下四字：</p><p>「以實為始。」</p><p>王子燦盯著那四個字。</p><p>沒有覺得大明因此就得救了。</p><p>也沒有覺得歷史從此一定變好。</p><p>只是第一次有一點確定：</p><p>這個王朝終於肯睜眼看自己到底傷成什麼樣。</p><p>而治傷的第一步，本來就不是喊自己還很健康。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="30" id="ch-30">
+<div class="chapter-kicker">第四卷　金陵再朝</div><h2>第三十章　第一件事：發餉</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>南京再朝後，王子燦提出的第一件大事不是造炮，也不是徵兵。</p><p>是發餉。</p><p>這讓很多期待「天降奇才」的人失望。朝堂上有人說，北方局勢如火，當務之急應是整軍北伐；也有人主張重開海運、練新火器。王子燦都同意，但仍把一張最普通的餉冊放在最上面。</p><p>「兵不領餉，就會自己找餉。」</p><p>「自己找，就是搶。」</p><p>「今天搶百姓，明天百姓就不給糧、不報路、不替軍隊運東西。軍紀一壞，再好的兵也只是另一股亂軍。」</p><p>他不要朝廷憑空變出銀子，而是先改支付順序：京營與前線實兵優先；空額停發；將領與衙門積欠的部分俸祿延後；各地臨時加派必須有期限與用途。</p><p>最得罪人的，是「按實點驗」。</p><p>一個報五千人的營，若只有兩千八，就只按兩千八先發。差額追查。</p><p>南直隸一名總兵當場臉色鐵青。</p><p>「如此點法，軍心必亂。」</p><p>王子燦問：「你那兩千二百個不存在的兵會亂嗎？」</p><p>殿上有人沒忍住笑。</p><p>崇禎沒有笑，只命照辦。</p><p>但王子燦很快發現，制度不是一道聖旨就能改。地方官會拖，書吏會做新假冊，將領會把老弱拉來充數。於是他把方法再簡化：軍餉發放時按隊點名，抽查兵器，隨機詢問籍貫與隊長姓名；不同衙門互相覆核；同一批銀子的流向要留下兩份不同簽記。</p><p>這些都不是「超越時代的科技」。只是把現代管理裡最基本的交叉核對，換成明代能做的形式。</p><p>成效不神奇。</p><p>第一個月，照樣有人作弊。</p><p>第二個月，仍有軍餉被截。</p><p>但至少前線真正拿到餉的人變多。</p><p>許勇被編入新整的京畿營，第一次領到足額月餉時，盯著銀子半天不說話。</p><p>「怎麼？」王子燦問。</p><p>「我以前一直以為足額是帳上才有的。」</p><p>這句話傳到崇禎耳裡。</p><p>皇帝沉默很久。</p><p>那天御前會議，他第一次對戶部說了一句後來成為中興初年的慣語：</p><p>「先問兵有沒有拿到，再問帳上發了多少。」</p><p>王子燦知道，這比任何「中興萬歲」都更重要。</p><p class="scene-break">＊</p><p>按實發餉的第一年，最嚴重的一次衝突發生在一座軍營。</p><p>被取消空額的軍官煽動士卒，說朝廷克扣軍餉。若按舊方法，南京很可能立刻派兵鎮壓。王子燦卻親自去，把舊冊、新冊和銀箱擺在校場。</p><p>「今天誰覺得少領，站出來。」</p><p>兩百多人站出。</p><p>他讓書吏當場一個個核。</p><p>最後真正少發的只有十七人，是登記錯誤；其餘所謂「少領」，多數來自長官過去把空額分一小部分給士兵，讓所有人共同維護假冊。</p><p>王子燦補發十七人的銀子，再把煽動者交軍法。</p><p>士兵沒有歡呼。</p><p>但第二個月，再沒人敢用「大家都這樣」當理由。</p><p>公平有時不是讓每個人高興。</p><p>是讓規則第一次真的比關係更硬。</p><p class="scene-break">＊</p><p>發餉改革真正碰到的硬骨頭，是「誰先拿錢」。</p><p>國庫不可能一下補足所有欠餉。王子燦主張前線實兵優先，這就代表文官俸祿、部分勳臣歲祿、後方非緊急支出都得延後。</p><p>反對聲音極大。</p><p>有人說文官也要養家。</p><p>王子燦承認。</p><p>「所以不是不發，是排序。」</p><p>「憑什麼兵第一？」</p><p>「因為他今天沒飯，明天就可能拿槍自己找。」</p><p>這不是尊武抑文，而是風險排序。</p><p>崇禎一開始也覺得難。每一筆延後都會得罪一群人。</p><p>王子燦把選項寫成三欄：不發餉的風險、延後其他支出的風險、能籌到的銀。</p><p>「陛下不是要找沒有代價的方案。」</p><p>「那找什麼？」</p><p>「找最能承受的代價。」</p><p>這種說法慢慢進入御前決策。</p><p>多年後，崇禎不再問「哪個方法最好」，而常問「哪個壞處最小」。</p><p>對一個曾經總想找到萬全之策的皇帝而言，這幾乎是一種性格革命。</p><p class="scene-break">＊</p><p>軍餉按實發放後，空額少了，另一個問題卻冒出來：有些將領乾脆少報兵，偷偷留一部分不在冊的人當私兵。</p><p>王子燦看到報告時氣得笑。</p><p>「堵這邊，他們從那邊鑽。」</p><p>這迫使覆核制度加入隨機抽點與地方戶籍比對。</p><p>陳筱依說：「你現在知道為什麼我爹說查帳永遠查不完了吧？」</p><p>王子燦點頭。</p><p>反腐不是設計一個完美規則就結束，而是對方也會學。</p><p>制度像戰場。</p><p>你每改一招，對面也會換一招。</p><p>所以真正需要的不是一套永遠不變的規定，而是持續發現異常、持續修正的能力。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="31" id="ch-31">
+<div class="chapter-kicker">第四卷　金陵再朝</div><h2>第三十一章　第二件事：赦</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>第二件事，是赦。</p><p>準確地說，是把「流寇」拆開看。</p><p>朝中許多人主張趁李自成在北方立足未穩，立即號召天下剿賊。王子燦卻提出一份讓武將與言官都不舒服的條陳：分層招撫。</p><p>主動解甲返鄉者，不追普通從軍之罪；願編入官軍者重新點驗；裹挾民眾與普通士卒分開；殺官焚城、劫掠成性的核心將領另案。</p><p>「賊就是賊。」有人拍案。</p><p>王子燦沒有和他爭詞。</p><p>他只問：「陝西一個餓到沒糧的農戶，拿鋤頭跟著隊伍走，和開城搶庫、殺人奪產的頭目，是不是同一個人？」</p><p>「皆從賊。」</p><p>「那就得把幾十萬人全殺光。」</p><p>殿上安靜。</p><p>王子燦不是同情到沒有邊界。相反，他要求軍紀與追責更明確：投降後再反、受赦後搶掠，處置更重。但只要朝廷還把所有加入流寇的人都逼成「回頭也是死」，敵人就永遠有兵。</p><p>史可法支持他一半。</p><p>「赦可用，糧要跟上。」老人提醒，「沒有田、沒有種子、沒有活路，今日解甲，明日還會拿刀。」</p><p>於是第三道配套跟著出來：北方恢復區暫緩部分積欠，賑糧與軍糧分冊，不准拿賑濟名義補軍費缺口。</p><p>崇禎看著條陳很久。</p><p>「朕以前下過免賦詔。」</p><p>「詔到地方，不一定等於百姓少交。」</p><p>這句話又刺人。</p><p>崇禎卻沒有發怒。</p><p>「那怎麼知道？」</p><p>「抽查。」</p><p>「又是抽查。」</p><p>「臣沒有仙法。」</p><p>皇帝難得笑了。</p><p>第一批赦令送往山東與河南時，效果不算驚人，但確實有零散部眾來降。有人交出的是長槍，有人只交出一把菜刀。</p><p>王子燦看著那些餓得臉頰凹陷的人，想起自己殺的第一個敵兵。</p><p>那隻木老虎。</p><p>他忽然更確定一件事：</p><p>大明若只學會打贏，仍然可能再亡一次。</p><p>真正要改的是，讓下一個人不必因為活不下去而拿刀。</p><p class="scene-break">＊</p><p>招撫令送到河南後，第一支主動解甲的隊伍只有二十七人。</p><p>朝中有人嘲笑：「二十七人也值得報捷？」</p><p>王子燦卻讓人把二十七人的籍貫全部記下，確認誰願返鄉、誰願從軍、誰沒有家可回。</p><p>其中一個十六歲少年說自己只會放羊。</p><p>「那你為什麼從賊？」</p><p>「村裡沒羊了。」</p><p>王子燦沒有再問。</p><p>少年最後被分去軍馬場。</p><p>三年後，他成了很好的馬倌。</p><p>二十七人沒有改變戰局。</p><p>可這件小事讓朝廷第一次有了一個能複製的流程。第二批是八十多人，第三批兩百。</p><p>很多制度剛開始都小得不像歷史。</p><p>等回頭看時，才知道轉彎早已發生。</p><p class="scene-break">＊</p><p>招撫政策最難的不是寫赦令，而是讓人相信朝廷真的不會秋後算帳。</p><p>第一批降眾裡有幾個人過去參與過攻縣。地方士紳要求全殺。若全殺，赦令信用就沒了；若全放，受害者又無法接受。</p><p>王子燦與史可法爭了整晚。</p><p>最後定一條：普通從軍行為赦，具體殺人、縱火、搶掠另依證據審。不能只因「從賊」一概抹掉，也不能用赦令替具體罪行洗白。</p><p>這條線執行起來非常慢。</p><p>證人難找、地方報復、假指控都有。</p><p>王子燦因此第一次真正理解司法比軍法麻煩得多。戰場上敵我分得清，戰後一個人的身份可能同時是流民、士兵、搶匪、父親。</p><p>陳筱依說：「你以前不是最愛分類？」</p><p>「分類是為了看清，不是為了把人塞進去就不管。」</p><p>這句話後來也成了北方恢復區辦案的一個原則。</p><p>歷史標籤可以很大。</p><p>真正判一個人的罪，必須回到他到底做了什麼。</p><p class="scene-break">＊</p><p>赦令實行後，有地方官為求「招撫有功」開始虛報降眾數。</p><p>一個縣報一千二百人，實際只有四百多。</p><p>王子燦看到時差點把奏報撕掉。</p><p>「連赦也能造假？」</p><p>史可法只說：「有賞就有假。」</p><p>於是招撫功勞不再只按人頭，而看半年後真正安置多少、重新作亂多少。</p><p>這讓短期數字變難看，卻減少地方為邀功亂收人。</p><p>王子燦慢慢學會，任何被拿來獎勵的數字，都可能被人優化到失去原意。</p><p>這個教訓比他現代讀過的任何管理文章都更深刻。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="32" id="ch-32">
+<div class="chapter-kicker">第四卷　金陵再朝</div><h2>第三十二章　崇禎十八年</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>崇禎十八年，原本不該存在。</p><p>這個年號出現在新曆書第一頁時，王子燦看了很久。</p><p>他第一次真正感到自己離開了已知歷史。</p><p>從前，他還能在腦中查「答案」：哪一天城破，哪一個人投降，哪一場仗結果如何。現在所有因果都被改動。崇禎活著，南京沒有另立新帝；吳三桂收到的是在位皇帝親詔；李自成面對的是一個失去北京卻沒有失去合法性的對手；關外清廷也不再能把「替明復仇」當成同樣好用的旗號。</p><p>最讓王子燦不安的是：他開始不知道明天。</p><p>有一夜，他甚至夢見自己又回到便利商店。螢幕上不是「未錄取」，而是一片空白。</p><p>醒來時，陳筱依正在桌邊抄各地塘報。</p><p>「你怎麼了？」</p><p>「不知道。」</p><p>「什麼不知道？」</p><p>「以後。」</p><p>她停筆。</p><p>王子燦第一次把自己的恐懼說出來。不是戰死，而是自己其實沒有那麼厲害。他所有看似神奇的判斷，一半來自知道原歷史。現在這個優勢沒了。</p><p>陳筱依聽完，反而覺得莫名其妙。</p><p>「你本來就不知道。」</p><p>「我以前至少知道大方向。」</p><p>「那我每天都不知道啊。」</p><p>王子燦看她。</p><p>「我從小就不知道明年還在不在醉紅樓，不知道我爹的案子能不能翻，不知道你會不會哪天死掉。」她把筆放下，「人本來就是這樣活。」</p><p>王子燦愣了很久。</p><p>「所以呢？」</p><p>「所以你現在終於跟我們一樣。」</p><p>她說完繼續抄。</p><p>王子燦突然笑了。</p><p>他曾把「知道歷史」當作最大的力量。</p><p>現在才發現，真正困難的部分才剛開始：沒有答案時，仍要做決定。</p><p>崇禎十八年的第一個春天，大明沒有中興。</p><p>只是沒有亡。</p><p>而「沒有亡」與「活得好」，中間還隔著一個國家的距離。</p><p class="scene-break">＊</p><p>崇禎十八年的新年，南京沒有大肆慶賀。</p><p>皇帝下令宮中減宴，省下的銀子補一批傷兵撫恤。這件事被宣傳得很漂亮，王子燦卻提醒戶部：「別只做一次給人看。」</p><p>崇禎聽見後不滿：「朕省一次也是省。」</p><p>「是。」</p><p>「那你還說？」</p><p>「臣怕大家把一次善政當成制度。」</p><p>皇帝瞪了他半天。</p><p>最後竟問：「那如何變成制度？」</p><p>王子燦沒有現成答案。兩人與戶部官員討論幾日，最後只定下一個很樸素的原則：臨時節省可為恩典，固定支出要入歲額，不能每次靠皇帝心血來潮。</p><p>王子燦後來很喜歡這件事。</p><p>因為它象徵崇禎開始理解：好皇帝不能只靠自己每天很勤勞。</p><p class="scene-break">＊</p><p>崇禎十八年的朝廷仍然吵。</p><p>這讓很多人失望。有人以為皇帝死裡逃生後，所有官員應該立刻同心協力。現實完全不是。南北官員互疑、軍費分配、地方權力、復京順序，每一件都能吵到晚上。</p><p>王子燦一開始很煩。</p><p>史可法卻說：「能吵不一定壞。」</p><p>「先生以前不是嫌黨爭？」</p><p>「爭的是人還是事，不一樣。」</p><p>這提醒王子燦。</p><p>他開始嘗試讓御前會議的爭論留下書面理由，不只記最後聖旨。誰主張什麼、基於哪些數字、反對理由是什麼，簡單記錄。</p><p>很多人不喜歡。因為留下文字，就不能日後說「臣早有遠見」。</p><p>崇禎反而支持。</p><p>他被過去太多互相推諉弄怕了。</p><p>這些會議記錄後來成為北門書庫最珍貴的資料之一。後世讀者會發現，中興並不是一群天才一致做對。</p><p>是很多人爭、錯、改，再爭。</p><p class="scene-break">＊</p><p>「崇禎十八年」這個年號流通到北方時，有些百姓一開始以為是假錢上的字。</p><p>因為在他們認知裡，北京已破，皇帝大概死了。</p><p>直到新的詔書、錢糧文書與官印陸續出現，人們才慢慢接受：原來崇禎還在。</p><p>這種認知變化比政治公告慢得多。</p><p>王子燦因此明白，中央宣布一件事，不等於地方立刻活在那件事裡。</p><p>政策抵達百姓，中間隔著時間、交通、官員與信任。</p><p>他後來每次聽「已下令」三個字，都會追問一句：「到了嗎？」</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="33" id="ch-33">
+<div class="chapter-kicker">第四卷　金陵再朝</div><h2>第三十三章　吳三桂沒有開門</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>吳三桂沒有開門。</p><p>至少沒有像原本那條歷史一樣，把關外的軍隊引進山海關。</p><p>崇禎的親筆詔書在最關鍵的時候抵達。內容不長：朕在南京，卿守關，無詔不得借外兵。</p><p>這道詔沒有讓吳三桂變成聖人，也沒有消除他的算計。</p><p>但它改變了一個最重要的前提。</p><p>皇帝沒死。</p><p>他仍有可以效忠、也可以談條件的中央。</p><p>李自成派人招降。關外也有人接觸。吳三桂兩邊都談，卻遲遲不下最後一步。</p><p>南京朝廷裡有人大罵他首鼠兩端，要求立刻撤職。</p><p>王子燦反對。</p><p>「撤了，誰接關寧軍？」</p><p>「朝廷自有將領。」</p><p>「哪一個到得了山海關？哪一個能讓關寧軍今天就聽？」</p><p>現實很難看。</p><p>有時候你必須用一個你不完全信的人，因為沒有更好的替代。</p><p>崇禎問：「那朕就任他要價？」</p><p>「不。」王子燦說，「給他想要的一部分，也準備沒有他時怎麼辦。」</p><p>朝廷同意補關寧軍餉、確認原官職，並派兩名可信官員與一支小規模援軍入關協理糧餉，不奪兵權，卻把中央的眼睛放進去。</p><p>王子燦另外給吳三桂寫信。</p><p>信裡沒有罵漢奸，因為那是另一條歷史裡的事。</p><p>他只寫：</p><p>「將軍若借關外兵逐賊，勝負未可知；但借來之兵何時肯走，更未可知。」</p><p>數日後，吳三桂回信只有一句：</p><p>「王將軍若在此，將如何？」</p><p>王子燦看完，向崇禎請命北上。</p><p>陳筱依第一個反對。</p><p>「你才從北京撿回一條命。」</p><p>「所以更知道這條路不能讓別人亂走。」</p><p>「你去了就一定有用？」</p><p>「不一定。」</p><p>她盯著他。</p><p>王子燦補了一句：「但我能看著那扇門。」</p><p>山海關。</p><p>原本讓整個東亞歷史轉向的門。</p><p>這一次，他要站在門裡面。</p><p class="scene-break">＊</p><p>吳三桂回信「王將軍若在此，將如何」後，王子燦其實想了整夜。</p><p>最簡單的答案是「不借清兵」。</p><p>可如果大順十萬人真壓到關下，南京援軍仍遠，拒絕一切外援也可能只是讓山海關被打穿。</p><p>這讓他明白，歷史評價最容易犯的一個錯，就是站在結局後面，假裝當事人當時也能看見所有後果。</p><p>所以他回信沒有寫道德答案。</p><p>只列三個問題：借多少？誰指揮？何時退？若三問無答案，就不要借。</p><p>吳三桂後來說，正是這三問讓他第一次真正意識到：「借兵」不是一個動作，而是一串自己未必能收回的後果。</p><p>王子燦聽說後，只回一句：「能想一次就夠。」</p><p class="scene-break">＊</p><p>王子燦北上山海關前，崇禎給了他一把尚方劍。</p><p>按照戲文，這應該是威風場面。</p><p>王子燦卻第一反應：「臣不要。」</p><p>皇帝臉一黑。</p><p>「朕賜你節制諸軍。」</p><p>「節制要有令，不一定要靠一把劍。」</p><p>「你是嫌朕俗？」</p><p>「不敢。」</p><p>最後尚方劍還是帶了。</p><p>到了山海關，它最大的實際用途竟是讓幾個地方官看到就願意先開倉。</p><p>王子燦哭笑不得。</p><p>這讓他更明白，制度之外永遠還有象徵。人不是純粹照流程行動，權威需要看得見的形式。</p><p>他沒有再嘲笑這些「古代儀式」。</p><p>只是更堅持：劍能讓人開門，不能替你算糧。</p><p>象徵與程序都要有。</p><p>少一個，權力都容易走偏。</p><p class="scene-break">＊</p><p>北上前，陳筱依替王子燦收行李。</p><p>他帶的不是名將該帶的東西：軍冊、幾張標準火藥配比、傷兵記錄、幾封史可法的信，還有那張沒寫完的投名狀。</p><p>「你帶這個幹嘛？」</p><p>「提醒。」</p><p>「提醒你差點當叛徒？」</p><p>「嗯。」</p><p>陳筱依把紙摺好，塞到最底。</p><p>「那別弄丟。以後你要是官做太大，我就拿出來。」</p><p>這句玩笑後來真的成了兩人之間的某種制衡。</p><p>每當王子燦太自信，她就會問：「要不要把投名狀拿出來看看？」</p><p>通常很有效。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="34" id="ch-34">
+<div class="chapter-kicker">第四卷　金陵再朝</div><h2>第三十四章　山海關</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>山海關的風從海邊捲過來，帶著鹹味，也帶著沙。</p><p>王子燦抵達時，城頭旗幟被吹得幾乎展成一條直線。</p><p>他第一次真正站在這座關城下，沒有想像中的豪情。</p><p>只有一個很現實的念頭：</p><p>這門不能開。</p><p>原本那條歷史裡，山海關不是單純一道城門。它是大順、關寧軍與清軍三股力量彼此撞上的鉸鏈。吳三桂借兵，清軍入關，後面所有他熟讀的事情才有可能發生。</p><p>如今崇禎活著。</p><p>南京仍有中央。</p><p>可這不代表山海關自然就安全。</p><p>門還是在這裡。</p><p>兵還是會餓。</p><p>吳三桂仍然是吳三桂。</p><p>王子燦進總兵府時，吳三桂沒有出城十里迎接，也沒有擺盛宴。</p><p>他只站在門內。</p><p>身材比王子燦想像中略瘦，眼神很沉。</p><p>「煤山救駕的王參將。」</p><p>「山海關總兵。」</p><p>兩個人互相看了一會。</p><p>吳三桂忽然笑了。</p><p>「南京有人說，你不信我。」</p><p>「我勸皇上不要只信任何一個人。」</p><p>「包括你？」</p><p>「尤其包括我。」</p><p>吳三桂的笑意深了一點。</p><p>「進來吧。」</p><p>這是兩人第一次見面。</p><p>沒有英雄惜英雄。</p><p>更像兩個都知道對方手上有籌碼的人，先決定暫時不要翻桌。</p><p>＊＊＊</p><p>王子燦用了三天查關。</p><p>第一天看城。</p><p>第二天看兵。</p><p>第三天只看糧。</p><p>他很快承認一件自己並不願意承認的事：</p><p>吳三桂確實有本事。</p><p>關寧軍不是京營那種帳面軍隊。騎兵知道怎麼放哨，火器隊知道風向，軍官能在混亂裡找到自己的部下。長年在遼西與關外作戰，讓這支軍隊有一種真正打過仗的硬度。</p><p>但這支軍隊也有另一面。</p><p>家丁、部曲、將門、地方商路與私人恩義糾纏得太深。</p><p>很多士兵首先認自己的把總、遊擊、總兵，最後才認兵部。</p><p>中央能發餉時，這叫能打。</p><p>中央一旦斷餉，就很容易變成誰能養兵，兵就聽誰。</p><p>王子燦看完一輪，回到總兵府第一句便問：</p><p>「欠多少餉？」</p><p>吳三桂端茶的手停了一下。</p><p>「你不先問有多少兵？」</p><p>「兵要吃飯。」</p><p>「欠四月。」</p><p>「實數？」</p><p>「三月半。」</p><p>王子燦看他。</p><p>吳三桂笑：「你不是喜歡實數？」</p><p>兩人第一次真正有了一點共同語言。</p><p>南京這次帶來的銀不夠補足全部欠餉，只能先發一部分。王子燦主張優先發前線實兵，再把後續補給日期明寫在營門告示上。</p><p>吳三桂皺眉：「若到日不到？」</p><p>「那就提前說。」</p><p>「說了兵就不鬧？」</p><p>「會鬧。」</p><p>「那有什麼用？」</p><p>「至少知道朝廷沒裝死。」</p><p>吳三桂看他一眼。</p><p>「你做官不像做官。」</p><p>「我本來也沒準備做。」</p><p>＊＊＊</p><p>第四日夜宴，吳三桂終於把真正的問題放上桌。</p><p>沒有歌舞。</p><p>只有酒、肉、軍圖。</p><p>他用筷子點了點山海關西面。</p><p>「若李自成十萬人來。」</p><p>又點東面。</p><p>「關外又有人願出兵。」</p><p>最後筷子停在關城。</p><p>「南京援軍還在路上。」</p><p>「王將軍，借不借？」</p><p>帳中幾名關寧將領都停下動作。</p><p>這不是宴席問題。</p><p>是在問王子燦：你明知道原本歷史的結果，還能不能給一個真正能用的答案？</p><p>王子燦沒有立刻說「不借」。</p><p>他知道如果大順重兵壓關，而明軍真的守不住，單靠一句「不能引清入關」並不會憑空多出幾萬援軍。</p><p>「可以借。」</p><p>幾個人都愣了。</p><p>吳三桂挑眉。</p><p>王子燦把酒杯放下。</p><p>「但先回答三件事。」</p><p>「說。」</p><p>「借多少？」</p><p>「誰指揮？」</p><p>「打完退到哪？」</p><p>吳三桂沒有出聲。</p><p>「三件有一件沒有答案，就不是借兵。」王子燦道，「是把門交出去。」</p><p>一名副將冷笑：「打仗到了火燒眉毛，哪來這麼多條件？」</p><p>王子燦看他。</p><p>「所以火燒眉毛以前先談。」</p><p>吳三桂沉默很久。</p><p>「你知道關外那位會答應？」</p><p>「不知道。」</p><p>「南京都傳你料事如神。」</p><p>「南京也傳我把皇帝綁下煤山。」</p><p>帳內有人忍不住笑。</p><p>吳三桂也笑了。</p><p>「至少有一半是真的。」</p><p>王子燦沒否認。</p><p>＊＊＊</p><p>第一場真正的爭吵發生在五日後。</p><p>大順前鋒逼近。</p><p>偵騎回報，敵軍行軍疲憊，部分部隊未完成集結。</p><p>吳三桂主張出關打一個措手不及。</p><p>王子燦反對。</p><p>「兵力不明。」</p><p>「等你看清，人已經站城下。」</p><p>「可以放騎兵探，不要押主力。」</p><p>「南京來的人都這麼怕敗？」</p><p>王子燦火一下上來。</p><p>「北京就是讓一群怕承認會敗的人弄丟的！」</p><p>整座軍帳瞬間死寂。</p><p>吳三桂的臉沉下去。</p><p>「王將軍。」</p><p>「吳總兵。」</p><p>兩個人隔著軍圖對視。</p><p>如果這時有人再多說一句，可能就真翻臉。</p><p>最後還是老將唐通——這條世界線裡尚未倒向大順的一名將領——低聲道：「先放兩千騎探，如何？」</p><p>沒有人回答。</p><p>吳三桂先轉頭。</p><p>「兩千太多。一千。」</p><p>王子燦道：「分三路，遇追不回頭反打，只報位置。」</p><p>吳三桂看了他一眼。</p><p>「行。」</p><p>當夜，三路探騎出去。</p><p>天快亮時只回來兩路。</p><p>第三路在西北遭伏，死傷近半。</p><p>後續偵察證明，大順前鋒後面果然藏著更多兵力。</p><p>如果主力出關追擊，很可能被切斷退路。</p><p>吳三桂沒有道歉。</p><p>第二天午間，他只讓人把一壺酒送到王子燦帳中。</p><p>沒有字條。</p><p>王子燦喝了一口，也沒去說「我早就知道」。</p><p>兩人就這樣算和解。</p><p>這種不漂亮的合作，反而比互相吹捧可靠。</p><p>＊＊＊</p><p>真正的大戰在兩日後開始。</p><p>大順軍並沒有一開始就拿全軍撞關。</p><p>先是小股騎兵試探。</p><p>接著炮隊往前推。</p><p>再有步卒挖壕、立盾、逼近外圍堡寨。</p><p>王子燦站在城頭第一次看見李自成軍隊真正的組織力。</p><p>這不是小說裡「一群流賊」。</p><p>能從陝西一路打到北京，再壓到山海關的軍隊，不可能只是靠人多。</p><p>他們有自己的軍官、有火器、有懂得計算射程的人，也知道怎麼試探城防薄弱處。</p><p>一名南京來的年輕參將看了一會，低聲道：「不過如此。」</p><p>王子燦立刻轉頭。</p><p>「你看出什麼？」</p><p>那人被問住。</p><p>「末將是說……賊軍攻關，也無甚新奇。」</p><p>「能打到這裡的人，不是『不過如此』。」</p><p>王子燦指向城外。</p><p>「從今天起，所有人記他們怎麼換隊、怎麼送糧、炮打幾輪換位。敵人的缺點要記，優點更要記。」</p><p>吳三桂在一旁聽見，沒有插話。</p><p>當天下午，大順第一次集中攻擊東側外堡。</p><p>炮聲震得城磚往下掉灰。</p><p>關寧軍沒有立刻回炮。</p><p>王子燦事前要求所有炮位重新標尺，敵軍未進有效距離不得浪費火藥。</p><p>幾名老炮手一開始很不習慣。</p><p>「以前看見人就打。」</p><p>「所以以前火藥總說不夠。」</p><p>直到大順攻隊進入標線。</p><p>城頭紅旗落下。</p><p>第一輪炮火幾乎同時響。</p><p>煙霧瞬間把城牆吞掉。</p><p>王子燦什麼都看不見，只聽見下面有人大喊裝藥、遞彈、抬傷兵。</p><p>一塊碎石擊中他額角。</p><p>血沿著眉毛流下來。</p><p>親兵要扶，他推開。</p><p>「第二輪不要快！看旗！」</p><p>戰場最容易做錯的一件事，就是第一輪打得有效之後，所有人急著再打一輪。</p><p>大順果然在煙中後撤一段。</p><p>如果明軍立刻齊射，只會把炮子打進空地。</p><p>等煙散，第二批攻隊才出現。</p><p>第二輪再打。</p><p>一整個下午，山海關沒有英雄衝鋒。</p><p>只有重複。</p><p>裝藥。</p><p>壓實。</p><p>瞄準。</p><p>等旗。</p><p>開火。</p><p>抬傷兵。</p><p>補水。</p><p>再來。</p><p>到了黃昏，大順退回原陣。</p><p>城頭沒有人歡呼。</p><p>因為所有人都知道，這只是第一天。</p><p>＊＊＊</p><p>夜裡，王子燦與吳三桂巡城。</p><p>兩人走到東面，能看見更遠處關外方向的火光。</p><p>那是另一支軍隊。</p><p>清軍。</p><p>三方都知道對方在。</p><p>也都想讓另外兩方先流血。</p><p>「他們下午又遣使來。」吳三桂說。</p><p>「條件？」</p><p>「共同擊闖。」</p><p>「然後？」</p><p>「沒然後。」</p><p>王子燦停下腳步。</p><p>「這就是問題。」</p><p>第二天，使者被帶進總兵府。</p><p>對方態度客氣，說願出精騎協助夾擊大順，且「只為報昔日之盟」。</p><p>王子燦沒有爭歷史恩怨。</p><p>他只問：</p><p>「出兵多少？」</p><p>使者答得很快。</p><p>「誰統？」</p><p>回答稍慢。</p><p>「戰後退到何線？」</p><p>使者沉默。</p><p>「軍糧誰供？」</p><p>「若追敵入關，最遠到哪？」</p><p>「共同作戰時，明軍關門與糧道是否仍由明軍掌握？」</p><p>問到最後，連吳三桂都不再說話。</p><p>使者只說：「兵事臨機，豈能盡定？」</p><p>王子燦點頭。</p><p>「所以不能借。」</p><p>談判停了。</p><p>使者走後，吳三桂在院中站了很久。</p><p>「如果明日真的守不住呢？」</p><p>王子燦說：「到明日再決定。」</p><p>「你不怕後悔？」</p><p>「怕。」</p><p>「那還這麼硬？」</p><p>王子燦看向關門。</p><p>「因為我知道有些門一旦讓別人替你守，之後不一定拿得回來。」</p><p>吳三桂沒有追問他怎麼知道。</p><p>＊＊＊</p><p>戰到第五日，真正的危機不是敵軍。</p><p>是水。</p><p>一處蓄水設施被炮火破壞，城東幾營開始缺水。消息如果傳開，軍心很可能先亂。</p><p>吳三桂主張封鎖消息。</p><p>王子燦反對。</p><p>「藏不住。」</p><p>「不藏，明天人人搶水。」</p><p>「所以先定量。」</p><p>當夜，城中所有營按實在人數重新配水。將領與家丁同額，馬匹另算。總兵府自己的用水也減。</p><p>吳三桂看著送來的木桶，臉色很差。</p><p>「我洗臉都不夠。」</p><p>王子燦道：「敵軍也是。」</p><p>「你怎知？」</p><p>「他們比我們人多。」</p><p>吳三桂愣了一下，忽然笑。</p><p>果然，第二天大順攻勢也明顯變弱。</p><p>長時間對峙，不只是比誰勇。</p><p>是在比誰先缺水、缺糧、缺藥、缺睡眠。</p><p>第七日，一場暴雨落下。</p><p>城上士兵直接張嘴接雨。</p><p>有人笑，有人罵天。</p><p>王子燦也站在雨裡，第一次覺得一場雨可以比援軍更像援軍。</p><p>＊＊＊</p><p>第九日，大順集中兵力再攻西側。</p><p>這一次差點真的破。</p><p>一段外牆被炮火與火藥炸塌，數百人衝入缺口。</p><p>吳三桂親自帶家丁壓上。</p><p>王子燦原本在中軍，聽見缺口消息時本能地就要上馬。</p><p>親兵抓住韁繩。</p><p>「將軍，中軍不能空！」</p><p>王子燦僵了一下。</p><p>以前他是參將，哪裡最危險就往哪裡去。</p><p>現在他代表南京援軍，手上還有城中預備隊。</p><p>如果自己也衝進缺口，整個戰局誰看？</p><p>他咬牙下令：</p><p>「第三營不上城，沿內街繞西；弓手上兩側屋頂；預備騎兵留一半。」</p><p>傳令兵跑出去。</p><p>王子燦站在原地，聽著西面喊殺，手心全是汗。</p><p>這比自己拿刀更難。</p><p>半個時辰後，消息回來。</p><p>缺口堵住。</p><p>吳三桂肩上中了一箭，仍活著。</p><p>大順退。</p><p>王子燦靠在桌邊，才發現自己腿有些發軟。</p><p>那天晚上吳三桂裹著傷來中軍。</p><p>「你怎麼沒來？」</p><p>王子燦以為他要罵。</p><p>「我差點去。」</p><p>吳三桂坐下，疼得吸氣。</p><p>「幸好沒來。」</p><p>王子燦看他。</p><p>「我要的是預備隊，不是多一個王參將。」</p><p>這句話王子燦記了很多年。</p><p>因為吳三桂教他的，恰好是他最難學的一件事：</p><p>主帥不該永遠站在最像英雄的位置。</p><p>＊＊＊</p><p>第十二日，大順主力開始後撤。</p><p>不是潰敗。</p><p>是退。</p><p>他們沒有在山海關拿到迅速勝利，北京的糧運與內部壓力卻在增加。南京援軍又陸續抵達，繼續硬撞已不划算。</p><p>城上有人開始歡呼。</p><p>王子燦沒有下令追。</p><p>吳三桂問：「真不追？」</p><p>「騎兵探二十里。」</p><p>「就這樣？」</p><p>「就這樣。」</p><p>吳三桂望著西面塵土。</p><p>「你以前不是最愛改歷史？」</p><p>王子燦笑了一下。</p><p>「現在比較想少改錯一點。」</p><p>戰後清點。</p><p>明軍死傷遠比捷報兩字難看。</p><p>城牆破損、火藥幾乎見底、馬匹折損嚴重。</p><p>可關門還在明軍手裡。</p><p>更重要的是，東面的外軍沒有進來。</p><p>山海關仍是一道由大明自己守的門。</p><p>當夜，王子燦一個人登上城樓。</p><p>西邊是大順退去的方向。</p><p>東邊是清軍營火逐漸遠去的方向。</p><p>他突然感到一陣後怕。</p><p>如果自己今天做錯，會不會比原本歷史更糟？</p><p>如果沒有借兵，將來戰事拖更久、死更多人呢？</p><p>如果崇禎活著，反而讓戰亂延長呢？</p><p>沒有人能回答。</p><p>穿越並沒有給他一張「正確世界線」的地圖。</p><p>他只能確認眼前最小的事情。</p><p>關門還在。</p><p>糧道還在。</p><p>明天還能自己決定要不要開。</p><p>這已經夠了。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="35" id="ch-35">
+<div class="chapter-kicker">第四卷　金陵再朝</div><h2>第三十五章　李自成</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>李自成不是王子燦想像中的「最終反派」。</p><p>真正接觸到大順軍後，他更確定這一點。</p><p>大順能從陝西一路打到北京，不可能只靠一群烏合之眾。裡面有會打仗的將領、有能整軍的人，也有一套自己的行政與糧餉辦法。更何況，很多跟著李自成的人，本來就是活不下去的明朝百姓。</p><p>山海關第一場大戰，雙方都沒得到想要的結果。</p><p>大順攻勢被關城與炮火擋住，明軍也無力追擊。死者堆在關外壕溝。</p><p>戰後，大順送來談判使者。</p><p>條件很高：承認大順控制北直隸部分州縣，交換俘虜，停止南方追剿。</p><p>南京朝廷主戰聲音立刻爆發。</p><p>「賊怎可議和？」</p><p>王子燦卻支持談。</p><p>不是接受條件，而是先停三日收屍、換俘、讓雙方傷兵撤下。</p><p>這三日裡，他第一次與大順一名中層將領長談。對方姓劉，陝西人，早年家裡因災欠賦，父兄死於饑荒。</p><p>「你們現在說免欠賦。」那人冷笑，「早十年幹嘛去了？」</p><p>王子燦無法反駁。</p><p>「晚了。」</p><p>「那還打什麼？」</p><p>「因為晚了不等於不用改。」</p><p>那人看著他。</p><p>「你替皇帝說話？」</p><p>「我替現在還活著的人說。」</p><p>三日後談判破裂。戰爭繼續。</p><p>但交換回來的俘虜帶回一個消息：大順內部也有人不願再把所有兵力耗在山海關。北京與各地秩序尚未穩，追贓政策引發不滿，糧運也開始吃緊。</p><p>王子燦立刻調整策略。</p><p>不求一戰殲滅。</p><p>拖。</p><p>同時把赦令、糧食與「皇帝尚在南京」的消息往北方散。</p><p>戰場開始出現一種很慢的變化。</p><p>不是敵軍整營投降。</p><p>是每天夜裡，多幾個人把武器放在路邊，自己走回村子。</p><p>王子燦明白，真正削弱一支流民軍的方法，不只是殺掉士兵。</p><p>是讓士兵重新有地方可以去。</p><p class="scene-break">＊</p><p>與大順交換俘虜時，王子燦看見一名自己北營的老兵。對方瘦了很多，右手少兩指。</p><p>「將軍，皇帝真活著？」</p><p>「活著。」</p><p>老兵突然哭了。</p><p>王子燦以為他是忠君，後來才知道不是。</p><p>「那我這幾個月沒白撐。」老兵說。</p><p>對他而言，皇帝活著不是抽象的正統，而是證明北京那場失敗沒有把所有東西一次抹掉。</p><p>王子燦這才明白，政治符號之所以有力量，不一定因為人人愛皇帝。</p><p>有時只是因為人在混亂裡需要一個共同的「還沒結束」。</p><p>崇禎活著，就是那個還沒結束。</p><p class="scene-break">＊</p><p>山海關對峙拖長後，李自成的困境也逐漸浮現。</p><p>北京是一座巨大城市，要養軍、維持秩序、處理舊官僚與新政權關係都需要資源。大順原本靠快速勝利形成的勢能一旦停下，內部問題便更明顯。</p><p>王子燦沒有低估對手。</p><p>相反，他很怕朝廷開始因為幾場勝利就把李自成重新罵成「流賊烏合」。</p><p>「能打到北京的人，不是烏合。」他在軍議上說。</p><p>有人不服：「如今不是被我們擋住？」</p><p>「被擋住和很弱是兩回事。」</p><p>他要求所有將領研究大順的行軍、補給與招兵方式，甚至整理對方哪些政策真正受百姓歡迎。</p><p>這種「學敵」態度後來成為新軍傳統。</p><p>王子燦常說，最容易被打敗的時候，是你開始只相信敵人的缺點。</p><p>真正尊重對手，不是欣賞他。</p><p>是承認他能傷害你。</p><p class="scene-break">＊</p><p>與大順談判時，對方使者曾反問王子燦：「你救的是百姓，還是朱家的江山？」</p><p>王子燦沒有說「都是」。</p><p>「現在兩件事有重疊。」</p><p>「若有一天不重疊？」</p><p>這問題讓他沉默。</p><p>使者笑：「你自己也不知道。」</p><p>「對。」</p><p>王子燦承認。</p><p>他沒有把大明當成永遠正確的目的。如果朝廷重新變成只會壓榨、欺瞞、讓人活不下去的制度，他也不知道自己還會不會像今天這樣守。</p><p>這種不絕對的忠誠，反而成為他後來改革最重要的壓力。</p><p>要讓人願意守一個王朝，王朝也必須證明自己值得被守。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="36" id="ch-36">
+<div class="chapter-kicker">第四卷　金陵再朝</div><h2>第三十六章　北京復城</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>北京再見，是一年多以後。</p><p>王子燦沒有從南門第一個進城。</p><p>他甚至不在最前列。</p><p>真正打開城門的是一支由舊京營、南京新募軍與幾個北方降附營混成的先鋒。城內早已有接應者，外圍大順守軍在連月糧缺與內部動搖後選擇撤退，真正的巷戰只持續了兩日。</p><p>從軍報上看，這是一場乾淨的「克復京師」。</p><p>王子燦知道不是。</p><p>他騎馬進城時，第一眼看到的是一具倒在路邊的驢屍。</p><p>第二眼是關著門的米鋪。</p><p>第三眼是一戶人家用木板把窗封死，上面還釘著前一個政權的告示。</p><p>沒有萬民夾道。</p><p>沒有百姓拿香案跪迎王師。</p><p>大多數人只躲在門縫後看。</p><p>看這一批兵會不會搶。</p><p>看下一面旗能掛多久。</p><p>一名年輕副將有些失望。</p><p>「將軍，百姓怎麼都不出來？」</p><p>王子燦看他一眼。</p><p>「一年裡換了幾次兵？」</p><p>「三、四次。」</p><p>「那你是百姓，你敢開門？」</p><p>副將不說話。</p><p>王子燦下令全軍入城後先做三件事。</p><p>第一，封軍械庫與糧庫。</p><p>第二，各營劃定宿區，不得自行徵房。</p><p>第三，當日之前的市肆欠稅一律暫停追繳七日，讓店先開。</p><p>有人提醒：「大軍入城，正需糧。」</p><p>「軍糧從軍倉出。」</p><p>「軍倉不夠呢？」</p><p>「按價買。」</p><p>「銀子呢？」</p><p>「南京撥的。」</p><p>副將苦笑：「將軍，這樣很貴。」</p><p>王子燦看著街上一扇扇緊閉的門。</p><p>「搶比較便宜。」</p><p>那人一愣。</p><p>「然後明天整城都把糧藏起來。後天你花十倍都買不到。」</p><p>軍令在下午傳遍各營。</p><p>第一個違令的是一名老兵。</p><p>他闖進一戶空宅拿了兩床被褥，說只是借。</p><p>按軍法，沒有到死罪。</p><p>王子燦讓他當晚把東西送回去，另在營前示眾鞭責。</p><p>有人覺得太嚴。</p><p>他只說：「第一個不辦，第二十個就辦不了。」</p><p>第二日，街上仍然很安靜。</p><p>第三日，東城先有一個賣熱水的攤子擺出來。</p><p>第四日，多了修鞋的、賣柴的。</p><p>第五日，一間麵鋪開門。</p><p>王子燦就是在那間麵鋪見到陳筱依。</p><p>她比軍隊晚一天入城，正在查一批失散名冊。</p><p>「不去紫禁城？」她問。</p><p>「先吃麵。」</p><p>「皇上知道你收復北京第一件事是吃麵，可能會氣死。」</p><p>「他現在還在南京。」</p><p>「所以你膽子更大？」</p><p>王子燦笑。</p><p>麵只有鹽和一點蔥，連肉都沒有。</p><p>攤主完全不知道面前的人是誰，只一邊下面一邊抱怨：</p><p>「今年麵粉又貴。前頭那批兵也說按價買，買三天就沒銀了。」</p><p>王子燦筷子停了一下。</p><p>「後來呢？」</p><p>「後來就拿。」</p><p>「現在這批呢？」</p><p>攤主抬眼看他。</p><p>「看吧。」</p><p>只有兩個字。</p><p>比所有「民心歸附」都誠實。</p><p>王子燦吃完，付錢，多給了兩文。</p><p>攤主把多的推回來。</p><p>「說多少就多少。」</p><p>王子燦忽然笑了。</p><p>「好。」</p><p>＊＊＊</p><p>下午，他去了北門。</p><p>許勇跟著。</p><p>一年多前，許勇從這裡被同袍拖進巷子，腿上挨了一刀，後來養了數月才重新歸隊。如今他走路仍有點跛。</p><p>北門已被修過。</p><p>門洞焦黑最重的石塊被換掉一批，牆上新磚與舊磚顏色不同，像傷口結了一層較淺的痂。</p><p>王子燦站在門洞裡，沒有說話。</p><p>許勇指向左側一處牆根。</p><p>「老曹最後在那邊。」</p><p>王子燦走過去。</p><p>沒有墓。</p><p>沒有屍體。</p><p>當時戰後清理太亂，死者被集中搬走，很多已經分不出名字。</p><p>他蹲下來，手摸在粗糙石面上。</p><p>什麼都感覺不到。</p><p>這讓他有點失望。</p><p>人總希望重要的地方會留下某種明顯痕跡。</p><p>可石頭不記得。</p><p>「將軍。」</p><p>許勇從懷裡拿出一個小東西。</p><p>是一截鐵槍尾上的銅箍，已被火燒黑。</p><p>「這個是？」</p><p>「老曹那杆槍的。」</p><p>王子燦猛地抬頭。</p><p>「你怎麼有？」</p><p>「那天退進巷子後撿的。一直想給你。」</p><p>王子燦接過來。</p><p>只有一小截。</p><p>不漂亮。</p><p>連能不能百分之百確定是曹文瑞的都不知道。</p><p>他卻握了很久。</p><p>「他死前有說什麼嗎？」</p><p>許勇想了想。</p><p>「罵人。」</p><p>王子燦笑了一聲，眼睛卻紅了。</p><p>「罵什麼？」</p><p>「說那門炮第三發後果然炸膛，罵炮手祖宗。」</p><p>兩個人都笑。</p><p>笑完，王子燦坐在牆根。</p><p>這一年多，他無數次想像自己回到北門時會說什麼。</p><p>謝謝。</p><p>對不起。</p><p>我把皇帝救出去了。</p><p>北京也打回來了。</p><p>真正坐在這裡，卻一句都說不出口。</p><p>最後只問：</p><p>「三百七十一人，查到多少？」</p><p>許勇從包裡拿出名冊。</p><p>「一百九十七個確定名字。八十多個只有姓或外號。剩下的……還在查。」</p><p>王子燦接過。</p><p>第一頁空著。</p><p>他拿筆寫：</p><p>曹文瑞。</p><p>山東人。</p><p>北營副將。</p><p>崇禎十七年三月十九，死於北門。</p><p>許勇盯著那幾行。</p><p>「就這樣？」</p><p>「不然？」</p><p>「不寫忠烈？」</p><p>王子燦搖頭。</p><p>「他活著時也不是每天都忠烈。」</p><p>許勇愣了一下。</p><p>「他會罵人、會喝酒、會騙人說老娘還在山東。」</p><p>「還欠我兩錢銀子。」</p><p>王子燦抬眼。</p><p>「真的？」</p><p>「假的。」</p><p>兩個人又笑。</p><p>王子燦忽然覺得，這才是記住曹文瑞。</p><p>不是把一個活生生的人壓縮成「忠勇殉國」四個字。</p><p>而是記得他唱歌難聽、打呼、嘴臭，卻在最後那半個時辰沒有走。</p><p>＊＊＊</p><p>傍晚，有人來找王子燦。</p><p>不是官員。</p><p>是幾戶百姓。</p><p>一名婦人牽著兩個孩子，遠遠看見王子燦就要跪。</p><p>他趕緊攔。</p><p>「別跪。」</p><p>婦人仍紅著眼。</p><p>「王將軍，我家男人那天沒出來。」</p><p>王子燦心裡一沉。</p><p>「叫什麼？」</p><p>她報了名字。</p><p>名冊上有。</p><p>不是兵。</p><p>是當時幫忙推車堵門的一名民夫。</p><p>王子燦沒有說「節哀」。</p><p>只把名字指給她。</p><p>婦人摸著紙上的字，看了很久。</p><p>「至少知道了。」</p><p>她說。</p><p>旁邊一個男孩已經比一年前高很多。</p><p>王子燦認出他。</p><p>就是北門最後那批撤離百姓裡，一直問「北京會不會破」的孩子。</p><p>男孩也認出他。</p><p>「將軍。」</p><p>「嗯。」</p><p>「我娘說，那天你們多守了半個時辰。」</p><p>王子燦一時不知道怎麼接。</p><p>男孩身旁還牽著一個更小的妹妹。</p><p>她大概才四五歲，根本不記得甲申那夜。</p><p>王子燦看著她。</p><p>忽然明白了一件以前只能用金句表達、現在卻不需要再說出口的事。</p><p>那半個時辰沒有停在那夜。</p><p>它長成了這個孩子後來多活的一年。</p><p>長成了他妹妹還能拉著他的手。</p><p>將來也許還會長成十年、二十年。</p><p>時間不是鐘上的刻度。</p><p>是人活下去之後繼續發生的事。</p><p>＊＊＊</p><p>北京收復第三日，軍中舉行慶功宴。</p><p>王子燦沒去。</p><p>崇禎尚未回京，主持者是督師與幾位勳臣。酒肉都已備好，軍中覺得王子燦不去是故作姿態。</p><p>陳筱依找到他時，他還坐在麵攤。</p><p>「人家找你找瘋了。」</p><p>「我知道。」</p><p>「不去？」</p><p>「晚點。」</p><p>她坐下，也叫一碗。</p><p>「你是不高興？」</p><p>王子燦看著街上。</p><p>有孩子在追一個破竹圈。</p><p>有車夫因為路堵在罵人。</p><p>米鋪門口開始有人排隊。</p><p>「我只是不知道要慶什麼。」</p><p>「北京回來了。」</p><p>「曹文瑞沒回來。」</p><p>陳筱依沒有勸。</p><p>過了一會，她說：「兩件事可以同時是真的。」</p><p>王子燦看她。</p><p>「今天可以是勝仗。」</p><p>「也可以有人死了。」</p><p>「你不用選一個。」</p><p>這句話讓他安靜很久。</p><p>到最後，他還是去了慶功宴。</p><p>但只喝一杯。</p><p>敬活著的人。</p><p>也敬沒有回來的人。</p><p>＊＊＊</p><p>十日後，崇禎北還前，宮中送來一幅畫稿。</p><p>題作《煤山救駕圖》。</p><p>畫裡王子燦一身亮甲，刀光如虹；崇禎穿著整齊龍袍站在槐樹下；王承恩跪在一旁，神情莊重。</p><p>王子燦看完笑到差點把茶噴出來。</p><p>「哪裡不對？」畫師戰戰兢兢。</p><p>「全部。」</p><p>「王將軍當日不是持刀斷綾？」</p><p>「是。」</p><p>「那——」</p><p>「皇上穿破棉袍。我滿身泥。王公公哭得鼻涕都出來了。」</p><p>畫師臉色發白。</p><p>「這……恐不合天家威儀。」</p><p>王子燦把畫退回。</p><p>「那就別畫。」</p><p>沒想到幾日後，崇禎親自批：</p><p>「照實。」</p><p>第二稿送來。</p><p>皇帝真的穿著粗布。</p><p>王承恩眼睛哭腫。</p><p>王子燦的甲上全是灰。</p><p>畫還是美化了，但至少不像神話。</p><p>後來有人問崇禎，何必把帝王最狼狽的一刻留在宮裡。</p><p>皇帝只說：</p><p>「朕就是這樣活下來的。」</p><p>王子燦聽說後，在北門站了很久。</p><p>他忽然覺得，北京真正被收復的那一刻，也許不是軍旗插回城頭。</p><p>而是這個曾經寧可死也不肯讓人看見自己失敗的皇帝，終於願意把最難看的那一夜留下來。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="37" id="ch-37">
+<div class="chapter-kicker">第四卷　金陵再朝</div><h2>第三十七章　皇帝回京</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>崇禎回北京那天，沒有走原本準備好的盛大儀仗。</p><p>皇帝自己削掉了一半。</p><p>「城裡剛安定，不必讓百姓再出錢鋪路。」</p><p>這句話若放在從前，王子燦未必相信能從他嘴裡說出來。</p><p>紫禁城仍是那座紫禁城。可崇禎重新踏進午門時，腳步停了很久。</p><p>他大概想起那個三月十九日的凌晨。</p><p>王承恩站在身後。這位原本應該陪死煤山的太監，如今老得更多，卻還活著。</p><p>朝會第一日，群臣山呼萬歲。</p><p>崇禎沒有宣布「中興已成」。</p><p>他說：</p><p>「北京失而復得，非朕之功。失北京，朕有責。」</p><p>殿上一片安靜。</p><p>皇帝公開承認錯誤，本身比收復一座城更讓人震動。</p><p>接著他做三件事。</p><p>第一，北方恢復區三年內按災情分等減免，不許一紙齊免後地方另攤。</p><p>第二，重建京營，但新冊一律按實點驗。</p><p>第三，設「軍政覆核局」——名字很明代，做的卻是王子燦一直想做的交叉查核：兵部、戶部、都察院各派人，不讓一套數字只經一條線。</p><p>這些制度不可能消滅腐敗。</p><p>王子燦比誰都清楚。</p><p>他只希望讓造假變難，讓說真話成本變低。</p><p>朝會後，崇禎把他單獨留下。</p><p>「你救朕那日，說北京可以再打回來。」</p><p>「臣說過。」</p><p>「如今打回來了。」</p><p>「只是第一步。」</p><p>崇禎瞪他：「你就不能讓朕高興一天？」</p><p>王子燦笑。</p><p>皇帝也笑了。</p><p>這段君臣關係變得很奇怪。</p><p>崇禎仍會猜疑、會急躁，有時照樣半夜連發三道互相矛盾的命令。王子燦也照樣頂回去。</p><p>不同的是，皇帝開始允許第二天把錯的那道撤掉。</p><p>一個王朝的中興，沒有戲文裡那麼乾淨。</p><p>它更像一個性格很差的人，終於學會承認自己昨天做錯了什麼。</p><p class="scene-break">＊</p><p>崇禎回到乾清宮的第一晚，沒有睡在原本寢殿。</p><p>他站在曾經準備訣別的地方，忽然覺得那張龍床比破寺地板更難躺。</p><p>王承恩問要不要添燈。</p><p>皇帝說不用。</p><p>黑暗裡，他問：「王燦在做什麼？」</p><p>「在北門。」</p><p>「又去？」</p><p>「是。」</p><p>崇禎沉默片刻。</p><p>「明日把北門死者名冊送一份來。」</p><p>王承恩應下。</p><p>從那以後，崇禎每逢大戰捷報，都會下意識先翻傷亡。</p><p>一個習慣的改變很小。</p><p>但對一個能讓幾萬人因一句話移動的皇帝而言，小習慣有時就是大政治。</p><p class="scene-break">＊</p><p>皇帝回京後，南京是否仍保留部分中央職能又成新爭議。</p><p>有人主張全部北還，恢復舊制。</p><p>王子燦卻支持南京保留更強的備援能力。</p><p>「北京若再有事，不能讓朝廷又只剩一個點。」</p><p>這種說法讓傳統官員很不舒服，覺得像預設京師還會失守。</p><p>崇禎這次卻站在他這邊。</p><p>煤山經歷讓皇帝對「沒有退路」有了切身理解。</p><p>最終南京六部部分機能被保留，財賦、檔案與南方軍務不再只是空架子。重要檔案也開始分地保存副本。</p><p>王子燦私下稱這是「不要把國家只放在一個籃子」。</p><p>陳筱依聽不懂籃子典故，卻很支持。</p><p>「你終於知道帳冊要抄兩份了。」</p><p>王子燦無言。</p><p>在她眼裡，天下大政最後仍然只是另一種備份。</p><p class="scene-break">＊</p><p>崇禎回京後第一次遇到大災情，舊習又差點回來。</p><p>地方上報災數巨大，皇帝第一反應是懷疑誇大騙賑。</p><p>王子燦提醒：「先查，但糧先走。」</p><p>「若是假呢？」</p><p>「多發一些糧可以追回，餓死人追不回。」</p><p>崇禎沉默後同意先撥一部分，再派人核。</p><p>最後災情確實有誇大，卻也真的嚴重。</p><p>皇帝問：「那誰對？」</p><p>王子燦說：「兩邊都不全對。」</p><p>崇禎很不滿意這種答案。</p><p>可他已經開始習慣：世界不是每次都會給一個能讓皇帝漂亮下判斷的結論。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="38" id="ch-38">
+<div class="chapter-kicker">第五卷　山海逆潮</div><h2>第三十八章　袁案</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>袁崇煥案重審，是王子燦最不願碰、也最終不能不碰的事。</p><p>收復北京後，朝中主動有人提出。原因很現實：王子燦功勞太大，他的身世早已不是秘密。如果袁案一直維持原判，朝廷等於讓「罪臣之子」成為救駕功臣與北方重將，法理上極其尷尬。</p><p>有人順勢把王子燦塑造成「忠良之後」。</p><p>他反而厭惡。</p><p>「查案就查案，別因為我是誰改結果。」</p><p>崇禎聽完，神情複雜。</p><p>重審不是一句「平反」就結束。舊奏疏、軍情、關係人證詞重新整理，當年遼東決策與己巳之變的脈絡一件件拆。很多人已死，很多證據不完整。王子燦沒有要求把父親寫成毫無瑕疵的聖人。</p><p>他只要一件事。</p><p>讓罪名和證據對得上。</p><p>數月後，朝廷正式改判，承認當年以通敵等重罪處置失當，恢復名譽並予祭告。</p><p>宣詔那天，所有人都看王子燦。</p><p>他沒有哭。</p><p>回府後卻一個人坐了很久。</p><p>陳筱依找到他時，桌上放著那枚「袁」字鐵牌。</p><p>「高興嗎？」</p><p>「有一點。」</p><p>「只有一點？」</p><p>王子燦摸著鐵牌。</p><p>「我以前以為，等有人說我爹沒罪，很多東西就會好。」</p><p>「現在呢？」</p><p>「他還是死了。」</p><p>陳筱依坐到他旁邊。</p><p>「那平反有什麼用？」</p><p>王子燦想了一下。</p><p>「至少以後的人不用從一個假的罪名開始認識他。」</p><p>他終於明白。</p><p>公道不能復活死人。</p><p>但能少留下一個謊。</p><p>幾日後，崇禎私下到袁崇煥祠前。沒有大典。王子燦站在後面。</p><p>皇帝上香後只說：</p><p>「朕負卿。」</p><p>這一次，王子燦沒有期待父親從牌位裡回來。</p><p>他只是低頭。</p><p>然後轉身去做下一件活人的事。</p><p class="scene-break">＊</p><p>袁案平反後，朝廷有人建議替袁崇煥加上極高諡號，以示聖恩。</p><p>王子燦反而請求從簡。</p><p>「為何？」崇禎問。</p><p>「臣怕今天把他寫成完人，後世又不能說他做錯的地方。」</p><p>皇帝笑得有點苦。</p><p>「你們父子都難伺候。」</p><p>最後祭告仍隆重，文字卻避免把袁崇煥神化。</p><p>王子燦很滿意。</p><p>他從自己的穿越經歷學到最深的一件事，就是歷史一旦被做成牌位，人們便只剩跪或砸兩種選擇。</p><p>真正的理解，反而需要允許一個人既有功，也有錯。</p><p>他希望父親被記住。</p><p>不是被供起來。</p><p class="scene-break">＊</p><p>袁案重審期間，王子燦刻意不參與具體審議。</p><p>有人說他避嫌太過。</p><p>他卻知道，只要自己坐在場，哪怕一句話不說，其他人也會猜「遼東新貴想要什麼結果」。</p><p>他只提出一個要求：所有可找到的原始奏疏與相關證詞都列出，哪些確定、哪些有爭議分開寫。</p><p>這種處理讓最後的平反文字不像傳統褒忠文那麼乾脆。</p><p>它承認袁崇煥在軍政上也有爭議，只否定當年最嚴重的通敵等罪名。</p><p>王子燦反而覺得這樣最好。</p><p>一個人被冤枉，不代表他必須是完人。</p><p>歷史最容易在「奸臣」被推翻後，立刻把他改造成「聖人」。</p><p>王子燦不想再走一次同樣的路。</p><p>他希望父親從神話與污名中都被放回人間。</p><p class="scene-break">＊</p><p>平反祭告結束後，王子燦沒有去參加後面的宴。</p><p>他走到父親舊宅所在一帶。十四年過去，很多地方都變了。</p><p>他靠另一個王燦的記憶找到一段牆。</p><p>六歲那年，就是從這裡被帶走。</p><p>王子燦站了很久。</p><p>他原以為平反會讓記憶裡那個孩子得到安慰。</p><p>沒有。</p><p>童年的恐懼不會因公文改判就消失。</p><p>但它不再需要控制後半生。</p><p>王子燦轉身離開時，第一次沒有回頭。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="39" id="ch-39">
+<div class="chapter-kicker">第五卷　山海逆潮</div><h2>第三十九章　魏成甫的最後一局</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>魏成甫最後一局，發生在北京收復後。</p><p>所有人都以為他早已死在政權更替裡。結果他換了名字、換了衣服，又替新的糧商與官員牽線。王子燦甚至有一瞬間佩服這種生命力。</p><p>陳筱依卻一點也不驚訝。</p><p>「他這種人，朝代不是家，只是屋簷。哪裡不漏雨就往哪裡站。」</p><p>兩人花三個月才重新抓到他的線。</p><p>這次魏成甫不只是倒賣軍糧，而是企圖利用恢復區物資短缺，串通幾名地方官把賑糧轉成商貨，再高價賣回災區。</p><p>被捕時，他沒有逃。</p><p>「王公爺如今威風了。」</p><p>王子燦還沒封公，只是被人這樣奉承已很常見。</p><p>「你還是沒變。」王子燦說。</p><p>「我變很多。」</p><p>「衣服吧。」</p><p>魏成甫笑。</p><p>審訊時，他又提起當年的問題。</p><p>「我只是想活。」</p><p>王子燦這次回答得更快。</p><p>「我也想。」</p><p>「那你憑什麼審我？」</p><p>「因為你每次都把別人的命算進自己的成本。」</p><p>魏成甫不笑了。</p><p>「王子燦，你以為你沒踩過人？」</p><p>這句話刺中他。</p><p>張四、北門、曹文瑞、那些因他決策死去的人。</p><p>他當然踩過。</p><p>王子燦沉默很久。</p><p>「有。」</p><p>魏成甫似乎沒想到他承認。</p><p>「所以我才得記名字。」王子燦說，「得讓人查我。得讓皇帝能撤我。得讓我每次下令都知道死的不是『若干』。」</p><p>「這就不同？」</p><p>「不能保證。」</p><p>王子燦看著他。</p><p>「但至少不能把『人人都如此』當成你什麼都能做的理由。」</p><p>魏成甫最後依法論罪。</p><p>王子燦沒有親手殺他，也沒有安排戲劇性的復仇。</p><p>陳筱依站在刑部外，看著囚車遠去。</p><p>「就這樣？」</p><p>「就這樣。」</p><p>她忽然笑。</p><p>「你以前一定會想拔刀。」</p><p>「以前比較年輕。」</p><p>「你現在也才二十幾。」</p><p>王子燦沉默。</p><p>兩個人一起笑了。</p><p class="scene-break">＊</p><p>魏成甫被押走那天，陳筱依沒有去看行刑。</p><p>她回到舊帳房，把父親陳允之的案卷重新整理。多年來她一直以為，只要魏成甫倒下，父親那口氣就算出了。真正等到這一天，她卻發現心裡沒有想像中的輕。</p><p>「怎麼？」王子燦問。</p><p>「我以前把很多力氣都拿來恨他。」</p><p>「現在呢？」</p><p>「空出來了。」</p><p>這句話讓兩人都沉默。</p><p>仇恨有時也是一種支撐。放下之後，不是立刻自由，而是先不知道接下來要做什麼。</p><p>陳筱依最後決定把父親查過的軍糧案與自己的情報手稿整理成卷，不是為報仇，而是讓後來的人知道：一個制度壞掉以前，通常先有很多人早就看見，只是沒有人把那些小裂縫當成大事。</p><p class="scene-break">＊</p><p>魏成甫案最後送到刑部時，有官員主張把他所有罪責都集中寫成「大奸」。</p><p>王子燦反對。</p><p>「哪一筆銀、哪一批糧、哪個人證，就寫哪個。」</p><p>「此等奸人何必替他分辨？」</p><p>「因為今天可以為了恨一個人把罪寫大，明天也能為了喜歡一個人把罪寫小。」</p><p>這話讓刑部很不舒服。</p><p>可崇禎支持。</p><p>魏成甫最終被定罪，不靠「他代表什麼」，而靠一條條可核的行為。這也讓王子燦第一次真正感到某種滿足。</p><p>不是因為仇人要死。</p><p>是因為這一次，沒有用一個大帽子替證據省事。</p><p>陳筱依問：「你是不是怕他變成另一個冤案？」</p><p>「我怕我們因為確定他是壞人，就覺得程序可以省。」</p><p>「那很麻煩。」</p><p>「對。」</p><p>「你現在很喜歡麻煩。」</p><p>王子燦笑。</p><p>他確實越來越相信，很多不方便的程序，就是為了防止人最有把握、最憤怒的時候做得太過頭。</p><p class="scene-break">＊</p><p>魏成甫行刑前最後要求見陳筱依一次。</p><p>她拒絕。</p><p>「他說有話跟妳說。」刑部的人勸。</p><p>「他以前有很多機會說。」</p><p>王子燦沒有勸她去。</p><p>魏成甫最後留下的話轉述回來只有一句：「你們以為殺了我，這種人就沒了？」</p><p>陳筱依聽完很平靜。</p><p>「所以才要改帳。」</p><p>王子燦看著她，忽然明白這就是兩人與魏成甫真正不同的地方。</p><p>他們從來沒以為處死一個壞人就能解決一整個時代。</p><p>人會再來。</p><p>漏洞也會再開。</p><p>能做的只是讓下一個魏成甫更難把一袋糧變成自己的銀子。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="40" id="ch-40">
+<div class="chapter-kicker">第五卷　山海逆潮</div><h2>第四十章　新軍</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>新軍真正成形，是在崇禎十九年之後。</p><p>王子燦很早就反對「突然發明一支現代軍隊」。他沒有無煙火藥，沒有後裝槍，也沒有工業體系。能做的，只是在當時條件裡把人、武器與後勤組織得更像一個整體。</p><p>他先改編制。</p><p>每一營都要有固定火器、長槍、弓手與工役比例，不再只看總人頭。每隊設識字兵記錄彈藥、傷亡與口糧。軍官晉升不只看斬首，也看部隊逃亡率、補給損失與操練成績。</p><p>最難的是火器。</p><p>鳥銃品質參差，有的槍管一連發數次就炸。王子燦沒有神奇配方，只做標準化：統一幾種常用口徑、按模具驗收鉛彈、火藥分批試射、槍管不合格直接退。</p><p>工部一開始怨聲載道。</p><p>「各匠戶祖傳手法不同，如何一概？」</p><p>王子燦拿起兩顆大小差了一截的鉛彈。</p><p>「打仗時敵人不會等你找合適那一顆。」</p><p>他又推動最不起眼的軍醫制度。每營設傷兵區，燒水、洗布、糞污與飲水分開。沒有人懂細菌，王子燦也沒能力講微生物學，只說「髒水易生病」。</p><p>最初有人笑他。</p><p>半年後，同一場操練意外中，新軍傷口潰爛的人明顯少，笑聲就少了。</p><p>他也犯錯。</p><p>第一次大規模改編時，為了追求整齊，他把幾支地方兵拆得太散，結果老兵與軍官互不熟悉，演訓一塌糊塗。王子燦被御史彈劾「紙上談兵」。</p><p>他沒有反駁。</p><p>第二次改制，保留原有骨幹，只把標準嵌進去。</p><p>崇禎問：「你不怕承認錯，威信盡失？」</p><p>「錯了還硬撐，死的人更多。」</p><p>皇帝沉默了一會。</p><p>第二天，御前也撤回了一道前一夜發出的錯誤調兵令。</p><p>王子燦看見時笑了很久。</p><p>大明的新軍沒有一夜變強。</p><p>它只是開始允許「修正」比「面子」重要。</p><p class="scene-break">＊</p><p>新軍操練最初最受歡迎的改變，竟不是火器，而是「不准隨便打人」。</p><p>過去不少軍官靠鞭打維持秩序，王子燦沒有完全廢除軍棍，卻要求處罰有名目、有記錄，不能長官心情不好就抽。</p><p>有老將說這會養出驕兵。</p><p>王子燦反問：「怕你，和信你，是一回事？」</p><p>老將不服。</p><p>幾個月後，操演出現失火，一隊士兵沒有因怕被罰而隱瞞火藥受潮，提前報告，避免更大事故。</p><p>王子燦把這件事公開表揚。</p><p>不是表揚失誤。</p><p>是表揚把壞消息說出來。</p><p>這種文化改得很慢，甚至幾代後仍會反覆。</p><p>但至少從那時起，大明軍中第一次有人把「早報壞消息」當作一種功。</p><p class="scene-break">＊</p><p>新軍真正的變化不是制服變整齊，而是軍官開始知道自己為什麼下某道命令。</p><p>王子燦要求軍官操演結束後寫「復盤」。不用文采，只要回答三件事：原定目標、實際發生、下次怎麼改。</p><p>很多人一開始寫成邀功奏章。</p><p>「我軍奮勇，敵勢披靡。」</p><p>王子燦全部退回。</p><p>「敵在哪？」</p><p>「演習沒有敵。」</p><p>「那你披靡誰？」</p><p>久而久之，報告開始變得難看，也更有用。</p><p>某隊承認口令太長；某營承認夜行迷路；某火器隊發現雨天點火成功率低。</p><p>這些小問題累積幾年，新軍才真正和舊軍不同。</p><p>不是士兵突然更勇敢。</p><p>而是錯誤不再只靠下一場戰爭用死人來提醒。</p><p>崇禎有一次看完軍演復盤，問：「為何盡是缺點？」</p><p>王子燦說：「因為優點不用修。」</p><p>皇帝想了想，竟把這套方法拿去用在幾次御前決策。</p><p>結果群臣更痛苦。</p><p>因為連皇帝都開始問：「上次到底哪裡錯？」</p><p class="scene-break">＊</p><p>新軍第一次大閱兵時，崇禎很失望。</p><p>隊伍不如傳統儀仗整齊，因為王子燦把很多操練時間用在分隊射擊、夜行與築壘。</p><p>「看起來不威武。」皇帝說。</p><p>王子燦回：「打仗時再看。」</p><p>幾個月後，這支看起來不夠漂亮的軍隊在雨夜裡完成一次長距離轉進，掉隊比舊軍少很多。</p><p>崇禎再看閱兵，忽然覺得「整齊」不是唯一標準。</p><p>王子燦也沒有因此否定儀仗。</p><p>他後來仍保留基本隊列與軍容，因為紀律與共同感也需要形式。</p><p>他越來越少做非此即彼的選擇。</p><p>有用的舊東西就留，沒用的才改。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="41" id="ch-41">
+<div class="chapter-kicker">第五卷　山海逆潮</div><h2>第四十一章　東江再立</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>海上，是王子燦原本最不熟的地方。</p><p>他在現代讀明末，多數注意力都放在遼東、京師與流寇。真正準備向遼西推進時，才發現如果只靠陸路，糧運會拖死大軍。</p><p>史可法提醒他：「你總說實數。那就算一算，一石米從江南走陸路到山海關，路上會吃掉多少。」</p><p>一算，王子燦臉都黑了。</p><p>於是「東江」重新進入視野。</p><p>不是簡單復活毛文龍時代的制度，而是在登萊、天津、山海關、遼東沿海之間建立分段海運與情報點。水師護航，商船承運，軍方按里程與風季付費，減少層層徵發。</p><p>朝中有人反對把軍糧交給商人。</p><p>王子燦回答：「現在也是商人運，只是帳上假裝不是。」</p><p>這句話得罪了不少人。</p><p>陳筱依反而在這件事上比他更有用。她熟悉商路，也懂得哪些商號表面乾淨、背後卻與官員盤根錯節。她建立了一套「互保」辦法：數家商號共同承一段運輸，一家出問題，其餘會受損；軍方則不能隨意拖欠。</p><p>她第一次正式進入一個由戶部與兵部共同設的運務局時，滿屋官員都不知道該怎麼稱呼。</p><p>有人叫「陳姑娘」。</p><p>有人故意只稱「王將軍內眷」。</p><p>陳筱依當場把一本帳摔在桌上。</p><p>「我若只是內眷，這三筆重複報運費的銀子，諸位自己查。」</p><p>沒人再說。</p><p>王子燦聽說後笑到直不起腰。</p><p>「妳得罪戶部了。」</p><p>「你不是早得罪完了？」</p><p>「也是。」</p><p>海運線第一次完整跑通那天，一批江南米比預估早十二日到天津。</p><p>沒有史詩般的場面。</p><p>只有碼頭上堆起的麻袋。</p><p>王子燦站在旁邊，卻比打勝仗還高興。</p><p>因為他知道，真正能把軍旗插回遼東的，從來不只是刀。</p><p>是糧。</p><p class="scene-break">＊</p><p>北門書庫最早的一批藏書裡，有一本不是書。</p><p>是運糧船的事故簿。哪一天翻船、損多少糧、死幾個人、責任在哪。陳筱依堅持保存。</p><p>「這種東西也要留？」戶部官員問。</p><p>「為什麼不要？」</p><p>「不吉利。」</p><p>「就是因為不吉利才要留。」</p><p>她最討厭只保存成功。因為如果後人只看到「海運通暢」，就不知道第一年有多少船因超載、風季誤判與貪便宜而出事。</p><p>王子燦看完事故簿後，直接修改承運規則。</p><p>這件事沒有出現在任何中興頌文裡。</p><p>但第二年少沉了很多船。</p><p>真正讓制度變好的材料，常常不是捷報，是失敗的紀錄。</p><p class="scene-break">＊</p><p>海運擴大後，利益也跟著變大。</p><p>新的承運商、碼頭管理、護航軍費，很快形成另一套可能腐敗的網。王子燦一開始很挫折。</p><p>「我才堵一個洞，又開三個。」</p><p>陳筱依倒很平靜。</p><p>「有錢的地方本來就會有人想拿。」</p><p>「那怎麼辦？」</p><p>「別幻想一次堵完。」</p><p>她提出輪換承運、公開部分價格、不同港口互相核對重量，還讓船主能直接申訴軍方拖欠。</p><p>王子燦聽完笑：「妳比戶部狠。」</p><p>「我爹就是被帳害死的。」</p><p>這句話很輕。</p><p>王子燦沒有再笑。</p><p>陳筱依改革帳務，不只是才能，也是她把父親死亡轉成另一種東西的方式。</p><p>不是報仇。</p><p>是讓同樣的漏洞不再那麼容易害死下一個人。</p><p class="scene-break">＊</p><p>海運開通後，沿海一些商人迅速暴富。</p><p>朝中立刻有人喊要限制商利。</p><p>王子燦沒有立刻贊成。</p><p>「如果完全沒利，誰願冒風險運？」</p><p>「那就任他們賺國難財？」</p><p>「給合理利，查不合理的。」</p><p>這種話很不討好。</p><p>王子燦卻慢慢形成一個簡單觀念：不能一邊需要人做事，一邊又把所有利益都視為可恥。</p><p>真正要管的是資訊不對稱、壟斷、串通與欺詐。</p><p>陳筱依聽完說：「你現在越來越像商人。」</p><p>「我以前連便利商店都只會刷手機。」</p><p>「又說我聽不懂的。」</p><p>兩人笑。</p><p>很多現代概念在明末並不能直接搬用，但「人會對誘因反應」這件事，從來沒有過時。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="42" id="ch-42">
+<div class="chapter-kicker">第五卷　山海逆潮</div><h2>第四十二章　寧遠</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>寧遠再次出現在大明軍圖上時，已經是幾年後。</p><p>那幾年裡，北京收復、京營重建、海運試行、北方州縣一點點恢復。朝中很多人開始把「中興」兩個字掛在嘴上，彷彿只要說得夠多，大明就真的從懸崖邊回來了。</p><p>王子燦最討厭這兩個字用得太早。</p><p>因為真正要往遼西走時，他只看見另一疊數字。</p><p>兵多少。</p><p>馬多少。</p><p>糧能送到哪。</p><p>傷兵能往哪退。</p><p>海路一旦遇風停幾天，前線還能吃多久。</p><p>寧遠不是一座孤城。</p><p>它是整條遼西走廊上的一個節點。再往東，補給線越長，側翼越薄，任何一處堡寨丟掉都可能把前方變成一支伸得太長的手。</p><p>王子燦在中軍大帳第一次以真正主帥身分召開軍議。</p><p>帳內坐著十幾名將領。</p><p>有人跟他從北京一路打來，有人是關寧舊部，也有人是南京新軍出身。</p><p>軍圖掛起後，第一個開口的老將說：</p><p>「將軍放心。如今我軍餉足、炮足，寧遠城又可依，必勝。」</p><p>王子燦抬頭。</p><p>「出去。」</p><p>那老將愣住。</p><p>「末將？」</p><p>「不是趕你。」王子燦道，「把『必勝』兩個字放外面，再進來。」</p><p>帳內有人忍笑。</p><p>老將臉色發紅，卻還是抱拳重新坐下。</p><p>王子燦拿炭筆在圖旁寫：</p><p>「最壞。」</p><p>「一個一個說。」</p><p>一名參將先道：「清軍不攻城，繞我糧道。」</p><p>寫下。</p><p>另一人說：「海運遇風，糧船晚到。」</p><p>寫下。</p><p>「右翼騎兵被誘離堡寨。」</p><p>寫下。</p><p>「寧遠內部有人接應。」</p><p>寫下。</p><p>「敵軍假退，我軍追深。」</p><p>王子燦的筆停了一瞬。</p><p>這一條，他特別畫了圈。</p><p>「還有？」</p><p>有人不耐：「將軍，未戰先想敗，恐傷士氣。」</p><p>王子燦看向他。</p><p>「士氣靠假裝敵人不會做事？」</p><p>那人閉嘴。</p><p>王子燦繼續。</p><p>每一種最壞情況後面，都要有一個「若發生怎麼辦」。</p><p>糧道被截，哪支營先救。</p><p>海運晚到，現存糧按多少天配。</p><p>右翼失聯，主力不得追過哪條線。</p><p>城內起亂，哪一道門由誰接管。</p><p>這種軍議很慢。</p><p>也不威風。</p><p>卻比一句「將士用命，必破強敵」實際得多。</p><p>＊＊＊</p><p>戰事開始後第三日，第一個預案就用上了。</p><p>清軍沒有強攻寧遠。</p><p>他們在城外擺出攻勢，真正的騎兵卻從北側繞向後方糧道。</p><p>若照往常打法，守城主力很可能被正面佯攻牽住，等發現時後方已亂。</p><p>可護糧營早已按預案在兩處河谷設伏，烽火一出，附近堡寨的騎兵直接合攏。</p><p>戰鬥不大。</p><p>只死了幾十人。</p><p>糧隊保住。</p><p>軍中立刻有人把它稱作「料敵如神」。</p><p>王子燦聽見就罵。</p><p>「神個屁，軍議上十幾個人一起想到的。」</p><p>「可預案是將軍定的。」</p><p>「那也不是我猜中。」</p><p>他非常討厭這種敘事。</p><p>因為一旦大家相信主帥能猜中敵人，下一次就會少一個人願意說「我覺得可能不一樣」。</p><p>第四日，他特意在軍議上讓一名最年輕的千總先報。</p><p>「你覺得敵人下一步做什麼？」</p><p>千總緊張得臉都白。</p><p>「末將……不知。」</p><p>「很好。」</p><p>眾人愣住。</p><p>王子燦道：「不知道就把不知道拆開。」</p><p>「哪幾種可能？」</p><p>那千總慢慢說了三種。</p><p>其中一種後來真的發生。</p><p>不是因為他特別聰明。</p><p>只是當一個軍隊允許下級說「不知道」，它就多了一點看到意外的機會。</p><p>＊＊＊</p><p>真正的錯誤來在第二周。</p><p>清軍一部在城西交戰後突然後撤。</p><p>斥候回報，敵軍隊形散亂，部分車輛甚至棄在路邊。</p><p>前線將領請追。</p><p>王子燦站在高地上用望遠鏡看了很久。</p><p>他手裡這具望遠鏡不是什麼跨時代神器，只是按當時已存在的原理重新改良過，視野依舊模糊。</p><p>遠處確實在退。</p><p>而且退得很亂。</p><p>「追多少？」副將問。</p><p>王子燦想起軍議那條被自己畫圈的「假退」。</p><p>他本來應該更謹慎。</p><p>可連續數日戰事順利，敵軍多次試探都沒討到便宜。人一旦連續判對幾次，很容易開始把運氣當能力。</p><p>「兩營騎兵。」</p><p>「追到哪？」</p><p>王子燦指一處低丘。</p><p>「不得過丘。」</p><p>命令傳出去。</p><p>一開始很順。</p><p>明軍追到低丘，敵軍仍在退。</p><p>前線請求再前推三里。</p><p>王子燦看著軍報。</p><p>只差三里。</p><p>如果真是潰退，這可能是打掉一支敵軍的機會。</p><p>如果是假退——</p><p>他猶豫了不到十息。</p><p>「准。」</p><p>這十息後來在他腦裡重播了很多年。</p><p>兩營越過低丘。</p><p>半個時辰後，北側突然出現騎兵。</p><p>不是幾百。</p><p>是整片黑影。</p><p>傳令騎一路狂奔回來，馬嘴全是白沫。</p><p>「中伏！」</p><p>王子燦臉上的血一下褪掉。</p><p>他沒有衝出去。</p><p>這一次，他已經不是能靠自己拿刀補救的參將。</p><p>「第三營出北門接應。」</p><p>「炮隊移西。」</p><p>「步兵不過低丘。」</p><p>「所有追兵原路回，不准停下救棄馬！」</p><p>一道一道命令下去。</p><p>他站在中軍，能聽見遠處交戰聲，卻看不見自己送出去的人。</p><p>這是主帥最殘酷的距離。</p><p>你知道有人正在因你的命令死。</p><p>卻不能去陪他們。</p><p>天黑前，殘兵回來。</p><p>兩營幾乎被打掉一半。</p><p>傷兵營一路排到城內寺院。</p><p>最終清點：死一百七十三。</p><p>傷四百餘。</p><p>一百七十三。</p><p>王子燦把那個數字看了三遍。</p><p>不是一七三。</p><p>是名字。</p><p>趙六。</p><p>劉成。</p><p>王茂。</p><p>一個個在軍冊上都有籍貫、年歲、領餉記錄。</p><p>其中甚至有一名北京北門舊兵。</p><p>那人甲申那夜活下來，多活了幾年，最後死在寧遠。</p><p>王子燦坐在帳中，一直看到夜深。</p><p>陳筱依進來時，他還在看。</p><p>「第三遍。」</p><p>王子燦沒有抬頭。</p><p>「如果我沒准那三里——」</p><p>「現在你知道是伏。」</p><p>「我當時也想過。」</p><p>「想過不等於知道。」</p><p>王子燦閉上眼。</p><p>「我明明寫過假退。」</p><p>陳筱依走到桌邊，把名冊合起來。</p><p>「那你要怎樣？」</p><p>「我不該錯。」</p><p>「為什麼？」</p><p>王子燦抬頭。</p><p>她看著他。</p><p>「因為你從後世來，所以不該錯？」</p><p>他沒有說話。</p><p>「你以前最討厭別人拿假的數字騙自己。」</p><p>她指著他。</p><p>「現在不要拿假的全知騙自己。」</p><p>帳外很安靜。</p><p>王子燦很久沒有動。</p><p>這句話比安慰更有效。</p><p>因為她沒有說「不是你的錯」。</p><p>是他的錯。</p><p>命令是他下的。</p><p>但「犯錯」和「必須從此假裝自己能永遠不錯」不是一回事。</p><p>第二天軍議，所有人都以為王子燦會把責任推給前線擅進。</p><p>他沒有。</p><p>「越丘是我准的。」</p><p>帳內一靜。</p><p>「判斷錯。」</p><p>他把新規則寫在圖上。</p><p>「以後追擊線不是一條。分黃線、紅線。過黃線需前線主將與中軍雙確認；過紅線，除非敵軍主力已核實，否則不准。」</p><p>一名老將低聲：「將軍，這樣會錯失戰機。」</p><p>「會。」</p><p>「那——」</p><p>「所有規則都有代價。」</p><p>王子燦看著眾人。</p><p>「這條規則換的是少一點被假退拖走的機會。值不值得，以後再看。」</p><p>沒有人再說。</p><p>＊＊＊</p><p>更難的是朝廷怎麼處理。</p><p>王子燦自己上疏請罪。</p><p>沒有把「雖敗猶榮」寫進去。</p><p>也沒有說「敵眾我寡」。</p><p>只把時間、命令、敵情與傷亡按順序列清。</p><p>崇禎回旨很快。</p><p>「著都察院議。」</p><p>軍中有人替他不平。</p><p>「將軍打了這麼多勝仗，一次錯判也要議罪？」</p><p>王子燦問：「那要幾次才算？」</p><p>那人說不出。</p><p>都察院最後議：記過一次，停本次戰後部分恩賞，軍議檢討入檔，不撤職。</p><p>朝中兩邊都不滿。</p><p>一邊說太輕，功臣犯法與庶將同罪才叫公。</p><p>另一邊說太重，臨陣用兵豈能事後苛責。</p><p>王子燦自己反而最滿意。</p><p>「至少不是看皇上今天心情。」</p><p>這句話被傳到北京。</p><p>崇禎朱批只有八個字：</p><p>「王燦多嘴。處置不改。」</p><p>王子燦看完笑了。</p><p>軍中也笑。</p><p>可這件事真正的作用，幾個月後才顯現。</p><p>一名參將主動上報自己在一次小規模接敵中錯估兵力，提前撤退。</p><p>以前這種事很可能被修成「有序轉進」。</p><p>現在他直接寫「誤判」。</p><p>因為他知道，承認錯誤會被記錄，卻不一定等於立刻完蛋。</p><p>真話的成本下降了一點。</p><p>只有一點。</p><p>但這一點很重要。</p><p>＊＊＊</p><p>寧遠最艱苦的日子不是大戰。</p><p>是雨季。</p><p>道路爛成泥，海運因風延誤，傷兵營開始缺乾布。</p><p>王子燦去傷兵營時，一開始帶了二十名隨從。</p><p>走到門口，他讓大半人停下。</p><p>裡面的味道很重。</p><p>血、汗、藥、排泄物，全混在一起。</p><p>軍醫見他來，忙著要整理。</p><p>「別整理。」</p><p>王子燦先看水。</p><p>再看布。</p><p>再看傷兵記錄。</p><p>一名腿已截掉的士兵認出他，掙扎著要起身。</p><p>「躺著。」</p><p>士兵真的躺回去。</p><p>「將軍。」</p><p>「嗯。」</p><p>「我的餉還有嗎？」</p><p>王子燦愣了一下。</p><p>「有。」</p><p>「我斷腿也有？」</p><p>「傷餉另算。」</p><p>士兵點頭。</p><p>「那就行。」</p><p>沒有感恩涕零。</p><p>沒有「願為將軍效死」。</p><p>只一句「那就行」。</p><p>王子燦後來把原本準備做慰問儀式的一筆銀改去買藥材與乾布。</p><p>有人提醒：「主帥還是要露面，不然士氣——」</p><p>他這才意識到，象徵也有用。</p><p>於是他照樣去巡。</p><p>只是每次都先問軍醫缺什麼，再問傷兵想說什麼。</p><p>他慢慢學會，制度與象徵不是二選一。</p><p>人既需要真的餉，也會在意那個下命令的人有沒有來看一眼。</p><p>＊＊＊</p><p>寧遠最後守住，不是因為一場漂亮決戰。</p><p>是因為清軍繞糧道沒成功、正面攻擊成本過高，而明軍海運與堡寨線逐漸穩住。</p><p>敵軍退去那天，城頭有人喊「大捷」。</p><p>王子燦沒有阻止歡呼。</p><p>士兵需要一場歡呼。</p><p>但捷報上，他只寫：</p><p>「寧遠守成，敵退。」</p><p>「我軍陣亡一百七十三，傷四百餘。」</p><p>「糧道未失。」</p><p>崇禎朱批：</p><p>「知之。陣亡姓名具報。」</p><p>王子燦盯著最後六字。</p><p>他知道皇帝也在變。</p><p>以前，勝報後面那些名字很容易變成一個數。</p><p>現在至少有人會再問一次。</p><p>寧遠沒有讓王子燦變成名將。</p><p>反而讓他第一次真正知道，主帥這兩個字有多重。</p><p>不是因為你能決定多少人去死。</p><p>是因為每次有人因你的判斷沒有回來，你都必須在第二天照樣坐回那張桌子，繼續下下一道命令。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="43" id="ch-43">
+<div class="chapter-kicker">第五卷　山海逆潮</div><h2>第四十三章　錦州</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>錦州比寧遠難。</p><p>不是因為城牆更高。</p><p>是因為離山海關更遠。</p><p>大軍每往東一步，後方就多出一段需要守的路。糧車要走更久，傷兵要退更遠，堡寨之間任何一個空隙，都可能讓騎兵鑽進去，把前線和後方切成兩半。</p><p>朝中催得很急。</p><p>寧遠守住後，主戰派認為「清勢已挫」，應趁勝一舉復錦州。</p><p>奏疏裡最常出現四個字：</p><p>「乘勝進取。」</p><p>王子燦看得頭痛。</p><p>他把幾份奏疏攤給陳筱依。</p><p>「他們都覺得我在怕。」</p><p>「你怕嗎？」</p><p>「怕。」</p><p>「那不就寫對了？」</p><p>王子燦瞪她。</p><p>陳筱依繼續算帳。</p><p>「怕又不等於不打。」</p><p>這句話後來真的成了王子燦對朝廷的回答。</p><p>他不反對打錦州。</p><p>但先做三件事。</p><p>修堡寨。</p><p>設糧站。</p><p>把海運再往前推。</p><p>每前進一段，後面必須先有一個能撐至少二十日的補給點。</p><p>這種打法慢得非常難看。</p><p>半年裡，大軍只往前挪了幾十里。</p><p>朝中有人上疏：「王燦畏敵養寇。」</p><p>甚至有人抓住他的身世攻擊，說袁氏與遼東有私情，因此王子燦不敢決戰，怕敗壞父名。</p><p>崇禎把奏疏丟給他。</p><p>「你怎麼回？」</p><p>王子燦看完。</p><p>「不回。」</p><p>「不氣？」</p><p>「氣。」</p><p>「那為何不回？」</p><p>「寫一封反駁要半天。把前面糧站弄好比較有用。」</p><p>崇禎笑了。</p><p>「你年輕時可不是這脾氣。」</p><p>王子燦也笑。</p><p>「年輕時我會把他祖宗一起罵。」</p><p>皇帝咳了一聲。</p><p>「現在也想。」</p><p>「朕當沒聽見。」</p><p>＊＊＊</p><p>錦州真正開始前，王子燦先去看最後一個前進糧站。</p><p>不是看帳。</p><p>是自己站在秤旁看一天。</p><p>一袋袋米從車上卸下，過秤、記數、入庫。</p><p>紙上寫一百斤的袋子，實際九十七、九十八很常見。</p><p>有人說路上損耗。</p><p>有人說麻袋吸潮。</p><p>也有人明顯是少裝。</p><p>王子燦沒有把所有差額都當貪污。</p><p>他讓人記分布。</p><p>如果每袋都差兩三斤，可能是秤或包裝問題。</p><p>如果某一批專門差十斤，就要查。</p><p>一名老糧官看他盯到晚上，忍不住道：</p><p>「國公爺以後要打仗，何必看這些？」</p><p>王子燦問：「沒有這些，我拿什麼打？」</p><p>對方一時無話。</p><p>他越打仗越相信，真正的戰場常常在炮聲響起之前就決定了一半。</p><p>不是靠預言。</p><p>是靠有沒有把米送到。</p><p>＊＊＊</p><p>真正圍錦州後，王子燦沒有立刻強攻。</p><p>城外地形與敵軍援路比城牆本身更重要。</p><p>他把軍隊分成三層。</p><p>第一層貼城，負責壓制與監視。</p><p>第二層控道路與高地。</p><p>第三層不碰城，專門守糧道。</p><p>一名將領抱怨：「三分之一兵不打城，太浪費。」</p><p>王子燦問：「敵援來時誰擋？」</p><p>「臨時調。」</p><p>「等看到援軍再調，就晚了。」</p><p>他寧願少一點攻城兵，也不願整支軍隊把背後留空。</p><p>這種安排很快證明必要。</p><p>第五夜，城外出現大股騎兵。</p><p>不是主力，只是試圖逼明軍把圍城兵撤走。</p><p>第二層防線接戰後故意後退一小段，把對方引進預定炮區。</p><p>炮響時，王子燦反而在後方糧站。</p><p>他接到軍報，只回一句：「照原案。」</p><p>身旁年輕幕僚有些失望。</p><p>「公爺不去前面？」</p><p>王子燦看他。</p><p>「我去，能多一門炮？」</p><p>「不能。」</p><p>「那我留這裡。」</p><p>他終於真正學會，主帥有時候最大的價值，就是不要因為自己想看熱鬧而改變原本能運作的系統。</p><p>＊＊＊</p><p>可第九夜，他還是親自帶騎兵出去了。</p><p>原因不是逞強。</p><p>是情報。</p><p>城外東北一條小路被發現可以供小股援軍夜行。若不切掉，錦州守軍就不會真正感到孤立。</p><p>王子燦原本只打算派副將。</p><p>可這條路牽涉兩支不同系統的騎兵，彼此不熟，他最後決定自己壓陣。</p><p>陳筱依知道時，已經來不及攔。</p><p>她只讓人送來一句話：</p><p>「你最好真的有必要。」</p><p>王子燦看完紙條，有點心虛。</p><p>夜戰比白天難看得多。</p><p>沒有整齊旗號。</p><p>馬蹄、喊聲、火把，全會騙人。</p><p>一支友軍因口令傳錯，差點把王子燦的隊伍當成敵軍。</p><p>第一排弓已經拉滿。</p><p>王子燦聽見對面有人喊出自己隊裡一個老兵的外號，才猛地叫停。</p><p>「別射！」</p><p>兩邊相距不到五十步。</p><p>事後所有人都出了一身冷汗。</p><p>真正交戰後，明軍並沒有把援軍全部殲滅。</p><p>只破壞了兩處橋板、燒掉一批草料，再在道路兩側布哨。</p><p>戰略目的達到。</p><p>可回營時，王子燦仍差點從馬上摔下來。</p><p>不是受傷。</p><p>是累。</p><p>陳筱依三天沒跟他好好說話。</p><p>第四天才問：</p><p>「必要？」</p><p>王子燦老實答：「一半。」</p><p>「另一半？」</p><p>「我覺得自己去比較快。」</p><p>她冷笑。</p><p>「所以還是手癢。」</p><p>王子燦沒反駁。</p><p>他沒有因為變成主帥就突然沒有舊習。</p><p>只是現在有人會在他犯老毛病時提醒。</p><p>＊＊＊</p><p>錦州真正動搖，不是在炮火最重的那天。</p><p>是在城內收到明軍投書後。</p><p>內容很長，核心卻只有幾條。</p><p>放下兵器者登記。</p><p>普通軍戶與家屬不連坐。</p><p>原明軍再降者按具體行為處理，不一概處死。</p><p>有明確屠殺、劫掠罪證者另審。</p><p>旗人、漢軍不以族屬一概定罪。</p><p>朝中為最後一條吵翻。</p><p>有人甚至說：「收復遼土，本為雪恥。豈可寬敵？」</p><p>王子燦在軍前只問一個問題：</p><p>「今天投降會死，明天下一座城為什麼投？」</p><p>沒有人能給他一個更實際的答案。</p><p>第三日夜，城西一處門悄悄開了一條縫。</p><p>不是全城獻降。</p><p>只是一支守門部隊先放下武器。</p><p>王子燦沒有立刻讓大軍衝進去。</p><p>他先派兩隊人接門、封附近庫房，再廣播軍令：</p><p>「不得私入民宅。」</p><p>「不得擅殺俘兵。」</p><p>「不得搶財物。」</p><p>第一批進城的士兵很失望。</p><p>他們打了這麼久，很多人心裡本來就把「破城」等同於「可以拿」。</p><p>當晚真的有人違令。</p><p>三名明軍闖入一戶民宅，搶銀與布。</p><p>被巡隊抓到。</p><p>第二天在軍前依軍法處置。</p><p>有人求情。</p><p>「都是打了幾年的老兵。」</p><p>王子燦問：「所以？」</p><p>「辛苦有功。」</p><p>「餉照發，功另賞。」</p><p>他看著那三人。</p><p>「但我們昨天說不搶。」</p><p>「是我們先答應的。」</p><p>處置很重。</p><p>軍中有人說他對敵人仁、對自己人狠。</p><p>王子燦沒有辯。</p><p>因為如果大明連自己說過的話都不算數，那錦州今天掛哪面旗根本沒有區別。</p><p>＊＊＊</p><p>入城後真正讓王子燦頭痛的，不是敵軍。</p><p>是「誰算敵人」。</p><p>有人原本是明軍，後來降後金，再被編入漢軍。</p><p>有人出生在關外，從沒見過山海關以西，卻因父輩編旗就被視作「敵戶」。</p><p>有漢人家庭的兄弟分在兩邊。</p><p>有普通旗丁根本沒上過戰場，只負責牧馬。</p><p>若只用「忠」「奸」兩個字切，整座城幾乎誰都能被另一個人告成奸。</p><p>第一周，告密信像雪片。</p><p>某人說鄰居通敵。</p><p>另一封說告密者只是想搶房。</p><p>王子燦看了三天，直接改規則。</p><p>先看行為。</p><p>不先看標籤。</p><p>有沒有參與具體戰鬥。</p><p>有沒有屠殺、搶掠證據。</p><p>是不是只是家屬。</p><p>是不是被編戶而未從軍。</p><p>這種辦法很慢。</p><p>也不可能完全公平。</p><p>檔案缺失、證人報復、假供，一樣很多。</p><p>但至少沒有讓錦州在「收復」後立刻變成另一場清算。</p><p>一名老將私下說：「公爺太軟。」</p><p>王子燦正在看糧價。</p><p>頭都沒抬。</p><p>「我要這座城明年還能種地、收稅、出兵。」</p><p>「與軟不軟無關。」</p><p>老將一時不知道怎麼回。</p><p>＊＊＊</p><p>錦州真正恢復的信號，不是衙門重新掛牌。</p><p>是市場。</p><p>第一個開門的是修鞋攤。</p><p>接著是賣柴的。</p><p>第三天，有人開始磨刀。</p><p>第五天，一個老婦人在街角賣熱粥。</p><p>王子燦走過去買一碗。</p><p>老婦人認不出他，只問：「你們這次待多久？」</p><p>王子燦停了一下。</p><p>「不知道。」</p><p>她皺眉。</p><p>「前幾批也都說長久。」</p><p>王子燦沒有保證。</p><p>只是付錢。</p><p>第二天又來。</p><p>第三天也來。</p><p>到第五天，老婦人開始多給他半勺粥。</p><p>「你這兵還算守規矩。」</p><p>王子燦笑。</p><p>「我不是兵。」</p><p>「不是兵穿甲幹嘛？」</p><p>旁邊親兵差點笑出聲。</p><p>王子燦沒有表明身分。</p><p>他更在意另一件事：</p><p>市場有人敢賒帳了。</p><p>一個賣柴的讓熟客明日再付。</p><p>這代表至少在那一刻，他相信明天還會有市場。</p><p>後來王子燦把這種觀察寫進地方官考核。</p><p>不只問「民心是否安定」。</p><p>還問菜價、柴價、夜間開市到幾時、商販是否敢賒。</p><p>很多官員覺得荒唐。</p><p>王子燦卻覺得，這些比「百姓歡欣鼓舞」六個字真得多。</p><p>錦州不是因為明軍進城而被收復。</p><p>是當人開始相信明天還會在這裡生活時，這座城才真正回來。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="44" id="ch-44">
+<div class="chapter-kicker">第五卷　山海逆潮</div><h2>第四十四章　遼河</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>遼河出現在視野裡時，王子燦沒有想像中激動。</p><p>那只是一條河。</p><p>水色混濁，岸邊有蘆葦，風很大。士兵忙著扎營、修橋、找柴，沒有人因為「歷史性的時刻」停下工作。</p><p>陳筱依騎馬到他旁邊。</p><p>「到了？」</p><p>「嗯。」</p><p>「你爹以前打過的地方？」</p><p>「更東。」</p><p>她看他半天。</p><p>「你終於替他報仇了？」</p><p>王子燦搖頭。</p><p>「不是。」</p><p>「那你這些年一直往東打，是為什麼？」</p><p>王子燦望著河對岸。</p><p>小時候，父親這個詞對王燦來說意味著禁忌、屈辱與一個永遠不能公開說的名字。到了現代王子燦身上，袁崇煥則是歷史人物，是研究興趣，是家族傳說。兩種記憶疊在一起，曾讓他以為自己非得替那個人完成什麼。</p><p>現在他忽然覺得沒有。</p><p>袁崇煥是袁崇煥。</p><p>他是他。</p><p>「回家吧。」王子燦說。</p><p>陳筱依沒有聽懂。</p><p>「哪個家？」</p><p>「不知道。」</p><p>他笑了一下。</p><p>也許是這具身體父親曾守過的土地。也許是王子燦終於走到不用再證明自己像誰的地方。</p><p>當晚，他在軍帳裡把「袁」字鐵牌收進箱底。</p><p>不是丟掉。</p><p>只是第一次不再戴在身上。</p><p>第二天渡河。</p><p>前方仍有仗。</p><p>但從那一天起，他不再把每一場勝負都當作替父親討回什麼。</p><p>他開始只問：</p><p>這一仗，值不值得讓人死。</p><p class="scene-break">＊</p><p>渡遼河前，王子燦去了一次軍墓。</p><p>不是袁崇煥的，也不是名將墓。是這幾年戰死的新軍合葬地。每一塊木牌都很簡單，名字、籍貫、所屬。</p><p>他走到一塊牌前停下。那是一名曾在北京北門跟過他的老兵，最後死在寧遠。</p><p>從甲申到今天，這個人竟又多活了數年。</p><p>王子燦忽然明白，自己改變歷史不是把所有死亡取消。</p><p>很多人仍然會死。只是死在不同時間、不同地方，或多活幾年，甚至多生一個孩子。</p><p>這種改變沒有「全救」那麼漂亮。</p><p>可歷史本來就不是一條能被徹底清零的傷亡表。</p><p>能多活一天，也是真實的一天。</p><p class="scene-break">＊</p><p>遼河邊那一晚，王子燦把鐵牌從脖子上摘下時，手指停了很久。</p><p>這東西幾乎陪他走過兩個人生。</p><p>現代父親用它講家族故事；明末的記憶則把它當成不能公開的身世證明。它既是血脈，也是包袱。</p><p>陳筱依問：「不戴了？」</p><p>「先收著。」</p><p>「怕丟？」</p><p>「怕我一直需要它告訴自己是誰。」</p><p>她沒有完全聽懂，卻點頭。</p><p>第二天王子燦第一次只用「王子燦」三個字簽軍令，沒有在心裡補一句「袁崇煥之子」。</p><p>那份命令只是很普通地要求渡河後不得擅取民船。</p><p>可對他自己而言，這比很多封賞都重要。</p><p>他終於不再是替一個父親、一本史書或一個穿越使命活著。</p><p>他開始真正擁有自己的名字。</p><p class="scene-break">＊</p><p>渡過遼河後，王子燦收到一封來自北京的家書。</p><p>不是現代父親。</p><p>是史可法。</p><p>老人只寫：「行至此，當知進亦難、退亦難。毋以家仇催兵。」</p><p>王子燦看完很久沒有說話。</p><p>史可法太懂他，知道越接近父親曾經守過的地方，他越可能把戰略與情緒混在一起。</p><p>王子燦當晚取消原定的急進計畫，要求再等一批糧。</p><p>部將不知道原因。</p><p>他也沒有解釋。</p><p>有時真正救下一場戰役的，不是一封軍令。</p><p>是一個很了解你的人，在你最容易失去判斷時提醒一句。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="45" id="ch-45">
+<div class="chapter-kicker">第六卷　遼東重明</div><h2>第四十五章　盛京</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>攻盛京之前，朝廷整整爭了半年。</p><p>這一次，最急著打的人不是王子燦。</p><p>相反，他一開始反對。</p><p>「遼西剛穩。」</p><p>「錦州往東的糧線還薄。」</p><p>「海運冬季風險高。」</p><p>「盛京就算拿下，也未必守得住。」</p><p>朝中很多人聽得不耐煩。</p><p>從煤山救駕到收復北京，再到寧遠、錦州，王子燦幾乎已經成了「進取」的象徵。</p><p>如今反而是他在說等等。</p><p>一名御史甚至上疏問：</p><p>「王子燦功成名高，是否志滿而怯？」</p><p>崇禎把奏疏給他看。</p><p>王子燦讀完，笑了一聲。</p><p>「這次不用回？」皇帝問。</p><p>「不用。」</p><p>「你最近脾氣真好。」</p><p>「不是脾氣好。」</p><p>王子燦把一張數表推到御案前。</p><p>「等這些數變了，自然能打。」</p><p>表上只有幾項。</p><p>遼西可儲糧日數。</p><p>可用海運船數。</p><p>主力新軍完成整訓營數。</p><p>冬衣存量。</p><p>戰馬補充率。</p><p>傷兵後送能力。</p><p>「打盛京不是問想不想。」王子燦說，「是問打完還能不能養。」</p><p>崇禎看了半天。</p><p>「那何時能？」</p><p>「不知道。」</p><p>皇帝已經很習慣這三個字。</p><p>「等條件夠。」</p><p>＊＊＊</p><p>真正讓條件變化的，不是一場捷報。</p><p>是三件很無聊的事。</p><p>第一，海運連續兩季沒有大規模斷航。</p><p>第二，錦州到寧遠間新糧站全部能按期補滿。</p><p>第三，關外內部開始出現裂縫。</p><p>不同旗、不同將領、不同利益群體之間的矛盾，在長期戰爭與物資壓力下逐漸放大。幾支原本穩固的部隊開始要求更多糧餉，有地方守將私下接觸明軍，希望保全家屬。</p><p>王子燦不是因為對方「變弱」就立刻進軍。</p><p>他等到情報來源能互相印證。</p><p>陳筱依把三條不同商路收到的消息放在桌上。</p><p>「不是同一個人傳的。」</p><p>「還有？」</p><p>「兩個投來的低階軍官說的也差不多。」</p><p>王子燦看了很久。</p><p>「可以準備。」</p><p>不是「出兵」。</p><p>是準備。</p><p>又過兩個月，他才真正上疏請進。</p><p>＊＊＊</p><p>盛京之戰沒有「一日定天下」。</p><p>它拖了數月。</p><p>第一個月爭的是河口。</p><p>第二個月爭的是草料。</p><p>第三個月爭的是冬天誰先撐不住。</p><p>明軍這一次最大的不同，不是炮更厲害。</p><p>是後勤沒有在第一場大雪後散掉。</p><p>過去很多北伐在紙上敗給敵人，實際先敗給路。</p><p>這一次，每一支前推部隊後面都有糧站、馬站、傷兵站。</p><p>速度因此很慢。</p><p>可每一步都比較能留下。</p><p>王子燦幾乎每天都在算。</p><p>一營今天吃多少。</p><p>戰馬死多少。</p><p>炮彈還有幾輪。</p><p>雪後哪條路車過不去。</p><p>這種戰爭非常不適合寫成傳奇。</p><p>沒有將軍一箭定軍心。</p><p>只有大批人把木板鋪到泥地，讓糧車不陷。</p><p>有一次，一座臨時橋被冰水沖斷。</p><p>前線催糧像催命。</p><p>工兵連夜重架。</p><p>第二天橋通時，沒有鼓號。</p><p>只有第一輛糧車慢慢過去。</p><p>王子燦站在旁邊，比攻下一座小堡還高興。</p><p>因為他知道，真正讓盛京離自己近一里的，不是昨天殺了多少人。</p><p>是今天這車米過得去。</p><p>＊＊＊</p><p>進入盛京外圍後，敵軍反而不再輕易決戰。</p><p>他們知道明軍補給線長。</p><p>開始反覆襲擾。</p><p>白天不一定打。</p><p>晚上專燒草料、截小隊、殺斥候。</p><p>軍中壓力越來越大。</p><p>一名年輕將領請求集中主力打一場決戰。</p><p>「再這樣拖，士氣會散。」</p><p>王子燦問：「對方願不願決戰？」</p><p>「我們逼他。」</p><p>「怎麼逼？」</p><p>對方答不出。</p><p>王子燦也想決戰。</p><p>決戰乾脆。</p><p>贏了可以寫捷報，輸了也至少知道結果。</p><p>拖延最折磨人。</p><p>每天都有人死一點、糧少一點、馬瘦一點。</p><p>可戰爭不是因為主帥厭煩就會變成他喜歡的形狀。</p><p>王子燦只能繼續縮短營線、加強夜哨，讓騎兵反襲擾。</p><p>有幾次抓到對方小隊，他甚至下令不要全追。</p><p>部將不滿：「可殲之敵！」</p><p>「殲了這五十人，主力在哪？」</p><p>「不知。」</p><p>「那就別拿五百人去追五十。」</p><p>寧遠的一百七十三個名字仍在他腦裡。</p><p>犯過的錯不會自動讓人變聰明。</p><p>只有真的把錯寫進下一次命令，它才有一點價值。</p><p>＊＊＊</p><p>真正的突破來自一個不起眼的地方守備。</p><p>此人原本在盛京外圍一座糧屯負責守備，家族與城內權貴並不緊密。連續兩年徵糧加重，部下多有怨言。</p><p>他派人接觸明軍，條件不是高官。</p><p>只要保全家人與部眾。</p><p>王子燦沒有立刻信。</p><p>陳筱依把情報拆成三份查。</p><p>一查他家人是否真在城中。</p><p>二查糧屯位置與守兵是否吻合。</p><p>三查是否可能是誘敵。</p><p>驗了五日，仍不能百分之百確定。</p><p>王子燦最後只派一支小隊接觸，不押主力。</p><p>結果是真的。</p><p>糧屯開門。</p><p>明軍因此得到一批糧，也得到盛京外圍最新防務變化。</p><p>軍中有人開始傳「天命在明」。</p><p>王子燦聽見就頭痛。</p><p>「不是天命。」</p><p>「是對面一個守備覺得再跟下去沒好處。」</p><p>他非常在意這種區別。</p><p>一旦把所有成功都歸給天命，就會停止研究真正原因。</p><p>而下一次，天命未必幫你送來一座糧屯。</p><p>＊＊＊</p><p>盛京城外最後一次大戰，從清晨打到入夜。</p><p>明軍沒有完全包圍。</p><p>王子燦刻意留了一個方向。</p><p>有人問：「為何不四面合圍？」</p><p>「圍死，城裡只能死打。」</p><p>「留路不是放敵？」</p><p>「是讓想走的人走。」</p><p>這個決定有風險。</p><p>敵軍可能借開口集結突擊。</p><p>所以開口不是空的。</p><p>遠處有騎兵監視，炮隊也能覆蓋。</p><p>只是沒有堵死。</p><p>戰到午後，城內果然開始有人撤。</p><p>先是家眷。</p><p>再是小股部隊。</p><p>最後幾支主力也選擇往外突。</p><p>明軍在外圍接戰，卻沒有為「全殲」一路追到失去隊形。</p><p>王子燦坐在中軍。</p><p>六個時辰裡，他沒有拔刀。</p><p>只收消息、看圖、下令。</p><p>哪裡加一營。</p><p>哪裡退半里。</p><p>哪一批炮彈先送。</p><p>哪支騎兵不能再追。</p><p>以前的他會覺得這不像勇敢。</p><p>現在才明白，主帥最危險的誘惑就是想親自做一件看得見的英雄事。</p><p>而真正的責任往往是坐著，不讓整支軍隊因你熱血而亂。</p><p>入夜前，盛京城內守軍主體崩散。</p><p>一部分撤離。</p><p>一部分請降。</p><p>城門最後打開時，明軍沒有歡呼太久。</p><p>因為第一道軍令立刻傳下：</p><p>「封庫。」</p><p>「封衙。」</p><p>「不准私入民宅。」</p><p>「不准殺俘。」</p><p>「違者軍法。」</p><p>有人聽完直接罵：</p><p>「打了這麼多年，連東西都不能拿？」</p><p>傳令官不敢回。</p><p>王子燦正好聽見。</p><p>他走過去。</p><p>那士兵認出他，立刻低頭。</p><p>王子燦沒有罵。</p><p>「你幾個月沒領餉？」</p><p>「兩月。」</p><p>王子燦轉頭問軍需官。</p><p>「實？」</p><p>「一月半。」</p><p>「三日內先補一月。」</p><p>然後再看那士兵。</p><p>「餉朝廷欠你，是朝廷的債。」</p><p>「百姓家裡的東西不是。」</p><p>士兵抬頭。</p><p>「可這是敵地。」</p><p>王子燦指向城內。</p><p>「明天就是我們治的地。」</p><p>這句話後來被抄得很漂亮。</p><p>可第一夜一點都不漂亮。</p><p>真的有人搶。</p><p>真的有人趁亂報私仇。</p><p>真的有明軍衝進倉庫。</p><p>也真的處置了人。</p><p>第二天，全城仍然關門。</p><p>第三天，只開幾條縫。</p><p>第七天，有人出來賣柴。</p><p>半個月後，小市集恢復。</p><p>王子燦每天都讓人報三個數。</p><p>不是斬首。</p><p>是米價、柴價、夜間開門商戶數。</p><p>幕僚第一次聽時一臉茫然。</p><p>「這也算軍報？」</p><p>「算。」</p><p>「為何？」</p><p>「因為旗插上去不代表城是你的。」</p><p>「人敢過日子，才算。」</p><p>＊＊＊</p><p>真正困難的是第一個冬天。</p><p>勝仗後最容易被忽略的問題一起來了。</p><p>糧不足。</p><p>人口流動。</p><p>原有官員逃散。</p><p>新派官員不懂地方。</p><p>不同族群互相報復。</p><p>有人拿著舊契說房子是自己的。</p><p>另一家說住了十年。</p><p>有人控告鄰居「通敵」，實際只是兩家早有田界糾紛。</p><p>如果讓軍隊就地解決，最快。</p><p>也最容易把「收復」變成新一輪掠奪。</p><p>王子燦設臨時公所。</p><p>查稅冊、舊契、鄰證。</p><p>很慢。</p><p>一天只能處理幾十件。</p><p>朝中有人嫌效率低。</p><p>王子燦把積案數與錯判申訴數一起送回去。</p><p>「快判可以。」</p><p>「但錯的房子以後要用兵再搶回來。」</p><p>沒有人再催得那麼兇。</p><p>同時，他下令封存城內主要檔案。</p><p>戶籍、糧冊、牧地、兵籍，都先收。</p><p>士兵不懂：「不先找金銀？」</p><p>王子燦道：「金銀花掉就沒了。」</p><p>「帳能告訴你這地方怎麼活。」</p><p>他甚至要求研究對方如何養馬、徵糧、編戶。</p><p>立刻有人上疏說他「慕敵」。</p><p>王子燦懶得回。</p><p>敵人的制度不會因為敵人用了就自動變壞。</p><p>自己的制度也不會因為祖宗留下就自動變好。</p><p>他只問：有沒有用，代價是什麼。</p><p>＊＊＊</p><p>盛京收復一個月後，崇禎下旨召王子燦回北京受賞。</p><p>王子燦請延三個月。</p><p>理由很簡單：</p><p>「城剛拿，臣不能現在走。」</p><p>朱批很快回來。</p><p>「准。」</p><p>下面還有一行：</p><p>「莫把朕的封賞也當假數。」</p><p>王子燦看到時笑了很久。</p><p>身旁年輕幕僚不懂。</p><p>「公爺，萬歲何意？」</p><p>「舊帳。」</p><p>從煤山那夜到盛京，兩人都老了很多。</p><p>崇禎仍會急。</p><p>王子燦仍會頂嘴。</p><p>不同的是，他們之間已經有一種很少見的信任。</p><p>不是「我相信你永遠對」。</p><p>而是「我相信你錯了還會說」。</p><p>王子燦站在盛京城頭，往西看。</p><p>很遠很遠的地方，是北京。</p><p>再往西南，是南京。</p><p>再更遠，是一個他不知道還存不存在的二○二五年。</p><p>他曾以為自己一路往東，是替袁崇煥報仇。</p><p>後來發現不是。</p><p>也曾以為自己要證明現代人比古人懂得更多。</p><p>後來更不是。</p><p>現在他只覺得累。</p><p>也覺得踏實。</p><p>城下有人重新擺攤。</p><p>一個孩子抱著柴跑過街。</p><p>沒有炮聲。</p><p>他忽然明白，自己打了這麼多年真正想要的，不是把某一面旗插到最遠。</p><p>是讓旗下面的人不用一直抬頭看，今天又換成誰。</p><p>那才是盛京之戰真正該有的結尾。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="46" id="ch-46">
+<div class="chapter-kicker">第六卷　遼東重明</div><h2>第四十六章　陳筱依</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>陳筱依沒有成為傳統故事裡「功成後站在將軍身後的女人」。</p><p>她拒絕。</p><p>遼東逐步安定後，王子燦向她求婚。沒有花，也沒有跪。那天兩人正在核一批運糧帳，他忽然說：「妳要不要跟我成親？」</p><p>陳筱依頭都沒抬。</p><p>「你這算求親？」</p><p>「不然要怎樣？」</p><p>「至少別在我查到三百兩對不上時說。」</p><p>王子燦只好等。</p><p>等她把帳查完。</p><p>「現在呢？」</p><p>陳筱依看著他，很久才說：「可以。」</p><p>「就這樣？」</p><p>「不然我要哭？」</p><p>兩人最後笑成一團。</p><p>婚後，她仍管自己的事。她把戰亂中收集的家書、軍冊、賑濟簿與地方筆記整理成一間「北門書庫」。一開始只是保存文書，後來慢慢開放給識字士人查閱。</p><p>她還做了一件更招議論的事：辦女塾。</p><p>不是宣稱天下女子都該入仕，而是很實際地教讀、寫、算帳。</p><p>有人上疏說遼東風俗將壞。</p><p>崇禎把奏疏丟給王子燦。</p><p>「你夫人又給朕惹事。」</p><p>「臣管不了。」</p><p>「你是她丈夫。」</p><p>「所以更管不了。」</p><p>皇帝竟點頭，像很有同感。</p><p>陳筱依後來問王子燦，現代的女子是不是都能讀書。</p><p>「大部分可以。」</p><p>「可以當官？」</p><p>「很多工作都可以。」</p><p>「可以研究歷史？」</p><p>王子燦看她。</p><p>「可以。」</p><p>她眼睛亮了一下。那一瞬間，他突然想起天台上的另一個陳筱依。</p><p>不是因為兩個人一樣。</p><p>而是因為如果歷史真的能往前走，也許有一天，眼前這個人想做的事不需要再被當作例外。</p><p>「那我們蓋一個很多書、很亮、沒有炮的地方。」她說。</p><p>「什麼？」</p><p>「你以前講過的。」</p><p>王子燦笑。</p><p>「圖書館。」</p><p>「對。就那個。」</p><p class="scene-break">＊</p><p>北門書庫落成那日，陳筱依沒有請大官剪綵。她請來的是三個人：一名寡婦、一名退伍傷兵、一個十五歲女孩。</p><p>寡婦捐出丈夫的家書。傷兵捐出一本自己不太會寫、只記得軍餉數的破簿。女孩則是第一批女塾學生。</p><p>「為什麼是他們？」王子燦問。</p><p>「因為你不是一直說，史書沒寫的人也是歷史？」</p><p>王子燦笑。</p><p>書庫第一條規矩也由她定：捐入私人文書者，可要求若干年內不公開。</p><p>「人活著也有秘密。」她說。</p><p>這個看似小的規定，讓更多人願意把家書、帳簿與手記留下。</p><p>多年後，後世研究甲申與中興初年的材料之所以異常豐富，很多人把功勞歸給遼國公。</p><p>王子燦每次都糾正：「不是我。是我夫人怕你們把普通人寫沒了。」</p><p class="scene-break">＊</p><p>成親後，陳筱依曾問王子燦：「你第一次見我，是不是因為那個人長得跟我一樣才救我？」</p><p>王子燦沒有急著否認。</p><p>「一開始，是。」</p><p>她安靜。</p><p>「如果妳長得完全不一樣，我可能不會那麼快注意妳。」</p><p>這答案很殘酷，卻是真話。</p><p>「後來呢？」</p><p>「後來我已經分得出來。」</p><p>「怎麼分？」</p><p>王子燦想了很久。</p><p>「她生氣會先罵。妳生氣會先安靜。」</p><p>「還有？」</p><p>「她怕麻煩，妳專門找麻煩。」</p><p>陳筱依拿帳冊砸他。</p><p>兩人笑完，她忽然說：「這樣就好。」</p><p>她從來不想做另一個女人的替代品。</p><p>王子燦也終於明白，兩張相同的臉可以屬於兩段完全不同的人生。</p><p>愛不是把熟悉投射回去。</p><p>是有一天，你想起對方時，先想到她自己的故事。</p><p class="scene-break">＊</p><p>女塾第一年只收十二個學生。</p><p>有人說太少，根本改不了風氣。</p><p>陳筱依說：「十二個會寫字的人，比零個多十二個。」</p><p>王子燦聽了覺得耳熟。</p><p>這和自己當年「有一點用就做一點」幾乎一樣。</p><p>兩人真正相似的地方，不是她與現代陳筱依長同一張臉。</p><p>而是都逐漸不再迷信一次改完世界。</p><p>女塾後來從十二人變三十、六十，再變成幾座城都有。</p><p>沒有哪一天能被單獨稱為「女子教育開始」。</p><p>歷史很多變化，本來就沒有鐘聲。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="47" id="ch-47">
+<div class="chapter-kicker">第六卷　遼東重明</div><h2>第四十七章　遼寧</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>「遼寧」這個名字，是王子燦提出來的。</p><p>當然，這不是原本明代的建制。過去遼東以都司體系為核心，軍政色彩極重。收復之後，最棘手的問題恰恰是：如果仍只把這裡當成一條巨大邊防線，那麼百姓、田賦、商路、軍戶與地方治理仍會全部附著在軍事之下。</p><p>王子燦主張重整。</p><p>遼東、遼西分區設民政官，逐步把能恢復的州縣從純軍管中拆出；重要衛所仍保留；山海關到遼河的堡寨另設軍事統轄。</p><p>至於最高層，他提出一個新稱：遼寧。</p><p>「遼河安寧。」</p><p>有人嫌太白。</p><p>王子燦說：「名字讓人聽得懂不是壞事。」</p><p>朝廷最後同意設「遼寧承宣布政使司」作為架空新制，同時設總督統籌遼東、遼西軍政，軍權仍由中央節制。這不是照搬後世省制，而是在這條已被改寫的歷史裡，一個新制度。</p><p>最大的爭議是誰當第一任。</p><p>答案幾乎沒有懸念。</p><p>王子燦自己反而不想。</p><p>「臣想回北京休息兩年。」</p><p>崇禎冷笑：「你當初把朕從煤山拖下來，怎麼沒問朕想不想休息？」</p><p>王子燦無話可說。</p><p>皇帝又道：「遼東是你打回來的，不是你的。」</p><p>「臣知道。」</p><p>「所以朕才讓你去。」</p><p>這句話讓他怔住。</p><p>崇禎已經學會最重要的一點：功勞越大的人，越不能讓土地變成私人領地。</p><p>王子燦反而安心。</p><p>「臣領旨。」</p><p>陳筱依聽說後只問：「總督衙門旁邊有地方蓋書庫嗎？」</p><p>王子燦笑。</p><p>「妳關心的是這個？」</p><p>「不然關心你官帽？」</p><p>「也是。」</p><p>從此，原本只存在後世地圖上的「遼寧」二字，在這條世界線裡提前出現。</p><p>不是預言。</p><p>是王子燦第一次真正承認：</p><p>他已經不只是修補原本的歷史。</p><p>他在創造一條新的。</p><p class="scene-break">＊</p><p>「遼寧」建制草案送到北京後，禮部為一個名字爭了三天。</p><p>有人主張仍稱遼東，有人認為新制不該與舊軍區混淆。王子燦原本只是隨口提「遼寧」，沒想到真的成為候選。</p><p>崇禎在御筆旁批：「何解？」</p><p>王子燦回：「遼河安寧。」</p><p>皇帝批：「俗。」</p><p>王子燦再回：「好記。」</p><p>最後竟真的用了。</p><p>陳筱依知道後笑了很久：「皇帝嫌俗，你還敢頂。」</p><p>「名字又不是詩。」</p><p>「那你府邸要不要也叫王家大屋？」</p><p>「可以。」</p><p>「算了，你沒救。」</p><p>這些瑣碎爭論，反而讓「新世界線」變得真實。歷史不是每個轉折都在戰場，有時一個後世習以為常的地名，最初也只是案桌上一個被嫌太俗的提案。</p><p class="scene-break">＊</p><p>遼寧新制落地時，王子燦最堅持的一條是軍民帳分開。</p><p>過去遼東長期軍事化，很多民政都附在衛所之下。戰時方便，久了卻容易讓百姓的一切都被軍事需求吞掉。</p><p>他主張軍田、民田、軍糧、民賦分冊，不能缺餉就直接往百姓帳上挪。</p><p>這不是徹底現代化，做不到。</p><p>但至少讓「軍事需要」不再天然壓過所有事情。</p><p>第一年執行很亂。很多地方連土地邊界都說不清，舊衛所與新州縣互相搶權。</p><p>王子燦每天收到一堆爭議。</p><p>有次他氣得說：「早知道不設了。」</p><p>陳筱依只問：「舊的比較好？」</p><p>「也沒有。」</p><p>「那就繼續。」</p><p>改革最令人疲憊的地方，就是新制度一開始通常比舊制度更亂。</p><p>因為舊的問題大家早已習慣，新問題卻每一個都很顯眼。</p><p>王子燦花了幾年才接受，混亂不一定代表方向錯。</p><p class="scene-break">＊</p><p>遼寧總督衙門落成時，王子燦特意把軍機房、財計房與民政房分在不同院落，帳冊也不共用一把鑰匙。</p><p>有人覺得繁瑣。</p><p>他說：「就是要繁瑣。」</p><p>權力全放在一張桌上確實效率高。</p><p>可一旦坐在桌後的人出問題，整個地方一起出問題。</p><p>王子燦從不假設後代都像自己。</p><p>甚至不假設自己永遠可靠。</p><p>這種「先防自己」的設計，後來成為遼寧新制最常被研究的一部分。</p><p>也有人批評因此行政較慢。</p><p>王子燦承認。</p><p>制度的安全與效率本來就常互相拉扯。</p><p>沒有免費答案。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="48" id="ch-48">
+<div class="chapter-kicker">第六卷　遼東重明</div><h2>第四十八章　封國公</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>封爵是在遼寧建制後第二年。</p><p>王子燦奉召回北京。</p><p>皇極殿上，禮部宣讀長得讓他腿麻的制書。煤山救駕、護駕西南、北門斷後、整軍餉、守山海、復京師、定遼西、克盛京，一件件被寫成整齊漂亮的官樣文字。</p><p>王子燦聽著卻一直想起那些不整齊的畫面。</p><p>曹文瑞在門洞裡消失。</p><p>第一個被他刺死的年輕敵兵。</p><p>一百七十三名因追擊錯誤死掉的新軍。</p><p>那些名字沒有全部出現在制書裡。</p><p>最後一句終於念到：</p><p>「晉封遼國公，賜世券，與國同休。」</p><p>殿上一片賀聲。</p><p>王子燦卻抬頭。</p><p>「臣請辭世襲。」</p><p>所有人都愣住。</p><p>崇禎臉色一沉：「你又來？」</p><p>「臣不是不要賞。」</p><p>「那你要什麼？」</p><p>王子燦早準備好了。</p><p>「爵可世襲。軍職不可直接父死子繼。」</p><p>這話讓很多勳臣不舒服。</p><p>「臣之子若無能，不能因姓王就掌遼東兵。」</p><p>崇禎盯著他很久。</p><p>皇帝其實明白這個問題。大明過去不少軍鎮、勳戚、衛所，本就有世襲帶來的僵化。若再造一個「王氏遼東」，幾代後很可能又成中央難制的藩鎮。</p><p>可王子燦的功，又確實到了必須給一個足夠重的政治回報。</p><p>最後形成一個折衷。</p><p>遼國公世襲罔替。</p><p>王氏子孫對遼寧總督有優先承任資格，但每一代必須由朝廷考核、授印；不合格者保爵不保職，中央可另任總督。</p><p>同時，王氏世代負有一項義務：北門軍冊與遼東軍政檔案不得私藏，須副本入國庫與書庫，接受御史核查。</p><p>王子燦聽完，跪下。</p><p>「臣領旨。」</p><p>崇禎忽然問：「還記得煤山？」</p><p>「記得。」</p><p>「你那日說，北京可失，大明不可亡。」</p><p>王子燦笑了。</p><p>「臣還說過很多放肆話。」</p><p>「朕都記得。」</p><p>殿上有人低頭憋笑。</p><p>崇禎也笑。</p><p>「你說對了一件。」</p><p>「哪件？」</p><p>「活著，確實比死難。」</p><p class="scene-break">＊</p><p>王子燦請求「爵可世襲、軍職不可無條件世襲」時，真正反對最激烈的並非皇帝，而是一批勳貴。</p><p>因為這個例子一旦成立，等於暗示世職也可以被考核。</p><p>有人私下勸他：「你何苦替子孫少拿權？」</p><p>王子燦回答：「就是替子孫留命。」</p><p>權力若只靠祖宗功勞維持，後代能力愈差，越需要靠私兵與利益網保位，最後不是被中央收，就是變藩鎮。</p><p>他不想讓王家一百年後變成自己當年最討厭的樣子。</p><p>這個選擇沒有消除風險。</p><p>但至少把一個觀念寫進制度：功勞可以傳名，職務必須重新證明。</p><p class="scene-break">＊</p><p>受封遼國公當晚，王子燦把制書放在桌上看了很久。</p><p>陳筱依進來時先看見「世襲罔替」四字。</p><p>「你以前不是最討厭靠祖宗？」</p><p>「所以我剛才差點不要。」</p><p>「最後還是要了。」</p><p>王子燦苦笑。</p><p>他知道爵位也是政治。皇帝需要用足夠高的榮譽回報功臣，朝廷也需要把王氏與新遼東秩序綁在一起。全部拒絕未必更高尚，可能只會讓關係變得不穩。</p><p>「我怕子孫以後拿這四個字當本事。」</p><p>陳筱依坐下。</p><p>「那就讓他們知道，你也不是一開始就會。」</p><p>於是王子燦開始整理自己的失敗。</p><p>寧遠追擊錯判、早期新軍拆編失誤、幾次錯信情報，全部寫進私人手記。</p><p>他不希望子孫只讀到「先祖百戰百勝」。</p><p>因為最危險的家族神話，就是讓後代相信血統會自動帶來能力。</p><p class="scene-break">＊</p><p>封公後，民間開始出現很多關於王子燦的傳奇。</p><p>有人說他能預知天象，有人說他刀槍不入，甚至有人說煤山那一刀斬斷的是大明國運上的死結。</p><p>王子燦非常討厭。</p><p>「我肩上還有箭疤，哪裡刀槍不入？」</p><p>陳筱依倒不急。</p><p>「民間愛講故事，你攔不住。」</p><p>「那會把別人的功都寫沒。」</p><p>所以遼國公府出資刊刻的第一批戰史，故意列出參戰單位與傷亡，不只寫主帥。</p><p>這當然也不能完全阻止英雄神話。</p><p>但至少留下另一套材料，讓後人有機會看到：一個人不可能真的靠自己救一個王朝。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="49" id="ch-49">
+<div class="chapter-kicker">第六卷　遼東重明</div><h2>第四十九章　世襲罔替</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>世襲罔替四個字傳回遼寧後，地方上立刻出現各種奉承。有人要建生祠，有人要把王子燦的家譜抄進地方志，甚至有人提議將他父子與歷代遼東名將並祀。</p><p>王子燦全部拒絕。</p><p>「我還沒死，拜什麼？」</p><p>真正讓他頭痛的是兒子。</p><p>多年後，他與陳筱依有一子一女。兒子第一次知道自己將來可以繼承遼國公時，興奮了三天。第四天被母親抓去算糧帳。</p><p>「為什麼我要學這個？」</p><p>陳筱依說：「因為你爹就是靠算這個活到今天。」</p><p>王子燦在旁邊糾正：「還靠很多人替我擋刀。」</p><p>孩子不懂。</p><p>王子燦也不急。</p><p>他給王家定下一條很奇怪的家訓：每一代承爵者成年前，必須去邊軍、糧站、州縣各待一段時間，不能只在總督府裡長大；必須親自點一次兵、押一次糧、查一次災；若要承任總督，還得通過朝廷派員的考核。</p><p>勳貴朋友笑他給自家子孫找麻煩。</p><p>王子燦說：「不找麻煩，最後麻煩就是別人。」</p><p>更重要的是，他主動把遼寧總督的財權、軍權拆開一部分。軍餉由中央與地方共同覆核，主力軍官不能全由總督私人提拔，御史有常駐巡查權。</p><p>陳筱依問：「你不怕以後王家被架空？」</p><p>「怕。」</p><p>「那還做？」</p><p>「如果一個制度只能靠後代每個都是好人，早晚完。」</p><p>她聽完，點點頭。</p><p>「這句可以刻家訓。」</p><p>「不要。」</p><p>「為什麼？」</p><p>「太像金句。」</p><p>陳筱依笑了半天。</p><p>王子燦自己也笑。</p><p>他年輕時最喜歡從歷史裡找一句句能概括時代的話。</p><p>活了這麼多年才發現，真正讓制度撐下去的，往往不是一句漂亮話。</p><p>是麻煩、重複、難看，卻有人每天照做的程序。</p><p class="scene-break">＊</p><p>王家的第一條家訓不是「忠君」。</p><p>也不是「精忠報國」。</p><p>是四個字：先報實數。</p><p>兒子十六歲時覺得很難聽。</p><p>「別人家訓都很有氣勢。」</p><p>王子燦問：「你想要什麼？」</p><p>「比如忠勇傳家。」</p><p>「那你餉冊作假算不算忠勇？」</p><p>孩子閉嘴。</p><p>陳筱依在旁邊笑。</p><p>後來王氏族譜真的把「先報實數」寫在卷首。後世子孫有人遵守，也有人違反；王家並沒有因此永遠清廉。</p><p>但每次有人被查出造假，御史最愛拿祖訓堵他們的嘴。</p><p>王子燦若地下有知，大概會覺得這才是家訓最實際的用途。</p><p class="scene-break">＊</p><p>王子燦的兒子第一次去糧站時，才真正理解「遼國公世子」四個字在外面有多好用。</p><p>地方官一路替他安排最好的房間，帳冊也早已整理得漂亮。</p><p>他回家後很得意。</p><p>王子燦只問：「你看的是哪一套帳？」</p><p>「總冊。」</p><p>「庫房看了？」</p><p>「沒有。」</p><p>「押糧的人問了？」</p><p>「沒有。」</p><p>「那你看了什麼？」</p><p>孩子臉紅。</p><p>第二次去，王子燦讓他換普通衣服，提前兩日到。</p><p>這一次看到的就不同。缺斤、受潮、車夫抱怨拖欠，總冊上一項沒有。</p><p>王子燦沒有因此要求每個官員都微服私訪。</p><p>他只想讓孩子親自感受：當所有人知道你是誰時，你看到的世界會自動替你整理。</p><p>權力最大的風險之一，就是現實在到你面前以前，已被很多人修過一次。</p><p class="scene-break">＊</p><p>王氏後代第一個沒有通過總督承任考核的人，是王子燦自己的孫子。</p><p>那時王子燦還活著。</p><p>朝中很多人以為他會求情。</p><p>他沒有。</p><p>孫子回家後很難受：「祖父，您就不能說一句？」</p><p>王子燦問：「你缺的是我說一句，還是你真的會做？」</p><p>孩子不服，幾年後去地方任職，重新歷練。</p><p>再後來，他以另一個職位做得很好。</p><p>王子燦很欣慰。</p><p>制度第一次真正有效，不是在它約束敵人。</p><p>是在它約束自己家時，也沒被撕掉。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="50" id="ch-50">
+<div class="chapter-kicker">第六卷　遼東重明</div><h2>第五十章　北門之約</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>很多年後，王子燦再次回到北京北門。</p><p>城牆早已修好。當年那段門洞被新磚覆蓋，只有地方志裡留著「甲申北門之戰」幾行字。朝廷甚至立了一塊碑，碑文寫得極漂亮：忠勇、護駕、保民、死節。</p><p>王子燦看完，只說：「太漂亮了。」</p><p>陪同官員以為他不滿功勞寫少，嚇得連忙解釋。</p><p>他搖頭。</p><p>「不是。」</p><p>碑上寫「殘軍三百七十一」。</p><p>王子燦命人在旁邊另立一面更大的石牆。</p><p>上面不寫文章。</p><p>只刻名字。</p><p>已核實的，一個一個刻。尚未查清的，留下空格。曹文瑞在最前面，後面沒有官銜，只刻籍貫與年歲。</p><p>許勇已經四十多歲，帶著兒子來。</p><p>「將軍。」</p><p>「別叫將軍了。」</p><p>「叫習慣。」</p><p>許勇指著牆上一個名字：「這是張四。」</p><p>王子燦記得。</p><p>那個因為他把許勇調開，補上位置而死的十九歲士兵。</p><p>很多年過去，他仍無法回答當年的問題：如果不改，死的是許勇；改了，死的是張四。哪一個才對？</p><p>但現在許勇的兒子站在旁邊。</p><p>張四沒有後代。</p><p>這不是答案。</p><p>只是代價有了形狀。</p><p>傍晚，崇禎也來了。皇帝已老，走路需要杖。兩個當年在煤山吵架的人站在北門下，誰都不像當初。</p><p>「半個時辰。」崇禎說。</p><p>「嗯。」</p><p>「你用三百七十一人，給朕買了半個時辰。」</p><p>王子燦搖頭。</p><p>「不是給陛下。」</p><p>崇禎看他。</p><p>王子燦指向城外。街上有人賣餅，有孩子追著跑，有車夫罵路堵。</p><p>「給他們。」</p><p>皇帝看了很久。</p><p>「朕當年不懂。」</p><p>「臣也不懂。」</p><p>「你不是從三百多年後來？」</p><p>王子燦笑。</p><p>「知道後來，不等於懂當下。」</p><p>崇禎點頭。</p><p>兩人沒有再說。</p><p>北門沒有炮聲。</p><p>只有普通人的喧鬧。</p><p>王子燦忽然覺得，這就是他所有戰爭最後想換來的東西。</p><p class="scene-break">＊</p><p>北門名牆完工後，一位老婦人摸著其中一個名字哭了很久。</p><p>她的哥哥當年十八歲，失蹤後家裡一直不知道死在哪。名冊直到幾十年後才從一份殘缺隊簿裡對上。</p><p>「原來在這。」她只說了四個字。</p><p>王子燦站得很遠，沒有上前。</p><p>他忽然覺得，這面牆真正的意義不是替三百七十一人做英雄紀念。</p><p>只是讓一些等了幾十年的人，終於知道那個人最後在哪。</p><p>歷史有時不是回答天下興亡。</p><p>只是替一個家庭補上失蹤者的最後一行。</p><p class="scene-break">＊</p><p>北門名牆立好後，王子燦拒絕讓自己的名字刻在正中。</p><p>地方官很為難。</p><p>「公爺是主帥。」</p><p>「那就按軍冊順序。」</p><p>最後王子燦的名字只和其他人一樣大小。</p><p>崇禎看到時問：「你不怕後人不知道是你？」</p><p>「知道太多了。」</p><p>皇帝笑。</p><p>王子燦指著牆。</p><p>「這面不是給我。」</p><p>最讓他意外的是，幾十年後牆前最常有人停的不是他的名字，也不是曹文瑞。</p><p>是一排很普通的名字。</p><p>因為那些人的後代會帶孩子來，說「這是你曾祖」。</p><p>歷史在這裡不再是朝代更替。</p><p>只是家庭記憶。</p><p>王子燦覺得這比任何巨大的英雄塑像都好。</p><p class="scene-break">＊</p><p>北門名牆旁後來沒有建王子燦塑像。</p><p>他生前留下明確遺命：若真要放東西，就放一口鐘。</p><p>每天黃昏敲一次。</p><p>不是紀念勝利。</p><p>是提醒城門關閉、行人回家。</p><p>「這樣比較有用。」王子燦說。</p><p>很多年後，人們已不一定知道鐘與甲申有什麼關係。孩子只知道聽見鐘聲該回家吃飯。</p><p>陳筱依覺得這非常適合他。</p><p>一個打了一輩子仗的人，最後留下的紀念不是戰鼓。</p><p>是叫人回家的鐘。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section><section class="chapter" data-index="51" id="ch-51">
+<div class="chapter-kicker">第六卷　遼東重明</div><h2>尾聲　太平</h2><div class="ornament">◆</div>
+<div class="chapter-body"><p>太平不是沒有問題。</p><p>這是王子燦晚年最常說的一句話。</p><p>大明沒有因為他救下崇禎就變成完美國家。官員仍會貪，軍隊仍會虛報，地方仍有災荒，朝廷也照樣黨爭。崇禎變了很多，卻沒有變成另一個人；他晚年仍會急，仍會疑，只是身邊終於有人敢提醒他：「陛下，先核實。」</p><p>王子燦也沒有成為無敗名將。</p><p>他的履歷裡有失誤，有敗仗，有因判斷錯誤死去的人。後世史家對他爭得很兇。有人把他稱為「再造社稷第一功臣」，有人批評遼寧新制過度集中，也有人懷疑他留下的《北門手記》把自己寫得太謙。</p><p>他本人對這些都不太在意。</p><p>真正讓他在意的是北門書庫。</p><p>陳筱依最後真的把它蓋成一座很大的館。不是現代意義上完全公開的圖書館，卻比當時多數藏書樓更願意讓學生、軍官、地方士人查閱。裡面有軍冊、家書、賑災簿、戰時商路圖，也有她收集的女性書信與口述。</p><p>門上匾額不是「忠烈」。</p><p>是四個字：</p><p>「存人之事。」</p><p>某個冬日午後，王子燦坐在窗邊，看著一群年輕人查閱甲申年的舊檔。陽光落在桌面，室內很亮。遠處沒有炮。</p><p>陳筱依已滿頭白髮，仍在糾正一個學生抄錯的數字。</p><p>王子燦忽然笑。</p><p>她抬頭：「幹嘛？」</p><p>「想到一個地方。」</p><p>「哪裡？」</p><p>「三百多年後。」</p><p>「又來。」</p><p>「那裡也有很多書，很亮，沒有炮。」</p><p>陳筱依看了看四周。</p><p>「那我們這裡也差不多。」</p><p>王子燦愣住。</p><p>是啊。</p><p>他曾經以為自己穿越到明末，是為了拯救一個王朝。後來以為是為了救崇禎，再後來以為是為了改制度、復北京、收遼東。</p><p>到老才發現，所有宏大的答案最後都落在很小的地方。</p><p>一個士兵真的拿到餉。</p><p>一戶災民少交一筆不該交的稅。</p><p>一個戰敗的將領可以報真數。</p><p>一個女孩能坐在書桌前讀她想讀的東西。</p><p>一座城門後的人，多活了半個時辰。</p><p>那年春天，崇禎先他一步去世。臨終前派人送來一只舊木匣。</p><p>裡面沒有玉器。</p><p>只有一截已經發黃的白綾。</p><p>正是煤山那一夜被王子燦斬斷的那一截。</p><p>匣底有皇帝晚年親筆兩行：</p><p>「昔日卿斷此綾，朕始知死易。」</p><p>「後半生方知，活而任事，果難。」</p><p>王子燦看了很久，把白綾收進北門書庫。</p><p>沒有放在最顯眼的位置。</p><p>只和曹文瑞的軍冊、張四的名簿、陳允之的舊案放在同一櫃。</p><p>多年後，一名年輕學生問遼國公：</p><p>「公爺，如果當年沒有去煤山，大明真的會亡嗎？」</p><p>王子燦笑。</p><p>「在我原來的世界，亡了。」</p><p>學生以為他在說笑。</p><p>「那您救的是大明？」</p><p>王子燦沒有立刻回答。</p><p>窗外傳來孩子的笑聲。</p><p>他看向陳筱依。她也正看著他。</p><p>「我只是先救了一個想死的人。」</p><p>「然後呢？」</p><p>「然後很多本來會死的人，活下來了。」</p><p>學生又問：「這就是改變歷史？」</p><p>王子燦想了想。</p><p>「也許。」</p><p>他起身，走到書庫門口。</p><p>天很晴。</p><p>沒有烽煙。</p><p>沒有號角。</p><p>遠處新建的女塾正下課，一群孩子抱著書跑過街。</p><p>王子燦手腕上的紅繩早已褪色。那是陳筱依在北京陷落前替他繫上的，他後來換過很多次，每次舊了，她就照原樣再打一個結。</p><p>他曾經以為真正的勇敢是不怕死。</p><p>後來才知道不是。</p><p>真正的勇敢，是很想活，仍願意在不能退的地方多站一會。</p><p>真正的中興，也不是龍旗重新插上哪一座城。</p><p>是旗幟倒下過一次之後，人們終於願意承認：一個國家真正該守的，不只是皇帝、城牆與疆土。</p><p>還有那些不會被寫進本紀的人。</p><p>北門的碑上最後刻了一句王子燦親自寫的話：</p><p>「有些門，明知終有一日會朽，仍值得守。」</p><p>「因為門後站著的，是人的一生。」</p><p>而在遼寧總督府旁，那座書庫的最後一間閱覽室門楣上，陳筱依固執地刻了三個很奇怪的字。</p><p>圖書館。</p><p>王子燦第一次看見時笑她太超前。</p><p>她只回：</p><p>「反正歷史都被你改成這樣了。」</p><p>兩人一起笑。</p><p>若有來世。</p><p>莫生亂世。</p><p>若能生在太平年月——</p><p>圖書館見。</p><p class="scene-break">＊</p><p>王子燦晚年偶爾還會夢見2025年的天台。夢裡陳筱依仍抓著他的手，雨很大。可每次醒來，旁邊睡著的是另一個走過半生、頭髮已白的陳筱依。</p><p>他從來沒有弄清兩個世界之間究竟是什麼關係。靈魂穿越、夢、鐵牌，還是一個瀕死腦袋創造出的完整人生？他甚至把問題寫進私人手記，最後只留一句：「不可證。」</p><p>陳筱依看見後說：「那就別證。」</p><p>「妳不好奇？」</p><p>「好奇。但你在這裡活了幾十年，還生了兩個小孩。就算是夢，也太久了。」</p><p>王子燦笑到咳嗽。</p><p>他最終接受，生命不一定要先證明自己是哪一種真實，才值得認真過。</p><p>至於那枚把一切串起來的袁字鐵牌，晚年仍收在北門書庫。背面不知何時多了一道極淡的刻痕，像兩個字，又像只是鏽蝕。</p><p>有人說那是「北門」。</p><p>王子燦從不肯確認。</p><p>他已經不需要另一個神蹟替自己作證。</p><p>窗外的太平，就是證據。</p><p class="scene-break">＊</p><p>王子燦去世前最後幾年，已經很少談「救大明」。</p><p>有年輕學生專程從江南來問：「遼國公當年若沒有穿越，大明是不是必亡？」</p><p>他回答：「不知道。」</p><p>學生很失望。</p><p>「您不是來自後世？」</p><p>「後世只告訴我原本發生過什麼，沒告訴我所有可能。」</p><p>「那您怎麼知道做對了？」</p><p>王子燦笑。</p><p>「很多事做完也不知道。」</p><p>學生更困惑。</p><p>王子燦沒有再解釋。</p><p>他晚年越來越不相信歷史有單一答案。崇禎活下來後，大明可能因別的原因再次崩潰；某次戰役如果不同，自己也可能早死。所謂中興並不是證明他當初所有判斷都正確。</p><p>只證明一件事：原來的結局不是唯一可能。</p><p>這已經足夠。</p><p>最後一個春天，他與陳筱依坐在北門書庫院中。兩人都老得走不快。</p><p>「你還想回去嗎？」她忽然問。</p><p>王子燦知道她問的是2025。</p><p>他想了很久。</p><p>「想看我爸。」</p><p>「那我呢？」</p><p>「妳一起。」</p><p>「我去了會不會被當古人？」</p><p>「妳會先嫌捷運太吵。」</p><p>她笑。</p><p>「還有呢？」</p><p>「會去圖書館待到關門。」</p><p>「那不錯。」</p><p>夕陽慢慢落下。</p><p>王子燦沒有回到現代。</p><p>至少直到生命最後一刻都沒有。</p><p>他也不再把這當遺憾。</p><p>人生不是一定要回到原點，才算完整。</p><p>有時真正的完整，是你在意外抵達的地方，終於活成一個有明天的人。</p><p>北門書庫閉館前，學生照例點燈。</p><p>整間閱覽室亮起來。</p><p>很多書。</p><p>很亮。</p><p>沒有炮。</p><p>他看著那片光，忽然覺得自己真的抵達了很多年前答應過的地方。</p><p>圖書館見。</p><p class="scene-break">＊</p><p>王子燦死後，陳筱依又活了很多年。</p><p>她沒有把丈夫的房間封起來，也沒有把遼國公變成家族神龕。她繼續去書庫、改學生抄錯的字、和總督衙門為經費吵架。</p><p>有人勸她寫《遼國公行狀》。</p><p>她寫了。</p><p>第一句卻是：「王子燦少時性急，自以為知史，常以所知為所能。」</p><p>王家後人看到差點昏倒。</p><p>她說：「真的啊。」</p><p>後面才寫煤山、南京、遼東。</p><p>這份行狀成為後世研究王子燦最重要的材料，因為它沒有把人寫成神。</p><p>末尾只有一句：</p><p>「其一生所長，不在未嘗有誤，而在知誤後能改。」</p><p>多年後，陳筱依也去世。</p><p>按照她自己的要求，沒有合葬在豪華國公墓，而是葬在北門書庫附近。碑上沒有「賢妻」「節婦」之類字樣。</p><p>只刻：</p><p>「陳筱依，記錄者。」</p><p>兩個從一場落榜與一條白綾開始的人，最後都沒有把名字留在最宏大的地方。</p><p>而那座圖書館，仍然亮著燈。</p></div>
+<div class="chapter-nav"><button class="prev">← 上一章</button><button class="tocBtn">目錄</button><button class="next">下一章 →</button></div>
+</section>
+<section class="appendix" id="notes"><h2>史實與架空說明</h2><div class="note"><p><strong>史實分歧點：</strong>本作以1644年三月十九日為核心分歧點。真實歷史中，李自成軍攻入北京後，崇禎帝於煤山自縊；南京其後另立弘光政權；吳三桂在山海關局勢中引清軍入關。小說自「王子燦阻止崇禎自縊」起全面進入架空歷史。</p><p><strong>真實制度骨架：</strong>明代南京為留都，設南京六部；遼東地區在明代以遼東都指揮使司等軍政體系治理。「遼寧」作為後世省名並非明代正式建制，因此本作中的「遼寧承宣布政使司」「遼寧總督」均屬王子燦改變歷史後的新制。</p><p><strong>世襲設定：</strong>為兼顧使用者設定與制度合理性，本作設定「遼國公」爵位世襲罔替；「遼寧總督」並非無條件父死子繼，而由王氏後嗣有才者優先承任，朝廷保留停任權，以降低完全藩鎮化的不合理性。</p><p><strong>虛構人物：</strong>王子燦、陳筱依、曹文瑞、魏成甫、許勇及北門三百七十一人等皆為小說人物；袁崇煥之子身分亦為小說設定。</p><p><strong>本版增修：</strong>煤山救駕、南京再朝、山海關、北京復城、寧遠、錦州與盛京等核心段落已改寫為完整場景，強化戰術、後勤、人物心理、空間感與制度衝突；「遼寧」建制仍明確屬於本作架空世界線的新制。</p></div></section>
+<div class="footer">《甲申：北門之約》｜煤山救駕，大明中興<br/>若有來世，莫生亂世；若生太平年月，圖書館見。</div></main></div>
 <script>
-(()=>{
-"use strict";
-
-const canvas = document.getElementById("game");
-const ctx = canvas.getContext("2d");
-
-const timerEl = document.getElementById("timer");
-const coinTotalEl = document.getElementById("coinTotal");
-const track = document.getElementById("track");
-const knob = document.getElementById("knob");
-const floatingText = document.getElementById("floatingText");
-const startAutoBtn = document.getElementById("startAuto");
-const stopAutoBtn = document.getElementById("stopAuto");
-
-const W = canvas.width;
-const H = canvas.height;
-
-const LEFT = 24;
-const RIGHT = W - 24;
-const TOP = 24;
-const DROP_Y = H - 52;
-const COIN_R = 13;
-
-let credits = 100;
-let score = 0;
-let timer = 99;
-let gameActive = true;
-
-let aimX = W / 2;
-let coins = [];
-
-let autoDropping = false;
-let lastAutoDrop = 0;
-let lastTime = performance.now();
-let secondAccumulator = 0;
-let bannerTimer = null;
-
-const pusher = {
-  y: 170,
-  minY: 156,
-  maxY: 235,
-  h: 52,
-  dir: 1,
-  speed: 68,
-  vy: 0
-};
-
-function updateUI(){
-  timerEl.textContent = timer + "s";
-  coinTotalEl.textContent = credits;
-
-  const percent = (aimX - LEFT) / (RIGHT - LEFT);
-  knob.style.left = (percent * 100) + "%";
-}
-
-function showFloat(text){
-  floatingText.textContent = text;
-  floatingText.classList.add("show");
-  clearTimeout(bannerTimer);
-  bannerTimer = setTimeout(()=>{
-    floatingText.classList.remove("show");
-  }, 500);
-}
-
-function rand(a,b){
-  return a + Math.random() * (b-a);
-}
-
-function addCoin(x,y,special=false,vx=0,vy=0){
-  coins.push({
-    x,y,
-    r:COIN_R,
-    vx,vy,
-    rot:Math.random()*Math.PI*2,
-    spin:(Math.random()-.5)*2,
-    special,
-    dead:false
-  });
-
-  if(coins.length > 230){
-    coins.splice(0, coins.length - 230);
-  }
-}
-
-function seedCoins(){
-  coins = [];
-  for(let row=0; row<6; row++){
-    for(let col=0; col<9; col++){
-      const x = 64 + col*34 + (row%2 ? 16 : 0);
-      const y = 282 + row*28 + rand(-2,2);
-      if(x < RIGHT - 10){
-        addCoin(x,y,Math.random()<0.06,rand(-2,2),0);
-      }
-    }
-  }
-  for(let i=0;i<18;i++){
-    addCoin(rand(LEFT+20,RIGHT-20), rand(360,440), Math.random()<0.04, rand(-1.5,1.5), 0);
-  }
-}
-
-function resetGame(){
-  credits = 100;
-  score = 0;
-  timer = 99;
-  aimX = W/2;
-  autoDropping = false;
-  gameActive = true;
-  pusher.y = 170;
-  pusher.dir = 1;
-  seedCoins();
-  updateUI();
-}
-
-function dropCoin(){
-  if(!gameActive) return;
-  if(credits <= 0){
-    showFloat("沒金幣了");
-    return;
-  }
-
-  credits--;
-  addCoin(aimX, TOP + 6, Math.random()<0.08, rand(-4,4), 28);
-  updateUI();
-}
-
-function awardCoin(c){
-  if(c.special){
-    score += 5;
-    credits += 2;
-    showFloat("⭐ +5");
-  }else{
-    score += 1;
-    showFloat("🪙 +1");
-  }
-  updateUI();
-}
-
-function step(dt){
-  if(gameActive){
-    secondAccumulator += dt;
-    if(secondAccumulator >= 1){
-      secondAccumulator -= 1;
-      timer--;
-      if(timer <= 0){
-        timer = 0;
-        gameActive = false;
-        autoDropping = false;
-        showFloat("時間到");
-      }
-      updateUI();
-    }
-  }
-
-  const previousY = pusher.y;
-  pusher.y += pusher.dir * pusher.speed * dt;
-
-  if(pusher.y >= pusher.maxY){
-    pusher.y = pusher.maxY;
-    pusher.dir = -1;
-  }
-  if(pusher.y <= pusher.minY){
-    pusher.y = pusher.minY;
-    pusher.dir = 1;
-  }
-
-  pusher.vy = (pusher.y - previousY) / Math.max(dt, 0.0001);
-
-  for(const c of coins){
-    c.vy += 8 * dt;
-    c.vx *= Math.pow(0.967, dt*60);
-    c.vy *= Math.pow(0.969, dt*60);
-
-    c.x += c.vx * dt;
-    c.y += c.vy * dt;
-    c.rot += c.spin * dt;
-
-    if(c.x - c.r < LEFT){
-      c.x = LEFT + c.r;
-      c.vx = Math.abs(c.vx) * 0.45;
-    }
-
-    if(c.x + c.r > RIGHT){
-      c.x = RIGHT - c.r;
-      c.vx = -Math.abs(c.vx) * 0.45;
-    }
-
-    if(c.y - c.r < TOP){
-      c.y = TOP + c.r;
-      c.vy = Math.abs(c.vy) * 0.35;
-    }
-
-    const px1 = LEFT + 8;
-    const px2 = RIGHT - 8;
-    const py1 = pusher.y;
-    const py2 = pusher.y + pusher.h;
-
-    if(
-      c.x + c.r > px1 &&
-      c.x - c.r < px2 &&
-      c.y + c.r > py1 &&
-      c.y - c.r < py2
-    ){
-      if(c.y < py1 + pusher.h*0.56){
-        c.y = py1 - c.r;
-        c.vy = Math.min(c.vy, pusher.vy * 0.75);
-      }else{
-        c.y = py2 + c.r;
-        c.vy = Math.max(c.vy, pusher.vy * 0.95 + 20);
-      }
-    }
-  }
-
-  for(let iteration=0; iteration<2; iteration++){
-    for(let i=0; i<coins.length; i++){
-      const a = coins[i];
-      if(a.dead) continue;
-
-      for(let j=i+1; j<coins.length; j++){
-        const b = coins[j];
-        if(b.dead) continue;
-
-        const dx = b.x - a.x;
-        const dy = b.y - a.y;
-        const rr = a.r + b.r;
-        const d2 = dx*dx + dy*dy;
-
-        if(d2 <= 0 || d2 >= rr*rr) continue;
-
-        const d = Math.sqrt(d2);
-        const nx = dx / d;
-        const ny = dy / d;
-        const overlap = rr - d;
-
-        a.x -= nx * overlap * 0.5;
-        a.y -= ny * overlap * 0.5;
-        b.x += nx * overlap * 0.5;
-        b.y += ny * overlap * 0.5;
-
-        const rvx = b.vx - a.vx;
-        const rvy = b.vy - a.vy;
-        const sep = rvx*nx + rvy*ny;
-
-        if(sep < 0){
-          const impulse = -sep * 0.42;
-          a.vx -= impulse * nx;
-          a.vy -= impulse * ny;
-          b.vx += impulse * nx;
-          b.vy += impulse * ny;
-        }
-      }
-    }
-  }
-
-  for(const c of coins){
-    if(c.y - c.r > DROP_Y){
-      c.dead = true;
-      awardCoin(c);
-    }
-  }
-
-  coins = coins.filter(c => !c.dead && c.y < H + 80);
-}
-
-function drawCoin(c){
-  ctx.save();
-  ctx.translate(c.x, c.y);
-  ctx.rotate(c.rot);
-
-  const g = ctx.createRadialGradient(-4,-4,2,0,0,c.r);
-
-  if(c.special){
-    g.addColorStop(0,"#fff9b5");
-    g.addColorStop(.4,"#ffe363");
-    g.addColorStop(1,"#de8f00");
-  }else{
-    g.addColorStop(0,"#fff4b6");
-    g.addColorStop(.42,"#ffd04f");
-    g.addColorStop(1,"#a96a00");
-  }
-
-  ctx.fillStyle = g;
-  ctx.beginPath();
-  ctx.arc(0,0,c.r,0,Math.PI*2);
-  ctx.fill();
-
-  ctx.strokeStyle = "rgba(119,73,0,.8)";
-  ctx.lineWidth = 2;
-  ctx.stroke();
-
-  ctx.strokeStyle = "rgba(255,255,255,.56)";
-  ctx.lineWidth = 1;
-  ctx.beginPath();
-  ctx.arc(0,0,c.r-4,0,Math.PI*2);
-  ctx.stroke();
-
-  ctx.fillStyle = "#8c5900";
-  ctx.font = "bold 12px -apple-system,sans-serif";
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.fillText(c.special ? "★" : "1", 0, .5);
-
-  ctx.restore();
-}
-
-function draw(){
-  ctx.clearRect(0,0,W,H);
-
-  const bg = ctx.createLinearGradient(0,0,0,H);
-  bg.addColorStop(0,"#181f2c");
-  bg.addColorStop(.4,"#0d121b");
-  bg.addColorStop(1,"#04070b");
-  ctx.fillStyle = bg;
-  ctx.fillRect(0,0,W,H);
-
-  ctx.fillStyle = "#29384f";
-  ctx.fillRect(LEFT-8, TOP-4, 8, DROP_Y-TOP+18);
-  ctx.fillRect(RIGHT, TOP-4, 8, DROP_Y-TOP+18);
-
-  ctx.fillStyle = "#1a2636";
-  ctx.fillRect(LEFT, TOP, RIGHT-LEFT, DROP_Y-TOP);
-
-  ctx.strokeStyle = "rgba(255,255,255,.04)";
-  for(let y=TOP; y<DROP_Y; y+=28){
-    ctx.beginPath();
-    ctx.moveTo(LEFT, y);
-    ctx.lineTo(RIGHT, y);
-    ctx.stroke();
-  }
-
-  ctx.fillStyle = "rgba(90,120,160,.92)";
-  ctx.fillRect(LEFT+8, pusher.y, RIGHT-LEFT-16, pusher.h);
-
-  ctx.fillStyle = "rgba(255,255,255,.13)";
-  ctx.fillRect(LEFT+8, pusher.y, RIGHT-LEFT-16, 6);
-
-  ctx.fillStyle = "#1b293a";
-  ctx.fillRect(LEFT+8, pusher.y + pusher.h - 7, RIGHT-LEFT-16, 7);
-
-  ctx.fillStyle = "#5e748d";
-  ctx.fillRect(LEFT, DROP_Y, RIGHT-LEFT, 10);
-
-  ctx.fillStyle = "#04070a";
-  ctx.fillRect(LEFT, DROP_Y+10, RIGHT-LEFT, H-DROP_Y-10);
-
-  ctx.fillStyle = "#c3d2e5";
-  ctx.font = "bold 12px -apple-system,sans-serif";
-  ctx.textAlign = "center";
-  ctx.fillText("▼ 掉落得分區 ▼", W/2, DROP_Y+30);
-
-  ctx.save();
-  ctx.strokeStyle = "rgba(255,220,108,.88)";
-  ctx.setLineDash([6,5]);
-  ctx.beginPath();
-  ctx.moveTo(aimX, 2);
-  ctx.lineTo(aimX, TOP-2);
-  ctx.stroke();
-  ctx.restore();
-
-  ctx.fillStyle = "#ffd84e";
-  ctx.beginPath();
-  ctx.moveTo(aimX-8, TOP-10);
-  ctx.lineTo(aimX+8, TOP-10);
-  ctx.lineTo(aimX, TOP+1);
-  ctx.closePath();
-  ctx.fill();
-
-  for(const c of coins){
-    drawCoin(c);
-  }
-
-  ctx.fillStyle = "rgba(0,0,0,.18)";
-  for(let i=0;i<20;i++){
-    const x = LEFT + i*19;
-    ctx.fillRect(x, DROP_Y+2, 1, 12);
-  }
-
-  if(!gameActive){
-    ctx.fillStyle = "rgba(6,12,20,.68)";
-    ctx.fillRect(0,0,W,H);
-
-    ctx.fillStyle = "#fff";
-    ctx.textAlign = "center";
-    ctx.font = "bold 34px -apple-system,sans-serif";
-    ctx.fillText("時間到", W/2, H/2 - 18);
-
-    ctx.font = "bold 20px -apple-system,sans-serif";
-    ctx.fillText("本局得分：" + score, W/2, H/2 + 20);
-  }
-}
-
-function loop(time){
-  const dt = Math.min(0.028, (time - lastTime) / 1000);
-  lastTime = time;
-
-  if(autoDropping && gameActive && time - lastAutoDrop > 260){
-    lastAutoDrop = time;
-    if(credits > 0){
-      dropCoin();
-    }else{
-      autoDropping = false;
-    }
-  }
-
-  step(dt);
-  draw();
-  requestAnimationFrame(loop);
-}
-
-function setAim(clientX, element){
-  const rect = element.getBoundingClientRect();
-  let x = (clientX - rect.left) / rect.width * W;
-
-  aimX = Math.max(
-    LEFT + COIN_R,
-    Math.min(RIGHT - COIN_R, x)
-  );
-
-  updateUI();
-}
-
-canvas.addEventListener("pointerdown", e=>{
-  setAim(e.clientX, canvas);
-});
-
-canvas.addEventListener("pointermove", e=>{
-  if(e.buttons || e.pointerType === "touch"){
-    setAim(e.clientX, canvas);
-  }
-});
-
-function sliderAim(e){
-  const rect = track.getBoundingClientRect();
-  const percent = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-  aimX = LEFT + percent * (RIGHT - LEFT);
-  aimX = Math.max(LEFT + COIN_R, Math.min(RIGHT - COIN_R, aimX));
-  updateUI();
-}
-
-track.addEventListener("pointerdown", e=>{
-  e.preventDefault();
-  sliderAim(e);
-});
-
-track.addEventListener("pointermove", e=>{
-  if(e.buttons || e.pointerType === "touch"){
-    sliderAim(e);
-  }
-});
-
-startAutoBtn.addEventListener("click", ()=>{
-  if(!gameActive){
-    resetGame();
-  }
-  autoDropping = true;
-  showFloat("開始投幣");
-});
-
-stopAutoBtn.addEventListener("click", ()=>{
-  autoDropping = false;
-  showFloat("取消投幣");
-});
-
-resetGame();
-lastTime = performance.now();
-requestAnimationFrame(loop);
-
-})();
-</script>
-</body>
-</html>
+const body=document.body,root=document.documentElement,themeBtn=document.getElementById('themeBtn'),drawerBtn=document.getElementById('drawerBtn'),overlay=document.getElementById('overlay'),progress=document.getElementById('progress');const chapters=[...document.querySelectorAll('.chapter')],navLinks=[...document.querySelectorAll('.sidebar a')];function setTheme(t){body.dataset.theme=t;localStorage.setItem('jsby2-theme',t);themeBtn.textContent=t==='dark'?'☀ 淺色':'☾ 深色'}setTheme(localStorage.getItem('jsby2-theme')||'light');themeBtn.onclick=()=>setTheme(body.dataset.theme==='dark'?'light':'dark');let fs=parseInt(localStorage.getItem('jsby2-font')||'20',10);function applyFont(){fs=Math.max(16,Math.min(28,fs));root.style.setProperty('--font-size',fs+'px');localStorage.setItem('jsby2-font',fs)}applyFont();document.getElementById('fontDown').onclick=()=>{fs--;applyFont()};document.getElementById('fontUp').onclick=()=>{fs++;applyFont()};drawerBtn.onclick=()=>body.classList.toggle('drawer-open');overlay.onclick=()=>body.classList.remove('drawer-open');navLinks.forEach(a=>a.addEventListener('click',()=>body.classList.remove('drawer-open')));function goToChapter(i){if(i<0||i>=chapters.length)return;chapters[i].scrollIntoView({behavior:'smooth',block:'start'})}chapters.forEach((ch,i)=>{const p=ch.querySelector('.prev'),n=ch.querySelector('.next'),t=ch.querySelector('.tocBtn');p.disabled=i===0;n.disabled=i===chapters.length-1;p.onclick=()=>goToChapter(i-1);n.onclick=()=>goToChapter(i+1);t.onclick=()=>{if(innerWidth<=900)body.classList.add('drawer-open');else document.getElementById('sidebar').scrollTo({top:0,behavior:'smooth'})}});function onScroll(){const d=document.documentElement,pct=(d.scrollTop/(d.scrollHeight-d.clientHeight))*100;progress.style.width=Math.max(0,Math.min(100,pct))+'%';let active=null;for(const ch of chapters){const r=ch.getBoundingClientRect();if(r.top<=140)active=ch}navLinks.forEach(a=>a.classList.remove('active'));if(active){const link=document.querySelector('.sidebar a[data-target="'+active.id+'"]');if(link)link.classList.add('active');localStorage.setItem('jsby2-last',active.id)}}window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('load',()=>{if(!location.hash){const last=localStorage.getItem('jsby2-last');if(last&&document.getElementById(last))setTimeout(()=>document.getElementById(last).scrollIntoView(),120)}onScroll()});
+</script></body></html>
